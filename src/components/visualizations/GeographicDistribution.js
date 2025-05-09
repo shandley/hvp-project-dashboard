@@ -32,11 +32,15 @@ function GeographicDistribution({ data, filters }) {
     
     // Apply filters to projects
     const filteredProjects = data.projects.filter(project => {
+      // Split categories that may contain multiple values separated by '/'
+      const bodySites = project['Body Site Category'] ? project['Body Site Category'].split('/').map(site => site.trim()) : [];
+      const ageGroups = project['Age Group Category'] ? project['Age Group Category'].split('/').map(age => age.trim()) : [];
+      
       return (
         (!filters.initiativeType || project['Initiative Type'] === filters.initiativeType) &&
         (!filters.geographicRegion || project['Geographic Region'] === filters.geographicRegion) &&
-        (!filters.bodySiteCategory || project['Body Site Category'].includes(filters.bodySiteCategory)) &&
-        (!filters.ageGroupCategory || project['Age Group Category'].includes(filters.ageGroupCategory)) &&
+        (!filters.bodySiteCategory || bodySites.includes(filters.bodySiteCategory)) &&
+        (!filters.ageGroupCategory || ageGroups.includes(filters.ageGroupCategory)) &&
         (!filters.status || project['Status'] === filters.status)
       );
     });

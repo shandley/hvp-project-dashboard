@@ -70,11 +70,15 @@ function SampleDistribution({ data, filters }) {
     }
     // Apply filters to projects
     const filteredProjects = data.projects.filter(project => {
+      // Split categories that may contain multiple values separated by '/'
+      const bodySites = project['Body Site Category'] ? project['Body Site Category'].split('/').map(site => site.trim()) : [];
+      const ageGroups = project['Age Group Category'] ? project['Age Group Category'].split('/').map(age => age.trim()) : [];
+      
       return (
         (!filters.initiativeType || project['Initiative Type'] === filters.initiativeType) &&
         (!filters.geographicRegion || project['Geographic Region'] === filters.geographicRegion) &&
-        (!filters.bodySiteCategory || project['Body Site Category'].includes(filters.bodySiteCategory)) &&
-        (!filters.ageGroupCategory || project['Age Group Category'].includes(filters.ageGroupCategory)) &&
+        (!filters.bodySiteCategory || bodySites.includes(filters.bodySiteCategory)) &&
+        (!filters.ageGroupCategory || ageGroups.includes(filters.ageGroupCategory)) &&
         (!filters.status || project['Status'] === filters.status)
       );
     });
@@ -82,9 +86,13 @@ function SampleDistribution({ data, filters }) {
     // Group projects by body site category
     const bodySiteGroups = {};
     filteredProjects.forEach(project => {
+      if (!project['Body Site Category']) return;
+      
       const bodySites = project['Body Site Category'].split('/');
       bodySites.forEach(site => {
         const trimmedSite = site.trim();
+        if (!trimmedSite) return; // Skip empty site names
+        
         if (!bodySiteGroups[trimmedSite]) {
           bodySiteGroups[trimmedSite] = [];
         }
@@ -95,9 +103,13 @@ function SampleDistribution({ data, filters }) {
     // Group projects by age group category
     const ageGroups = {};
     filteredProjects.forEach(project => {
+      if (!project['Age Group Category']) return;
+      
       const ageCategories = project['Age Group Category'].split('/');
       ageCategories.forEach(age => {
         const trimmedAge = age.trim();
+        if (!trimmedAge) return; // Skip empty age categories
+        
         if (!ageGroups[trimmedAge]) {
           ageGroups[trimmedAge] = [];
         }
