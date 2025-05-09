@@ -298,13 +298,25 @@ function NetworkRelationships({ data, filters }) {
     const width = networkChartRef.current.clientWidth;
     const height = 400;
     
-    // Create SVG
+    // Create SVG with zoom capability
     const svg = d3.select(networkChartRef.current)
       .append("svg")
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [0, 0, width, height])
       .attr("style", "max-width: 100%; height: auto;");
+      
+    // Add zoom behavior
+    const zoomG = svg.append("g");
+    
+    const zoom = d3.zoom()
+      .scaleExtent([0.5, 5]) // Set min and max zoom scale
+      .on("zoom", (event) => {
+        zoomG.attr("transform", event.transform);
+      });
+    
+    // Initialize with no transform
+    svg.call(zoom);
     
     // Function to get CSS variable value
     const getCSSVariable = (variableName) => {
@@ -343,7 +355,7 @@ function NetworkRelationships({ data, filters }) {
       .force("collide", d3.forceCollide().radius(d => Math.sqrt(d.value) * 2 + 10));
     
     // Create links
-    const link = svg.append("g")
+    const link = zoomG.append("g")
       .attr("stroke", getCSSVariable('--border-color'))
       .attr("stroke-opacity", 0.6)
       .selectAll("line")
@@ -352,7 +364,7 @@ function NetworkRelationships({ data, filters }) {
       .attr("stroke-width", d => Math.sqrt(d.value));
     
     // Create nodes
-    const node = svg.append("g")
+    const node = zoomG.append("g")
       .selectAll("circle")
       .data(nodes)
       .join("circle")
@@ -414,7 +426,7 @@ function NetworkRelationships({ data, filters }) {
       });
     
     // Add node labels
-    const label = svg.append("g")
+    const label = zoomG.append("g")
       .selectAll("text")
       .data(nodes)
       .join("text")
@@ -479,10 +491,84 @@ function NetworkRelationships({ data, filters }) {
       );
     }
     
-    // Create legend
+    // Create legend (keep this outside zoom group)
     const legend = svg.append("g")
       .attr("class", "legend")
       .attr("transform", `translate(20, 20)`);
+      
+    // Add zoom controls
+    const zoomControls = svg.append("g")
+      .attr("class", "zoom-controls")
+      .attr("transform", `translate(${width - 100}, 20)`);
+    
+    // Zoom in button
+    zoomControls.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("rx", 5)
+      .attr("fill", getCSSVariable('--background-card'))
+      .attr("stroke", getCSSVariable('--border-color'))
+      .style("cursor", "pointer")
+      .on("click", () => {
+        svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+      });
+    
+    zoomControls.append("text")
+      .attr("x", 15)
+      .attr("y", 20)
+      .attr("text-anchor", "middle")
+      .text("+")
+      .style("font-size", "20px")
+      .style("fill", getCSSVariable('--text-primary'))
+      .style("pointer-events", "none");
+    
+    // Zoom out button
+    zoomControls.append("rect")
+      .attr("x", 0)
+      .attr("y", 40)
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("rx", 5)
+      .attr("fill", getCSSVariable('--background-card'))
+      .attr("stroke", getCSSVariable('--border-color'))
+      .style("cursor", "pointer")
+      .on("click", () => {
+        svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+      });
+    
+    zoomControls.append("text")
+      .attr("x", 15)
+      .attr("y", 60)
+      .attr("text-anchor", "middle")
+      .text("−")
+      .style("font-size", "20px")
+      .style("fill", getCSSVariable('--text-primary'))
+      .style("pointer-events", "none");
+    
+    // Reset zoom button
+    zoomControls.append("rect")
+      .attr("x", 0)
+      .attr("y", 80)
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("rx", 5)
+      .attr("fill", getCSSVariable('--background-card'))
+      .attr("stroke", getCSSVariable('--border-color'))
+      .style("cursor", "pointer")
+      .on("click", () => {
+        svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
+      });
+    
+    zoomControls.append("text")
+      .attr("x", 15)
+      .attr("y", 98)
+      .attr("text-anchor", "middle")
+      .text("⟲")
+      .style("font-size", "18px")
+      .style("fill", getCSSVariable('--text-primary'))
+      .style("pointer-events", "none");
     
     const legendData = [
       { type: 'institution', label: 'Institution' },
@@ -599,7 +685,7 @@ function NetworkRelationships({ data, filters }) {
             }
           </p>
           <p className="usage-tip">
-            <strong>Tip:</strong> Hover over nodes for details. Drag nodes to rearrange the network.
+            <strong>Tip:</strong> Hover over nodes for details. Drag nodes to rearrange. Use zoom controls or mouse wheel to zoom.
           </p>
         </div>
       </div>
