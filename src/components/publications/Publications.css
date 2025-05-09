@@ -10,8 +10,37 @@
 }
 
 .publications-header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   position: relative;
+}
+
+/* Publication tabs */
+.publication-tabs {
+  display: flex;
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  margin-bottom: -1px;
+}
+
+.tab-button:hover {
+  color: var(--primary-color);
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+  font-weight: var(--font-weight-medium);
 }
 
 .publications-header h2 {

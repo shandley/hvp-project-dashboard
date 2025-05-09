@@ -15,7 +15,6 @@ const REPORTER_API_CONFIG = {
     publications: '/publications/search'
   },
   // List of actual HVP-related grant IDs
-  // Adding older NIH virome-related grants to ensure we get publications
   hvpGrantIds: [
     // Virome Characterization Centers (VCC) Grants
     'U54AG089335',
@@ -32,9 +31,10 @@ const REPORTER_API_CONFIG = {
     'AT012993',
     
     // Tools Development Grant
-    'U01DE034199',
-    
-    // Additional NIH virome-related grants 
+    'U01DE034199'
+  ],
+  // Other NIH virome-related grants (kept separate from HVP grants)
+  otherViromeGrantIds: [
     'R01AI132549',  // Human enteric virome in health and disease
     'R01AI141534',  // The Oral Virome in Health and Disease
     'R01ES030150',  // The infant gut virome and neurodevelopment
@@ -303,20 +303,20 @@ export const transformPublicationData = async (apiPublications = []) => {
 };
 
 /**
- * Fetch all HVP-related publications
- * First tries the NIH RePORTER API, falls back to local data if needed
+ * Fetch HVP-specific publications
+ * Uses only the official HVP grant IDs
  * 
  * @returns {Promise<Array>} Array of publication objects
  */
-export const fetchAllHvpPublications = async () => {
+export const fetchHvpPublications = async () => {
   try {
-    // Step 1: Search for publications directly using the grant IDs
-    console.log('Searching for publications using grant IDs:', REPORTER_API_CONFIG.hvpGrantIds);
+    // Step 1: Search for publications directly using the HVP grant IDs
+    console.log('Searching for publications using HVP grant IDs:', REPORTER_API_CONFIG.hvpGrantIds);
     
     // Use the precise grant IDs for direct publication search
     const publications = await throttledSearchPublicationsByProjects(REPORTER_API_CONFIG.hvpGrantIds, { limit: 20 });
     
-    console.log(`Found ${publications.length} publications from NIH RePORTER`);
+    console.log(`Found ${publications.length} publications from NIH RePORTER for HVP grants`);
     
     if (!publications.length) {
       console.warn('No publications found for HVP grants, falling back to local data');
@@ -325,7 +325,7 @@ export const fetchAllHvpPublications = async () => {
     
     // Step 2: Transform to our internal format with additional enrichment
     const transformedPublications = await transformPublicationData(publications);
-    console.log(`Filtered to ${transformedPublications.length} virome-related publications`);
+    console.log(`Filtered to ${transformedPublications.length} HVP-related publications`);
     
     return transformedPublications;
   } catch (error) {
@@ -335,12 +335,54 @@ export const fetchAllHvpPublications = async () => {
   }
 };
 
+/**
+ * Fetch other virome-related publications
+ * Uses non-HVP virome-related grant IDs
+ * 
+ * @returns {Promise<Array>} Array of publication objects
+ */
+export const fetchOtherViromePublications = async () => {
+  try {
+    // Step 1: Search for publications directly using the other virome-related grant IDs
+    console.log('Searching for publications using other virome grant IDs:', REPORTER_API_CONFIG.otherViromeGrantIds);
+    
+    // Use the precise grant IDs for direct publication search
+    const publications = await throttledSearchPublicationsByProjects(REPORTER_API_CONFIG.otherViromeGrantIds, { limit: 20 });
+    
+    console.log(`Found ${publications.length} publications from NIH RePORTER for other virome grants`);
+    
+    // Step 2: Transform to our internal format with additional enrichment
+    const transformedPublications = await transformPublicationData(publications);
+    console.log(`Filtered to ${transformedPublications.length} other virome-related publications`);
+    
+    return transformedPublications;
+  } catch (error) {
+    console.error('Error fetching other virome publications:', error);
+    return [];
+  }
+};
+
+/**
+ * Fetch all HVP-related publications
+ * First tries the NIH RePORTER API, falls back to local data if needed
+ * 
+ * @returns {Promise<Array>} Array of publication objects
+ * @deprecated Use fetchHvpPublications() instead
+ */
+export const fetchAllHvpPublications = async () => {
+  // This function is kept for backward compatibility
+  // It now only fetches HVP-specific publications
+  return fetchHvpPublications();
+};
+
 // Create a named object for the service
 const publicationService = {
   loadLocalPublications,
   searchHvpGrants,
   searchPublicationsByProjects,
-  fetchAllHvpPublications,
+  fetchHvpPublications,
+  fetchOtherViromePublications,
+  fetchAllHvpPublications, // Kept for backward compatibility
   transformPublicationData
 };
 
