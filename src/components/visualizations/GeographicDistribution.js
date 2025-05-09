@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import './Visualization.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -18,48 +18,53 @@ function GeographicDistribution({ data, filters }) {
       setHasData(true);
     }
   }, [data]);
-
-  // Show error message if no data is available
-  if (!hasData) {
-    return (
-      <div className="visualization-container">
-        <div className="error-message">
-          <h3>No Data Available</h3>
-          <p>Could not load project data. Please check that the data files are correctly placed in the public/data directory.</p>
-        </div>
-      </div>
-    );
-  }
   
-  // Apply filters to projects
-  const filteredProjects = data.projects.filter(project => {
-    return (
-      (!filters.initiativeType || project['Initiative Type'] === filters.initiativeType) &&
-      (!filters.geographicRegion || project['Geographic Region'] === filters.geographicRegion) &&
-      (!filters.bodySiteCategory || project['Body Site Category'].includes(filters.bodySiteCategory)) &&
-      (!filters.ageGroupCategory || project['Age Group Category'].includes(filters.ageGroupCategory)) &&
-      (!filters.status || project['Status'] === filters.status)
-    );
-  });
-  
-  // Count projects by region
-  const regionCounts = filteredProjects.reduce((counts, project) => {
-    const region = project['Geographic Region'];
-    counts[region] = (counts[region] || 0) + 1;
-    return counts;
-  }, {});
-
-  // Calculate sample counts by region
-  const regionSamples = filteredProjects.reduce((counts, project) => {
-    const region = project['Geographic Region'];
-    const samples = parseInt(project['Samples']) || 0;
-    if (!counts[region]) {
-      counts[region] = { projects: 0, samples: 0 };
+  // Prepare filtered data
+  const filteredData = useMemo(() => {
+    // If no data, return empty defaults
+    if (!hasData) {
+      return {
+        filteredProjects: [],
+        regionCounts: {},
+        regionSamples: {}
+      };
     }
-    counts[region].projects += 1;
-    counts[region].samples += samples;
-    return counts;
-  }, {});
+    
+    // Apply filters to projects
+    const filteredProjects = data.projects.filter(project => {
+      return (
+        (!filters.initiativeType || project['Initiative Type'] === filters.initiativeType) &&
+        (!filters.geographicRegion || project['Geographic Region'] === filters.geographicRegion) &&
+        (!filters.bodySiteCategory || project['Body Site Category'].includes(filters.bodySiteCategory)) &&
+        (!filters.ageGroupCategory || project['Age Group Category'].includes(filters.ageGroupCategory)) &&
+        (!filters.status || project['Status'] === filters.status)
+      );
+    });
+    
+    // Count projects by region
+    const regionCounts = filteredProjects.reduce((counts, project) => {
+      const region = project['Geographic Region'];
+      counts[region] = (counts[region] || 0) + 1;
+      return counts;
+    }, {});
+
+    // Calculate sample counts by region
+    const regionSamples = filteredProjects.reduce((counts, project) => {
+      const region = project['Geographic Region'];
+      const samples = parseInt(project['Samples']) || 0;
+      if (!counts[region]) {
+        counts[region] = { projects: 0, samples: 0 };
+      }
+      counts[region].projects += 1;
+      counts[region].samples += samples;
+      return counts;
+    }, {});
+    
+    return { filteredProjects, regionCounts, regionSamples };
+  }, [hasData, data, filters]);
+  
+  // Extract filtered data
+  const { filteredProjects, regionCounts, regionSamples } = filteredData;
   
   // Define region coordinates (approximate centers)
   const regionCoordinates = {
@@ -72,8 +77,11 @@ function GeographicDistribution({ data, filters }) {
     'Space': [0, 0]                    // Special handling for space
   };
 
-  // Initialize map when component mounts or when data/filters change
+  // Create map when component mounts or when data/filters change
   useEffect(() => {
+    // Don't try to create map if we don't have data
+    if (!hasData) return;
+    
     // Clean up previous map instance if it exists
     if (mapRef.current) {
       mapRef.current.remove();
@@ -249,7 +257,7 @@ function GeographicDistribution({ data, filters }) {
         mapRef.current.remove();
       }
     };
-  }, [data, filters, filteredProjects]);
+  }, [hasData, filteredProjects, regionSamples, data, filters]);
 
   return (
     <div className="visualization-container">
@@ -258,76 +266,89 @@ function GeographicDistribution({ data, filters }) {
         <p className="subtitle">Distribution of projects across geographic regions</p>
       </div>
       
-      {error && (
+      {!hasData ? (
         <div className="error-message">
-          <h3>Error</h3>
-          <p>{error}</p>
+          <h3>No Data Available</h3>
+          <p>Could not load project data. Please check that the data files are correctly placed in the public/data directory.</p>
         </div>
+      ) : (
+        <>
+          {error && (
+            <div className="error-message">
+              <h3>Error</h3>
+              <p>{error}</p>
+            </div>
+          )}
+          
+          {loading && (
+            <div className="loading-message">
+              <p>Loading map visualization...</p>
+            </div>
+          )}
+        </>
       )}
       
-      {loading && (
-        <div className="loading-message">
-          <p>Loading map visualization...</p>
-        </div>
-      )}
-      
-      <div 
-        id="map" 
-        ref={mapContainerRef} 
-        className="map-container" 
-        style={{ height: '500px', width: '100%' }}
-      ></div>
-      
-      <div className="stats-grid">
-        {Object.entries(regionCounts).map(([region, count]) => (
-          <div key={region} className="stat-card">
-            <h3>{region}</h3>
-            <div className="stat-value">{count}</div>
-            <p>Projects</p>
-            <div className="stat-detail">
-              {regionSamples[region] && (
-                <p>{regionSamples[region].samples.toLocaleString()} samples</p>
-              )}
+      {hasData && (
+        <>
+          <div 
+            id="map" 
+            ref={mapContainerRef} 
+            className="map-container" 
+            style={{ height: '500px', width: '100%' }}
+          ></div>
+          
+          <div className="stats-grid">
+            {Object.entries(regionCounts).map(([region, count]) => (
+              <div key={region} className="stat-card">
+                <h3>{region}</h3>
+                <div className="stat-value">{count}</div>
+                <p>Projects</p>
+                <div className="stat-detail">
+                  {regionSamples[region] && (
+                    <p>{regionSamples[region].samples.toLocaleString()} samples</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="projects-table-container">
+            <h3>Projects by Region</h3>
+            <div className="projects-table-wrapper">
+              <table className="projects-table">
+                <thead>
+                  <tr>
+                    <th>Region</th>
+                    <th>Project ID</th>
+                    <th>Institution</th>
+                    <th>Contact PI</th>
+                    <th>Research Focus</th>
+                    <th>Samples</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredProjects.map(project => (
+                    <tr key={project['Project ID']}>
+                      <td>{project['Geographic Region']}</td>
+                      <td>{project['Project ID']}</td>
+                      <td>{project['Institution']}</td>
+                      <td>{project['Contact PI']}</td>
+                      <td>{project['Primary Research Focus']}</td>
+                      <td>{parseInt(project['Samples']).toLocaleString() || 'N/A'}</td>
+                      <td>
+                        <span className={`status-badge ${project['Status'].toLowerCase()}`}>
+                          {project['Status']}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-        ))}
-      </div>
-      
-      <div className="projects-table-container">
-        <h3>Projects by Region</h3>
-        <div className="projects-table-wrapper">
-          <table className="projects-table">
-            <thead>
-              <tr>
-                <th>Region</th>
-                <th>Project ID</th>
-                <th>Institution</th>
-                <th>Contact PI</th>
-                <th>Research Focus</th>
-                <th>Samples</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProjects.map(project => (
-                <tr key={project['Project ID']}>
-                  <td>{project['Geographic Region']}</td>
-                  <td>{project['Project ID']}</td>
-                  <td>{project['Institution']}</td>
-                  <td>{project['Contact PI']}</td>
-                  <td>{project['Primary Research Focus']}</td>
-                  <td>{parseInt(project['Samples']).toLocaleString() || 'N/A'}</td>
-                  <td>
-                    <span className={`status-badge ${project['Status'].toLowerCase()}`}>
-                      {project['Status']}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }
