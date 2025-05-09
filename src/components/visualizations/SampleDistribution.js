@@ -140,7 +140,7 @@ function SampleDistribution({ data, filters }) {
       sortedAgeGroups,
       totalSamples
     };
-  }, [data, data.projects, filters, sortOrder, hasData]);
+  }, [data, filters, sortOrder, hasData]);
   
   // Extract variables from processedData
   const {
