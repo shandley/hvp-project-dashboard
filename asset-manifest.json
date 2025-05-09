@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hvp-project-dashboard/static/css/main.a8284cc1.css",
-    "main.js": "/hvp-project-dashboard/static/js/main.fcaaa1dc.js",
+    "main.css": "/hvp-project-dashboard/static/css/main.8a6fef79.css",
+    "main.js": "/hvp-project-dashboard/static/js/main.5135520f.js",
     "static/js/239.50964833.chunk.js": "/hvp-project-dashboard/static/js/239.50964833.chunk.js",
     "index.html": "/hvp-project-dashboard/index.html",
-    "main.a8284cc1.css.map": "/hvp-project-dashboard/static/css/main.a8284cc1.css.map",
-    "main.fcaaa1dc.js.map": "/hvp-project-dashboard/static/js/main.fcaaa1dc.js.map",
+    "main.8a6fef79.css.map": "/hvp-project-dashboard/static/css/main.8a6fef79.css.map",
+    "main.5135520f.js.map": "/hvp-project-dashboard/static/js/main.5135520f.js.map",
     "239.50964833.chunk.js.map": "/hvp-project-dashboard/static/js/239.50964833.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8284cc1.css",
-    "static/js/main.fcaaa1dc.js"
+    "static/css/main.8a6fef79.css",
+    "static/js/main.5135520f.js"
   ]
 }
