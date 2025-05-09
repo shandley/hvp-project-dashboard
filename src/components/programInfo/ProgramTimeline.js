@@ -47,30 +47,10 @@ function ProgramTimeline() {
       });
   }, []);
   
-  // Create or update the timeline visualization
-  useEffect(() => {
+  // Function to create the D3 timeline visualization - defined above the useEffect that uses it
+  const createTimelineVisualization = useCallback(() => {
     if (!timelineData || !timelineRef.current) return;
     
-    // Store ref to avoid React Hook cleanup warning
-    const currentTimelineRef = timelineRef.current;
-    
-    try {
-      createTimelineVisualization();
-    } catch (err) {
-      console.error('Error creating timeline visualization:', err);
-      setError('Failed to create timeline visualization.');
-    }
-    
-    // Cleanup function
-    return () => {
-      if (currentTimelineRef) {
-        d3.select(currentTimelineRef).selectAll('*').remove();
-      }
-    };
-  }, [timelineData, activeFilter, createTimelineVisualization]);
-  
-  // Function to create the D3 timeline visualization
-  const createTimelineVisualization = React.useCallback(() => {
     const container = timelineRef.current;
     const { width } = container.getBoundingClientRect();
     const height = 300;
@@ -232,7 +212,29 @@ function ProgramTimeline() {
         }
       });
     }
-  }, [activeFilter, timelineData, typeColors]);
+  }, [activeFilter, timelineData, typeColors, setSelectedMilestone]);
+  
+  // Create or update the timeline visualization
+  useEffect(() => {
+    if (!timelineData || !timelineRef.current) return;
+    
+    // Store ref to avoid React Hook cleanup warning
+    const currentTimelineRef = timelineRef.current;
+    
+    try {
+      createTimelineVisualization();
+    } catch (err) {
+      console.error('Error creating timeline visualization:', err);
+      setError('Failed to create timeline visualization.');
+    }
+    
+    // Cleanup function
+    return () => {
+      if (currentTimelineRef) {
+        d3.select(currentTimelineRef).selectAll('*').remove();
+      }
+    };
+  }, [timelineData, activeFilter, createTimelineVisualization, setError]);
   
   // Handle filter change
   const handleFilterChange = (type) => {
