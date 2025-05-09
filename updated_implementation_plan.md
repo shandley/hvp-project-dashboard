@@ -195,33 +195,103 @@ The following metrics will be tracked for the dashboard itself:
 - Cross-browser compatibility (support for Chrome, Firefox, Safari, Edge)
 - Mobile usability score
 
-## 9. Next Implementation Steps
+## 9. React Hooks Best Practices and ESLint Compliance
 
-1. Complete the Geographic Distribution visualization:
-   - Implement Leaflet.js map with region markers
-   - Color-code markers by initiative type
-   - Add tooltips for project details on hover
+To avoid common React Hooks errors and ESLint issues that have impacted our development and deployment process, all components should follow these guidelines:
 
-2. Implement the Sample Distribution visualization:
-   - Create interactive Chart.js graphs for body site distribution
-   - Add age group distribution charts
-   - Implement dynamic filtering
+### 9.1 Hooks Usage Best Practices
 
-3. Create the Project Timeline visualization:
-   - Develop D3.js timeline component
-   - Add interactive elements for exploring project durations
-   - Implement filtering by date ranges
+1. **Hook Declaration Order**:
+   - All hooks MUST be declared at the top level of the component function
+   - Hooks MUST NOT be conditionally called (no hooks inside if statements, loops, or nested functions)
+   - Use a standard order: useState → useEffect → useContext → custom hooks → useMemo/useCallback
 
-4. Implement the Network Relationships visualization:
-   - Create D3.js force-directed graph
-   - Show connections between institutions, cohorts, and research foci
-   - Add interactive node selection
+2. **Conditional Rendering Pattern**:
+   - For data-dependent components, always use this pattern:
+   ```javascript
+   function MyComponent({ data, filters }) {
+     // 1. Declare all hooks unconditionally at the top
+     const [hasData, setHasData] = useState(true);
+     
+     // 2. Check data availability in useEffect
+     useEffect(() => {
+       if (!data || !data.someRequiredProp) {
+         setHasData(false);
+       } else {
+         setHasData(true);
+       }
+     }, [data]);
+     
+     // 3. Process data with useMemo, handling the null case
+     const processedData = useMemo(() => {
+       if (!hasData) {
+         return { /* default empty values */ };
+       }
+       
+       // Normal data processing here
+       return { /* processed data */ };
+     }, [data, filters, hasData]);
+     
+     // 4. Use conditional rendering in the return, NOT early returns
+     return (
+       <div>
+         {!hasData ? (
+           <div className="error-message">No data available</div>
+         ) : (
+           // Normal component rendering here
+         )}
+       </div>
+     );
+   }
+   ```
 
-5. Enhance error handling and user feedback:
-   - Implement loading indicators
-   - Add clear error states for visualization components
-   - Provide helpful messages when data can't be displayed
+3. **Dependency Array Management**:
+   - Include all variables from the outer scope that are used inside the hook
+   - Avoid redundant dependencies (e.g., include `data` but not `data.property`)
+   - Use the ESLint plugin feedback to identify missing or unnecessary dependencies
 
-## 10. Conclusion
+### 9.2 Error Handling Strategies
+
+1. **Data Validation**:
+   - Always check for data existence before processing
+   - Provide meaningful error states for all possible data issues
+   - Handle special values (e.g., "Unknown", "Archive") consistently
+
+2. **Fallback Content**:
+   - Design informative error states for all visualizations
+   - Include user-friendly messages that suggest possible solutions
+   - Make error states visually consistent with the rest of the UI
+
+### 9.3 ESLint Configuration
+
+The project uses strict ESLint rules to ensure code quality, including:
+
+1. **react-hooks/rules-of-hooks**: Ensures hooks are only called at the top level of React functions
+2. **react-hooks/exhaustive-deps**: Verifies dependency arrays are complete and accurate
+3. **no-unused-vars**: Prevents declaring variables that aren't used
+
+All components must pass these checks before deployment, as CI/CD treats warnings as errors.
+
+## 10. Next Implementation Steps
+
+1. Implement remaining visualizations following the Hooks Best Practices pattern:
+   - Project Timeline visualization with D3.js
+   - Network Relationships visualization with D3.js
+   
+2. Update existing components to fully comply with Hooks guidelines:
+   - Review all components for conditional hooks issues
+   - Standardize error handling across all visualizations
+   
+3. Refine visualization components:
+   - Add more interactive controls for data exploration
+   - Optimize performance for large datasets
+   - Improve mobile responsiveness
+   
+4. Enhance user experience:
+   - Add consistent loading indicators
+   - Improve filtering UI components
+   - Add help tooltips for complex visualizations
+
+## 11. Conclusion
 
 This updated implementation plan outlines our approach to completing the NIH Human Virome Program Dashboard with a strict commitment to using only real data. By following this phased implementation strategy, we will create an informative, interactive tool that provides valuable insights into the program's activities and impacts while maintaining data integrity and transparency.
