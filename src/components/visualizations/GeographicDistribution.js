@@ -68,13 +68,14 @@ function GeographicDistribution({ data, filters }) {
   
   // Define region coordinates (approximate centers) using useMemo to avoid re-creation
   const regionCoordinates = useMemo(() => ({
+    // NOTE: Leaflet uses [latitude, longitude] format, not [longitude, latitude]
     'West': [37.7749, -122.4194],      // San Francisco coordinates
     'Northeast': [40.7128, -74.0060],  // New York coordinates
     'South': [32.7767, -96.7970],      // Dallas coordinates
     'Midwest': [41.8781, -87.6298],    // Chicago coordinates
     'National': [39.8283, -98.5795],   // Geographic center of the US
-    'International': [0, 0],           // Global - will be adjusted with specific locations
-    'Space': [0, 0]                    // Special handling for space
+    'International': [20.0, 0.0],      // General international marker near equator
+    'Space': [0.0, -160.0]             // Special handling for space
   }), []);
 
   // Create map when component mounts or when data/filters change
@@ -129,9 +130,9 @@ function GeographicDistribution({ data, filters }) {
       const specialLocations = {
         'International': {
           'Antarctica': [-75.2509, 0.0000],  // Antarctica
-          'International': [20.7128, 10.0060]  // General international
+          'International': [20.0, 0.0]       // General international (near equator)
         },
-        'Space': [0, -160]  // Off the map in the Pacific
+        'Space': [0.0, -160.0]  // Off the map in the Pacific
       };
 
       // Add markers for each region
