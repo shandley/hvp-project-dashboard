@@ -50,6 +50,8 @@ function App() {
 
   const changeView = (view) => {
     console.log('App: Changing view to:', view);
+    console.log('App: Current time:', new Date().toISOString());
+    
     // If view is null, we're in the intermediate state during a view change
     if (view === null) {
       console.log('App: View temporarily set to null for re-rendering');
@@ -57,9 +59,13 @@ function App() {
       return;
     }
     
+    // Log the current state
+    console.log('App: Current state before change - activeView:', activeView);
+    
     // Add a small delay before setting the view to ensure components unmount/remount properly
     setTimeout(() => {
       console.log('App: Actually setting view to:', view);
+      console.log('App: Time when setting view:', new Date().toISOString());
       setActiveView(view);
     }, 10);
   };

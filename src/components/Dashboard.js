@@ -46,7 +46,13 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
         return <DiseaseViromeNetwork />;
       case 'program-info':
         console.log('Rendering ProgramInfo component');
-        return <ProgramInfo />;
+        console.log('Dashboard time:', new Date().toISOString());
+        try {
+          return <ProgramInfo />;
+        } catch (error) {
+          console.error('Error rendering ProgramInfo in Dashboard:', error);
+          return <div>Error rendering ProgramInfo: {error.message}</div>;
+        }
       default:
         console.log('Default: Rendering Overview component');
         return <Overview data={data} filters={filters} />;

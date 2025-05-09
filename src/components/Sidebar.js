@@ -25,11 +25,20 @@ function Sidebar({ activeView, changeView }) {
               className={activeView === item.id ? 'active' : ''}
               onClick={(e) => {
                 e.preventDefault();
-                console.log('Sidebar: Clicked on', item.id);
-                // First set the view to null to force a re-render
-                changeView(null);
-                // Then set it to the actual view after a small delay
-                setTimeout(() => changeView(item.id), 50);
+                console.log('Sidebar: Clicked on', item.id, 'at', new Date().toISOString());
+                
+                if (item.id === 'program-info') {
+                  // For program-info, use a direct navigation approach
+                  console.log('Sidebar: Direct navigation to program-info');
+                  changeView('program-info');
+                } else {
+                  // For other views, use the two-step process
+                  console.log('Sidebar: Using two-step process for', item.id);
+                  // First set the view to null to force a re-render
+                  changeView(null);
+                  // Then set it to the actual view after a small delay
+                  setTimeout(() => changeView(item.id), 50);
+                }
               }}
             >
               <span className="item-icon">{item.icon}</span>
