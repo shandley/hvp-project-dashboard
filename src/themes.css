@@ -24,8 +24,22 @@
   
   /* Border Colors */
   --border-color: #e0e0e0;
+  --border-color-light: #f0f0f0;
   --border-light: #f0f0f0;
   --border-focus: #3366cc;
+  
+  /* Table Colors */
+  --table-header-bg: #edf2f7;
+  --table-header-text: #2c3e50;
+  --table-row-alt: #f8f9fa;
+  --table-row-hover: #f0f4f8;
+  
+  /* Link Colors */
+  --link-color: #0056b3;
+  --link-hover-color: #003d80;
+  
+  /* Card Colors */
+  --card-bg: #ffffff;
   
   /* Status Colors */
   --success-color: #1e8e3e; /* Darker for better contrast */
@@ -87,8 +101,22 @@
   
   /* Border Colors */
   --border-color: #444444;
+  --border-color-light: #333333;
   --border-light: #333333;
   --border-focus: #4d7ed8;
+  
+  /* Table Colors */
+  --table-header-bg: #333333;
+  --table-header-text: #e0e0e0;
+  --table-row-alt: #2d2d2d;
+  --table-row-hover: #3a3a3a;
+  
+  /* Link Colors */
+  --link-color: #5c8ee6;
+  --link-hover-color: #7ba6f0;
+  
+  /* Card Colors */
+  --card-bg: #2a2a2a;
   
   /* Status Colors - Adjusted for dark mode */
   --success-color: #3abb59;

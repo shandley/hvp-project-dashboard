@@ -84,26 +84,6 @@ function AboutHVPNew() {
         </div>
       </section>
       
-      <section className="about-section">
-        <h3>Contact Information</h3>
-        <div className="contacts-grid">
-          <div className="contact-item">
-            <h4>HVP Program Office</h4>
-            <p>General Inquiries</p>
-            <p className="contact-details">
-              <a href="mailto:humanvirome@nih.gov">humanvirome@nih.gov</a> | (301) 555-1234
-            </p>
-          </div>
-          
-          <div className="contact-item">
-            <h4>Dr. Richard Conroy</h4>
-            <p>Program Director</p>
-            <p className="contact-details">
-              <a href="mailto:richard.conroy@nih.gov">richard.conroy@nih.gov</a> | (301) 555-5678
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import './ProgramInfo.css';
 import ProgramTimeline from './ProgramTimeline';
 import AboutHVPNew from './AboutHVPNew';
 import ProgramStructure from './ProgramStructure';
+import ContactInfo from './ContactInfo';
 
 /**
  * ProgramInfo Component
@@ -18,7 +19,8 @@ function ProgramInfo() {
   const tabs = [
     { id: 'timeline', label: 'Program Timeline' },
     { id: 'about', label: 'About HVP' },
-    { id: 'structure', label: 'Program Structure' }
+    { id: 'structure', label: 'Program Structure' },
+    { id: 'contact', label: 'Contact Information' }
   ];
   
   // Simulate loading to allow child components to fetch their data
@@ -49,6 +51,9 @@ function ProgramInfo() {
         case 'structure':
           console.log('ProgramInfo: Rendering ProgramStructure component');
           return <ProgramStructure />;
+        case 'contact':
+          console.log('ProgramInfo: Rendering ContactInfo component');
+          return <ContactInfo />;
         default:
           console.log('ProgramInfo: No matching tab, showing default content');
           return <div>Select a tab to view information</div>;
