@@ -66,9 +66,10 @@
 }
 
 .stat-breakdown h4 {
-  font-size: 0.9rem;
-  margin: 0 0 0.5rem 0;
-  color: #6c757d;
+  font-size: var(--font-size-sm);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--text-tertiary);
+  transition: color var(--transition-medium) ease;
 }
 
 .stat-breakdown ul {
@@ -78,122 +79,151 @@
 }
 
 .stat-breakdown li {
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--spacing-xs);
   display: flex;
   justify-content: space-between;
+  color: var(--text-secondary);
+  transition: color var(--transition-medium) ease;
 }
 
 /* Projects Table */
 .projects-table-container {
-  margin-top: 2rem;
+  margin-top: var(--spacing-xl);
 }
 
 .projects-table-container h3 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
   color: var(--secondary-color);
+  font-size: var(--font-size-lg);
+  transition: color var(--transition-medium) ease;
 }
 
 .projects-table-wrapper {
   overflow-x: auto;
   max-height: 400px;
   overflow-y: auto;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-light);
+  transition: border-color var(--transition-medium) ease;
 }
 
 .projects-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .projects-table th,
 .projects-table td {
-  padding: 0.75rem;
+  padding: var(--spacing-sm);
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-light);
+  transition: border-color var(--transition-medium) ease,
+              color var(--transition-medium) ease;
 }
 
 .projects-table th {
-  background-color: #f8f9fa;
+  background-color: var(--background-card-hover);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
   position: sticky;
   top: 0;
   z-index: 1;
+  transition: background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease;
+}
+
+.projects-table tbody tr {
+  transition: background-color var(--transition-fast) ease;
 }
 
 .projects-table tbody tr:hover {
-  background-color: rgba(51, 102, 204, 0.05);
+  background-color: rgba(var(--primary-color-rgb), 0.05);
 }
 
 .status-badge {
   display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease;
 }
 
 .status-badge.ongoing {
-  background-color: rgba(40, 167, 69, 0.2);
-  color: #28a745;
+  background-color: rgba(var(--success-color-rgb), 0.2);
+  color: var(--success-color);
 }
 
 .status-badge.complete {
-  background-color: rgba(23, 162, 184, 0.2);
-  color: #17a2b8;
+  background-color: rgba(var(--info-color-rgb), 0.2);
+  color: var(--info-color);
 }
 
 /* Error and loading messages */
 .error-message, 
 .loading-message {
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-radius: 8px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
   text-align: center;
+  transition: background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease,
+              border-color var(--transition-medium) ease;
 }
 
 .error-message {
-  background-color: rgba(220, 53, 69, 0.1);
-  color: #dc3545;
-  border: 1px solid rgba(220, 53, 69, 0.2);
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(var(--danger-color-rgb), 0.2);
 }
 
 .loading-message {
-  background-color: rgba(13, 110, 253, 0.1);
-  color: #0d6efd;
-  border: 1px solid rgba(13, 110, 253, 0.2);
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
 }
 
 /* Map visualization */
 .map-container {
   height: 500px;
   width: 100%;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  transition: border-color var(--transition-medium) ease;
 }
 
 /* Leaflet map legend styles */
 .info.legend {
-  padding: 0.75rem;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: var(--spacing-sm);
+  background: var(--background-card);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-medium);
   line-height: 1.5;
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .info.legend h4 {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  transition: color var(--transition-medium) ease;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  margin-bottom: 0.25rem;
-  font-size: 0.8rem;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  transition: color var(--transition-medium) ease;
 }
 
 .legend-color {
@@ -250,22 +280,26 @@
 /* Chart containers */
 .chart-container {
   height: 400px;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .timeline-container {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: var(--background-card-hover);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-light);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .timeline-container h3 {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
   color: var(--secondary-color);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-medium) ease;
 }
 
 .timeline-table {
@@ -304,24 +338,29 @@
 .chart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 .chart-card {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 1rem;
+  background-color: var(--background-card-hover);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
   height: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-light);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .chart-card h3 {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-md);
   color: var(--secondary-color);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-medium) ease;
 }
 
 .chart-container {
@@ -369,22 +408,24 @@
 .chart-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--background-card-hover);
+  border-radius: var(--border-radius-md);
+  transition: background-color var(--transition-medium) ease;
 }
 
 .control-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .control-group label {
-  font-weight: 600;
-  color: #666;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  transition: color var(--transition-medium) ease;
 }
 
 .button-group {
@@ -392,40 +433,54 @@
 }
 
 .button-group button {
-  padding: 0.25rem 0.75rem;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
   cursor: pointer;
+  color: var(--text-primary);
+  transition: background-color var(--transition-fast) ease,
+              color var(--transition-fast) ease,
+              border-color var(--transition-fast) ease;
 }
 
 .button-group button:first-child {
-  border-radius: 4px 0 0 4px;
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
 }
 
 .button-group button:last-child {
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
 }
 
 .button-group button.active {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-inverted);
   border-color: var(--primary-color);
 }
 
-.chart-controls button {
-  padding: 0.25rem 0.75rem;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.button-group button:hover:not(.active) {
+  background-color: var(--background-card-hover);
+  border-color: var(--primary-light);
+}
+
+.chart-controls button:not(.button-group button) {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
+  color: var(--text-primary);
+  transition: background-color var(--transition-fast) ease,
+              color var(--transition-fast) ease,
+              border-color var(--transition-fast) ease;
 }
 
-.chart-controls button:hover {
-  background-color: #f0f0f0;
+.chart-controls button:not(.button-group button):hover {
+  background-color: var(--background-card-hover);
+  border-color: var(--primary-light);
 }
 
-.chart-controls button:active {
-  background-color: #e0e0e0;
+.chart-controls button:not(.button-group button):active {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
 }
 
 /* Network visualization specific styles */
@@ -435,52 +490,63 @@
 }
 
 .chart-area {
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-sm);
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--background-card);
+  transition: background-color var(--transition-medium) ease,
+              border-color var(--transition-medium) ease;
 }
 
 .chart-info {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #6c757d;
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  transition: color var(--transition-medium) ease;
 }
 
 .usage-tip {
   font-style: italic;
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-sm);
 }
 
 .selected-node-details {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+  background-color: var(--background-card-hover);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
   height: auto;
+  box-shadow: var(--shadow-light);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .selected-node-details h3 {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
   color: var(--secondary-color);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-medium) ease;
 }
 
 .selected-node-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .node-info {
-  padding-right: 1rem;
-  border-right: 1px solid var(--border-color);
+  padding-right: var(--spacing-md);
+  border-right: 1px solid var(--border-light);
+  transition: border-color var(--transition-medium) ease;
 }
 
 .node-info p {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
+  margin: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: color var(--transition-medium) ease;
 }
 
 .chart-content {
