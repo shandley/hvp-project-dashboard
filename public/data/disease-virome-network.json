@@ -11,7 +11,7 @@
       "disease": "Type 1 Diabetes",
       "viromeChanges": "Altered temperate phage communities",
       "biomarkers": "Specific phage signatures",
-      "references": "Zhao et al. (2017), Ma et al. (2018)",
+      "references": "Zhao et al. (2017), Kim et al. (2019)",
       "category": "Metabolic"
     },
     {
@@ -46,14 +46,14 @@
       "disease": "Colorectal Cancer",
       "viromeChanges": "Altered virome signatures",
       "biomarkers": "Cancer-associated virome patterns",
-      "references": "Hannigan et al. (2018)",
-      "category": "Oncological"
+      "references": "Hannigan et al. (2015)",
+      "category": "Cancer"
     },
     {
       "disease": "HIV Infection",
       "viromeChanges": "Increased Anelloviridae abundance",
       "biomarkers": "Anelloviridae correlation with CD4 counts",
-      "references": "Bhagchandani et al. (2024)",
+      "references": "Monaco et al. (2016)",
       "category": "Infectious"
     },
     {
@@ -67,7 +67,7 @@
       "disease": "Chronic Obstructive Pulmonary Disease",
       "viromeChanges": "Gut virome alterations",
       "biomarkers": "Specific viral signatures",
-      "references": "Liu et al. (2024)",
+      "references": "Molyneaux et al. (2013)",
       "category": "Respiratory"
     }
   ],
@@ -88,7 +88,7 @@
       "color": "#76b7b2",
       "description": "Diseases of the nervous system"
     },
-    "Oncological": {
+    "Cancer": {
       "color": "#59a14f",
       "description": "Cancer and tumor-related conditions"
     },

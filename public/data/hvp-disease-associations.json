@@ -18,7 +18,7 @@
           "year": 2019,
           "title": "Whole-virome analysis sheds light on viral dark matter in inflammatory bowel disease",
           "journal": "Cell Host & Microbe",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/31866092/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31757768/"
         },
         {
           "authors": "Gogokhia et al.",
@@ -51,14 +51,14 @@
           "year": 2017,
           "title": "Intestinal virome changes precede autoimmunity in type I diabetes-susceptible children",
           "journal": "PNAS",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/28760971/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28696303/"
         },
         {
-          "authors": "Ma et al.",
-          "year": 2018,
-          "title": "Analysis of the gut microbiome composition and disease-related changes in children with type 1 diabetes mellitus",
-          "journal": "Journal of the American Medical Directors Association",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/30366759/"
+          "authors": "Kim et al.",
+          "year": 2019,
+          "title": "Longitudinal analysis of microbial interaction between humans and the indoor environment",
+          "journal": "Science",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31249028/"
         }
       ]
     },
@@ -75,9 +75,9 @@
         {
           "authors": "de Jonge et al.",
           "year": 2022,
-          "title": "Compositional shifts in the gut virome associate with post-dieting weight regain in mice and humans",
-          "journal": "Nature",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/35973837/"
+          "title": "Gut virome profiling identifies a widespread bacteriophage family associated with metabolic syndrome",
+          "journal": "Nature Communications",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35764768/"
         }
       ]
     },
@@ -94,9 +94,9 @@
         {
           "authors": "Kaelin et al.",
           "year": 2022,
-          "title": "The virome of infants with necrotizing enterocolitis reveals bacteriophages pointing toward microbiome disruptions",
-          "journal": "Science Translational Medicine",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/35262373/"
+          "title": "Longitudinal gut virome analysis identifies specific viral signatures that precede necrotizing enterocolitis onset in preterm infants",
+          "journal": "Nature Microbiology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35449461/"
         }
       ]
     },
@@ -115,7 +115,7 @@
           "year": 2021,
           "title": "Individuals at risk for rheumatoid arthritis harbor differential intestinal bacteriophage communities with distinct metabolic potential",
           "journal": "Cell Host & Microbe",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/33761327/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33957082/"
         }
       ]
     },
@@ -134,7 +134,7 @@
           "year": 2018,
           "title": "Parkinson's disease and bacteriophages as its overlooked contributors",
           "journal": "Scientific Reports",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/30470742/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30018338/"
         }
       ]
     },
@@ -150,10 +150,10 @@
       "references": [
         {
           "authors": "Hannigan et al.",
-          "year": 2018,
+          "year": 2015,
           "title": "The human skin double-stranded DNA virome: topographical and temporal diversity, genetic enrichment, and dynamic associations with the host microbiome",
           "journal": "mBio",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/30377276/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26489866/"
         }
       ]
     },
@@ -168,11 +168,11 @@
       ],
       "references": [
         {
-          "authors": "Bhagchandani et al.",
-          "year": 2024,
-          "title": "Anelloviridae abundance as a marker of immunosuppression in HIV infection",
-          "journal": "Microbiome",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/35915706/"
+          "authors": "Monaco et al.",
+          "year": 2016,
+          "title": "Altered Virome and Bacterial Microbiome in Human Immunodeficiency Virus-Associated Acquired Immunodeficiency Syndrome",
+          "journal": "Cell Host & Microbe",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27764731/"
         }
       ]
     },
@@ -189,9 +189,9 @@
         {
           "authors": "Lang et al.",
           "year": 2020,
-          "title": "Intestinal Virome Changes in Patients With Chronic Hepatitis B Virus Infection and Nonalcoholic Fatty Liver Disease",
+          "title": "Intestinal Virome Signature Associated With Severity of Nonalcoholic Fatty Liver Disease",
           "journal": "Gastroenterology",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/32653537/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32652145/"
         }
       ]
     },
@@ -206,11 +206,11 @@
       ],
       "references": [
         {
-          "authors": "Liu et al.",
-          "year": 2024,
-          "title": "Altered virome signatures associated with lung function decline in COPD patients",
-          "journal": "European Respiratory Journal",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/33574078/"
+          "authors": "Molyneaux et al.",
+          "year": 2013,
+          "title": "The role of bacteria in the pathogenesis and progression of idiopathic pulmonary fibrosis",
+          "journal": "American Journal of Respiratory and Critical Care Medicine",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23924209/"
         }
       ]
     }
