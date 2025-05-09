@@ -21,7 +21,21 @@
       "Bash(npm run build:*)",
       "Bash(grep:*)",
       "Bash(npm start)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(git reset:*)",
+      "Bash(npm run deploy:*)",
+      "Bash(git fetch:*)",
+      "Bash(curl:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git restore:*)",
+      "Bash(npm run start:*)",
+      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
+      "Bash(git commit -m \"Fix incorrect PubMed references in disease-virome data\n\n- Updated all PubMed URLs to point to the correct papers\n- Corrected publication years and author details where needed\n- Updated reference text in disease-virome-network.json for consistency\n- Fixed colorectal cancer category (changed from Oncological to Cancer)\n- Replaced Ma et al. with Kim et al. for Type 1 Diabetes\n- Replaced Liu et al. with Molyneaux et al. for COPD\")",
+      "Bash(find:*)",
+      "WebFetch(domain:api.reporter.nih.gov)",
+      "WebFetch(domain:www.commonfund.nih.gov)",
+      "Bash(node:*)",
+      "Bash(sed:*)"
     ],
     "deny": []
   }
