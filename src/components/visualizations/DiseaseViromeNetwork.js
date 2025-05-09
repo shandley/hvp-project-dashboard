@@ -15,7 +15,7 @@ function DiseaseViromeNetwork() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [, setZoomLevel] = useState(1);
   const [networkMode, setNetworkMode] = useState('full'); // 'full', 'simple', 'biomarkers'
   const [searchQuery, setSearchQuery] = useState('');
   const [highlightedNodes, setHighlightedNodes] = useState([]);
@@ -165,7 +165,6 @@ function DiseaseViromeNetwork() {
       .attr('class', 'network-group');
     
     // Apply search highlighting if needed
-    let filteredNodes = nodes;
     if (searchQuery) {
       const lowerQuery = searchQuery.toLowerCase();
       const matchingNodeIds = nodes
@@ -331,11 +330,9 @@ function DiseaseViromeNetwork() {
           !connected.has(d.source.id) || !connected.has(d.target.id) : false);
     }
     
-    // Function to show/hide labels based on zoom level
-    function updateLabelsWithZoom(zoomLevel) {
-      d3.selectAll('.node-label')
-        .style('display', zoomLevel < 0.6 ? 'none' : 'block');
-    }
+    // Update labels visibility on initial render
+    d3.selectAll('.node-label')
+      .style('display', 'block');
     
     // Initial zoom reset to fit network in view
     resetZoom();
