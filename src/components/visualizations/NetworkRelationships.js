@@ -303,23 +303,34 @@ function NetworkRelationships({ data, filters }) {
       .attr("viewBox", [0, 0, width, height])
       .attr("style", "max-width: 100%; height: auto;");
     
+    // Function to get CSS variable value
+    const getCSSVariable = (variableName) => {
+      return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+    };
+
     // Create tooltip
     const tooltip = d3.select("body")
       .append("div")
       .attr("class", "network-tooltip")
       .style("position", "absolute")
       .style("visibility", "hidden")
-      .style("background", "white")
-      .style("border", "1px solid #ddd")
-      .style("border-radius", "4px")
-      .style("padding", "10px")
-      .style("box-shadow", "0 2px 4px rgba(0,0,0,0.2)")
-      .style("z-index", "10");
+      .style("background", getCSSVariable('--background-card'))
+      .style("border", `1px solid ${getCSSVariable('--border-light')}`)
+      .style("border-radius", getCSSVariable('--border-radius-sm'))
+      .style("padding", getCSSVariable('--spacing-sm'))
+      .style("box-shadow", getCSSVariable('--shadow-medium'))
+      .style("z-index", "10")
+      .style("color", getCSSVariable('--text-primary'));
     
-    // Node colors by type
+    // Node colors by type - using chart colors from CSS variables
     const colorScale = d3.scaleOrdinal()
       .domain(['institution', 'research', 'bodysite', 'cohort'])
-      .range(['#4e79a7', '#f28e2c', '#e15759', '#76b7b2']);
+      .range([
+        getCSSVariable('--chart-color-1'),
+        getCSSVariable('--chart-color-2'),
+        getCSSVariable('--chart-color-3'),
+        getCSSVariable('--chart-color-4')
+      ]);
     
     // Create a force simulation
     const simulation = d3.forceSimulation(nodes)
@@ -330,7 +341,7 @@ function NetworkRelationships({ data, filters }) {
     
     // Create links
     const link = svg.append("g")
-      .attr("stroke", "#999")
+      .attr("stroke", getCSSVariable('--border-color'))
       .attr("stroke-opacity", 0.6)
       .selectAll("line")
       .data(links)
@@ -344,7 +355,7 @@ function NetworkRelationships({ data, filters }) {
       .join("circle")
       .attr("r", d => Math.sqrt(d.value) * 2 + 5)
       .attr("fill", d => colorScale(d.type))
-      .attr("stroke", "#fff")
+      .attr("stroke", getCSSVariable('--background-card'))
       .attr("stroke-width", 1.5)
       .call(drag(simulation))
       .on("mouseover", function(event, d) {
@@ -365,13 +376,14 @@ function NetworkRelationships({ data, filters }) {
         // Highlight connected nodes
         link
           .attr("stroke-opacity", o => (o.source.id === d.id || o.target.id === d.id ? 1 : 0.2))
-          .attr("stroke", o => (o.source.id === d.id || o.target.id === d.id ? "#999" : "#ddd"));
+          .attr("stroke", o => (o.source.id === d.id || o.target.id === d.id ? 
+            getCSSVariable('--primary-color') : getCSSVariable('--border-light')));
           
         node
           .attr("opacity", o => (isConnected(d, o) ? 1 : 0.2));
           
         d3.select(this)
-          .attr("stroke", "#000")
+          .attr("stroke", getCSSVariable('--primary-dark'))
           .attr("stroke-width", 2)
           .raise();
       })
@@ -387,11 +399,11 @@ function NetworkRelationships({ data, filters }) {
         
         link
           .attr("stroke-opacity", 0.6)
-          .attr("stroke", "#999");
+          .attr("stroke", getCSSVariable('--border-color'));
           
         node
           .attr("opacity", 1)
-          .attr("stroke", "#fff")
+          .attr("stroke", getCSSVariable('--background-card'))
           .attr("stroke-width", 1.5);
       })
       .on("click", function(event, d) {

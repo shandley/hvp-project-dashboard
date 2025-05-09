@@ -122,15 +122,20 @@ function GeographicDistribution({ data, filters }) {
         maxZoom: 18
       }).addTo(map);
 
+      // Function to get CSS variable value
+      const getCSSVariable = (variableName) => {
+        return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+      };
+
       // Create custom marker colors based on initiative type
       const getMarkerColor = (initiativeType) => {
         switch (initiativeType) {
           case 'VCC':
-            return 'blue';
+            return getCSSVariable('--primary-color');
           case 'Functional Studies':
-            return 'green';
+            return getCSSVariable('--success-color');
           default:
-            return 'gray';
+            return getCSSVariable('--text-tertiary');
         }
       };
 

@@ -6,12 +6,32 @@ import './Visualization.css';
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale, BarElement);
 
-// Color palette for chart elements
-const COLORS = [
-  '#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#0099C6', 
-  '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', 
-  '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6'
-];
+// Function to get CSS variables for chart colors
+const getChartColors = () => {
+  const getCSSVariable = (variableName) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+  };
+  
+  // Get chart colors from CSS variables
+  return [
+    getCSSVariable('--chart-color-1'),
+    getCSSVariable('--chart-color-2'),
+    getCSSVariable('--chart-color-3'),
+    getCSSVariable('--chart-color-4'),
+    getCSSVariable('--chart-color-5'),
+    getCSSVariable('--chart-color-6'),
+    getCSSVariable('--chart-color-7'),
+    getCSSVariable('--chart-color-8'),
+    getCSSVariable('--primary-color'),
+    getCSSVariable('--primary-light'),
+    getCSSVariable('--primary-dark'),
+    getCSSVariable('--secondary-color'),
+    getCSSVariable('--accent-color'),
+    getCSSVariable('--info-color'),
+    getCSSVariable('--success-color'),
+    getCSSVariable('--warning-color')
+  ];
+};
 
 function SampleDistribution({ data, filters }) {
   // State for chart display options
@@ -152,6 +172,9 @@ function SampleDistribution({ data, filters }) {
     totalSamples
   } = processedData;
   
+  // Get theme colors
+  const colors = useMemo(() => getChartColors(), []);
+  
   // Prepare chart data for body sites
   const bodySiteChartData = {
     labels: sortedBodySites.map(([site]) => site),
@@ -159,8 +182,8 @@ function SampleDistribution({ data, filters }) {
       {
         label: 'Number of Samples',
         data: sortedBodySites.map(([_, count]) => count),
-        backgroundColor: sortedBodySites.map((_, index) => COLORS[index % COLORS.length]),
-        borderColor: sortedBodySites.map((_, index) => COLORS[index % COLORS.length]),
+        backgroundColor: sortedBodySites.map((_, index) => colors[index % colors.length]),
+        borderColor: sortedBodySites.map((_, index) => colors[index % colors.length]),
         borderWidth: 1,
       },
     ],
@@ -173,8 +196,8 @@ function SampleDistribution({ data, filters }) {
       {
         label: 'Number of Samples',
         data: sortedAgeGroups.map(([_, count]) => count),
-        backgroundColor: sortedAgeGroups.map((_, index) => COLORS[index % COLORS.length]),
-        borderColor: sortedAgeGroups.map((_, index) => COLORS[index % COLORS.length]),
+        backgroundColor: sortedAgeGroups.map((_, index) => colors[index % colors.length]),
+        borderColor: sortedAgeGroups.map((_, index) => colors[index % colors.length]),
         borderWidth: 1,
       },
     ],
@@ -329,7 +352,7 @@ function SampleDistribution({ data, filters }) {
                       {sortedBodySites.map(([site, count], index) => (
                         <tr key={site}>
                           <td>
-                            <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
+                            <span className="color-dot" style={{backgroundColor: colors[index % colors.length]}}></span>
                             {site}
                           </td>
                           <td>{count.toLocaleString()}</td>
@@ -365,7 +388,7 @@ function SampleDistribution({ data, filters }) {
                       {sortedAgeGroups.map(([age, count], index) => (
                         <tr key={age}>
                           <td>
-                            <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
+                            <span className="color-dot" style={{backgroundColor: colors[index % colors.length]}}></span>
                             {age}
                           </td>
                           <td>{count.toLocaleString()}</td>
