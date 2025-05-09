@@ -41,15 +41,21 @@ function Overview({ data, filters }) {
       const region = project['Geographic Region'];
       stats.byRegion[region] = (stats.byRegion[region] || 0) + 1;
       
-      // Totals
-      const participants = parseInt(project['Participants']) || 0;
-      if (!isNaN(participants)) {
-        stats.totalParticipants += participants;
+      // Totals - handle special cases in the data
+      const participants = project['Participants'];
+      if (participants && participants !== 'Unknown') {
+        const participantCount = parseInt(participants);
+        if (!isNaN(participantCount)) {
+          stats.totalParticipants += participantCount;
+        }
       }
       
-      const samples = parseInt(project['Samples']) || 0;
-      if (!isNaN(samples)) {
-        stats.totalSamples += samples;
+      const samples = project['Samples'];
+      if (samples && samples !== 'Archive') {
+        const sampleCount = parseInt(samples);
+        if (!isNaN(sampleCount)) {
+          stats.totalSamples += sampleCount;
+        }
       }
     });
     
@@ -136,8 +142,8 @@ function Overview({ data, filters }) {
                   <td>{project['Institution']}</td>
                   <td>{project['Contact PI']}</td>
                   <td>{project['Cohort Name']}</td>
-                  <td>{project['Participants']}</td>
-                  <td>{project['Samples']}</td>
+                  <td>{project['Participants'] === 'Unknown' ? 'Unknown' : project['Participants']}</td>
+                  <td>{project['Samples'] === 'Archive' ? 'Archive' : project['Samples']}</td>
                   <td>
                     <span className={`status-badge ${project['Status'].toLowerCase()}`}>
                       {project['Status']}
