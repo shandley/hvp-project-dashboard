@@ -8,7 +8,7 @@
       "date": "2022-04-29",
       "displayDate": "April 29, 2022",
       "type": "Planning",
-      "description": "Initial public workshop to gather input from scientific community on the concept of a human virome initiative",
+      "description": "Initial public workshop held by NIH Common Fund to discuss the human virome concept with expert panels",
       "completed": true
     },
     {
@@ -17,7 +17,7 @@
       "date": "2022-09-08",
       "displayDate": "September 8, 2022",
       "type": "Planning",
-      "description": "Formal presentation of the Human Virome Program concept to the NIH Division of Program Coordination, Planning, and Strategic Initiatives Council of Councils",
+      "description": "Formal presentation of Human Virome Program proposal to the Division of Program Coordination, Planning, and Strategic Initiatives Council",
       "completed": true
     },
     {
@@ -26,7 +26,7 @@
       "date": "2023-08-15",
       "displayDate": "August 2023",
       "type": "Funding",
-      "description": "Publication of funding opportunity announcements for Virome Characterization Centers and Functional Studies projects",
+      "description": "Release of four initial Requests for Applications (RFAs): RFA-RM-23-016 (CODCC), RFA-RM-23-017 (Functional Interactions), RFA-RM-23-018 (Tools Development), RFA-RM-23-019 (Characterization Centers)",
       "completed": true
     },
     {
@@ -35,25 +35,61 @@
       "date": "2023-10-16",
       "displayDate": "October 16, 2023",
       "type": "Funding",
-      "description": "Informational webinar for potential applicants to explain program goals and application requirements",
+      "description": "NIH staff presented program goals and answered questions about application and review process",
       "completed": true
     },
     {
-      "id": "grants-awarded",
-      "milestone": "Major Center Grants Awarded",
-      "date": "2025-02-15",
-      "displayDate": "January-February 2025",
+      "id": "award-decisions",
+      "milestone": "Initial HVP Award Decisions",
+      "date": "2024-09-15",
+      "displayDate": "Late Summer/Early Fall 2024",
+      "type": "Funding",
+      "description": "According to NIH FAQ, awards from initial RFAs were scheduled to be made in this timeframe",
+      "completed": false
+    },
+    {
+      "id": "reissued-funding",
+      "milestone": "Reissued Funding Opportunity",
+      "date": "2024-10-23",
+      "displayDate": "October 23, 2024",
+      "type": "Funding",
+      "description": "RFA-RM-24-009 published (reissue of RFA-RM-23-018 for Tools Development)",
+      "completed": false
+    },
+    {
+      "id": "vcc-announcements",
+      "milestone": "First VCC Grant Announcements",
+      "date": "2025-01-24",
+      "displayDate": "January 24-27, 2025",
       "type": "Implementation",
-      "description": "Announcement of grant awards for VCCs and Functional Studies projects",
+      "description": "Multiple institutions (Vanderbilt/UNC, UTHealth) announced receipt of $20M awards for Virome Characterization Centers",
+      "completed": false
+    },
+    {
+      "id": "ucla-announcement",
+      "milestone": "UCLA HVCC Announcement",
+      "date": "2025-02-10",
+      "displayDate": "February 5-19, 2025",
+      "type": "Implementation",
+      "description": "UCLA announced $20.6M award to establish Human Virome Characterization Center for the Oral-Gut-Brain Axis",
+      "completed": false
+    },
+    {
+      "id": "program-commencement",
+      "milestone": "Program Officially Commences",
+      "date": "2025-03-01",
+      "displayDate": "Q1 2025",
+      "type": "Implementation",
+      "description": "Major award grants begin activation with infrastructure establishment as the initial focus",
       "completed": false
     },
     {
       "id": "kickoff",
       "milestone": "HVP Kickoff Meeting",
       "date": "2025-05-15",
-      "displayDate": "Q1 2025",
+      "displayDate": "April-May 2025 (est.)",
       "type": "Implementation",
-      "description": "Initial consortium-wide meeting to establish collaborative framework (3 months after awards)",
+      "description": "To be held approximately 3 months after awards are made, according to RFA documentation",
       "completed": false
     },
     {
@@ -62,43 +98,52 @@
       "date": "2025-08-15",
       "displayDate": "Q2-Q3 2025",
       "type": "Implementation",
-      "description": "Protocol standardization and harmonization across all research sites",
+      "description": "Protocol standardization, cohort definition, data management procedures established across consortium",
       "completed": false
     },
     {
-      "id": "infrastructure",
-      "milestone": "Infrastructure Development",
-      "date": "2026-01-01",
-      "displayDate": "2025-2026",
+      "id": "initial-data-collection",
+      "milestone": "Initial Data Collection Begins",
+      "date": "2025-11-15",
+      "displayDate": "Q3-Q4 2025",
       "type": "Research",
-      "description": "Development of technologies, methodologies, and data infrastructure",
+      "description": "First sample collection and processing expected to commence after setup phase",
+      "completed": false
+    },
+    {
+      "id": "annual-meeting",
+      "milestone": "First Annual HVP Meeting",
+      "date": "2026-05-15",
+      "displayDate": "May-June 2026 (est.)",
+      "type": "Research",
+      "description": "First full consortium meeting (estimated one year after kickoff)",
       "completed": false
     },
     {
       "id": "data-generation",
       "milestone": "Major Data Generation Phase",
-      "date": "2027-01-01",
+      "date": "2026-07-01",
       "displayDate": "2026-2027",
       "type": "Research",
-      "description": "Peak period of sample collection and processing across all projects",
+      "description": "Peak period for sample collection and processing across all centers",
       "completed": false
     },
     {
       "id": "data-analysis",
-      "milestone": "Data Analysis and Synthesis",
-      "date": "2028-01-01",
+      "milestone": "Data Analysis and Integration",
+      "date": "2027-07-01",
       "displayDate": "2027-2028",
       "type": "Research",
-      "description": "Integration and analysis of data across projects, preparation of major publications",
+      "description": "Focus shifts to comprehensive analysis and integration of collected data",
       "completed": false
     },
     {
-      "id": "completion",
-      "milestone": "Program Completion (Phase 1)",
-      "date": "2028-12-31",
-      "displayDate": "2028",
+      "id": "phase-1-completion",
+      "milestone": "Phase 1 Completion",
+      "date": "2028-09-30",
+      "displayDate": "September 30, 2028",
       "type": "Completion",
-      "description": "Completion of initial phase of Human Virome Program with comprehensive data release and assessment of outcomes",
+      "description": "Projected end of first phase of Human Virome Program (FY2024-FY2028)",
       "completed": false
     }
   ]
