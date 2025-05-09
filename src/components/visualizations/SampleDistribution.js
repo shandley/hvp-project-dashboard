@@ -14,18 +14,36 @@ const COLORS = [
 ];
 
 function SampleDistribution({ data, filters }) {
-  if (!data || !data.projects) {
-    return <div className="visualization-container">No data available</div>;
-  }
-  
   // State for chart display options
   const [chartType, setChartType] = useState('pie');
   const [sortOrder, setSortOrder] = useState('desc');
   const [showLegend, setShowLegend] = useState(true);
   const [showLabels, setShowLabels] = useState(true);
+  const [hasData, setHasData] = useState(true);
+  
+  // Check if data is available
+  useEffect(() => {
+    if (!data || !data.projects) {
+      setHasData(false);
+    } else {
+      setHasData(true);
+    }
+  }, [data]);
   
   // Process data with useMemo to avoid recalculations
   const processedData = useMemo(() => {
+    if (!hasData) {
+      return {
+        filteredProjects: [],
+        bodySiteGroups: {},
+        ageGroups: {},
+        samplesByBodySite: {},
+        samplesByAgeGroup: {},
+        sortedBodySites: [],
+        sortedAgeGroups: [],
+        totalSamples: 0
+      };
+    }
     // Apply filters to projects
     const filteredProjects = data.projects.filter(project => {
       return (
@@ -241,178 +259,187 @@ function SampleDistribution({ data, filters }) {
         <p className="subtitle">Distribution of samples by body site and age group</p>
       </div>
       
-      <div className="chart-controls">
-        <div className="control-group">
-          <label>Chart Type: </label>
-          <div className="button-group">
-            <button 
-              className={chartType === 'pie' ? 'active' : ''} 
-              onClick={() => handleChartTypeChange('pie')}>
-              Pie Chart
-            </button>
-            <button 
-              className={chartType === 'bar' ? 'active' : ''} 
-              onClick={() => handleChartTypeChange('bar')}>
-              Bar Chart
-            </button>
-          </div>
+      {!hasData ? (
+        <div className="error-message">
+          <h3>No Data Available</h3>
+          <p>Could not load project data. Please check that the data files are correctly placed in the public/data directory.</p>
         </div>
-        
-        <div className="control-group">
-          <label>Sort Order: </label>
-          <div className="button-group">
-            <button 
-              className={sortOrder === 'desc' ? 'active' : ''} 
-              onClick={() => handleSortOrderChange('desc')}>
-              Descending
-            </button>
-            <button 
-              className={sortOrder === 'asc' ? 'active' : ''} 
-              onClick={() => handleSortOrderChange('asc')}>
-              Ascending
-            </button>
-          </div>
-        </div>
-        
-        <div className="control-group">
-          <button onClick={toggleLegend}>
-            {showLegend ? 'Hide Legend' : 'Show Legend'}
-          </button>
-        </div>
-      </div>
-      
-      <div className="chart-grid">
-        <div className="chart-card">
-          <h3>Samples by Body Site</h3>
-          <div className="chart-container">
-            {chartType === 'pie' ? (
-              <Pie data={bodySiteChartData} options={pieChartOptions} />
-            ) : (
-              <Bar data={bodySiteChartData} options={barChartOptions} />
-            )}
-          </div>
-          <div className="chart-legend">
-            <div className="data-table-mini">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Body Site</th>
-                    <th>Samples</th>
-                    <th>% of Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortedBodySites.map(([site, count], index) => (
-                    <tr key={site}>
-                      <td>
-                        <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
-                        {site}
-                      </td>
-                      <td>{count.toLocaleString()}</td>
-                      <td>{((count / totalSamples) * 100).toFixed(1)}%</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      ) : (
+        <>
+          <div className="chart-controls">
+            <div className="control-group">
+              <label>Chart Type: </label>
+              <div className="button-group">
+                <button 
+                  className={chartType === 'pie' ? 'active' : ''} 
+                  onClick={() => handleChartTypeChange('pie')}>
+                  Pie Chart
+                </button>
+                <button 
+                  className={chartType === 'bar' ? 'active' : ''} 
+                  onClick={() => handleChartTypeChange('bar')}>
+                  Bar Chart
+                </button>
+              </div>
+            </div>
+            
+            <div className="control-group">
+              <label>Sort Order: </label>
+              <div className="button-group">
+                <button 
+                  className={sortOrder === 'desc' ? 'active' : ''} 
+                  onClick={() => handleSortOrderChange('desc')}>
+                  Descending
+                </button>
+                <button 
+                  className={sortOrder === 'asc' ? 'active' : ''} 
+                  onClick={() => handleSortOrderChange('asc')}>
+                  Ascending
+                </button>
+              </div>
+            </div>
+            
+            <div className="control-group">
+              <button onClick={toggleLegend}>
+                {showLegend ? 'Hide Legend' : 'Show Legend'}
+              </button>
             </div>
           </div>
-        </div>
-        
-        <div className="chart-card">
-          <h3>Samples by Age Group</h3>
-          <div className="chart-container">
-            {chartType === 'pie' ? (
-              <Pie data={ageGroupChartData} options={pieChartOptions} />
-            ) : (
-              <Bar data={ageGroupChartData} options={barChartOptions} />
-            )}
+          
+          <div className="chart-grid">
+            <div className="chart-card">
+              <h3>Samples by Body Site</h3>
+              <div className="chart-container">
+                {chartType === 'pie' ? (
+                  <Pie data={bodySiteChartData} options={pieChartOptions} />
+                ) : (
+                  <Bar data={bodySiteChartData} options={barChartOptions} />
+                )}
+              </div>
+              <div className="chart-legend">
+                <div className="data-table-mini">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Body Site</th>
+                        <th>Samples</th>
+                        <th>% of Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sortedBodySites.map(([site, count], index) => (
+                        <tr key={site}>
+                          <td>
+                            <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
+                            {site}
+                          </td>
+                          <td>{count.toLocaleString()}</td>
+                          <td>{((count / totalSamples) * 100).toFixed(1)}%</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+            <div className="chart-card">
+              <h3>Samples by Age Group</h3>
+              <div className="chart-container">
+                {chartType === 'pie' ? (
+                  <Pie data={ageGroupChartData} options={pieChartOptions} />
+                ) : (
+                  <Bar data={ageGroupChartData} options={barChartOptions} />
+                )}
+              </div>
+              <div className="chart-legend">
+                <div className="data-table-mini">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Age Group</th>
+                        <th>Samples</th>
+                        <th>% of Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sortedAgeGroups.map(([age, count], index) => (
+                        <tr key={age}>
+                          <td>
+                            <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
+                            {age}
+                          </td>
+                          <td>{count.toLocaleString()}</td>
+                          <td>{((count / totalSamples) * 100).toFixed(1)}%</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="chart-legend">
-            <div className="data-table-mini">
-              <table>
+          
+          <div className="stats-grid">
+            <div className="stat-card">
+              <h3>Total Samples</h3>
+              <div className="stat-value">{totalSamples.toLocaleString()}</div>
+              <p>From {filteredProjects.length} projects</p>
+            </div>
+            
+            <div className="stat-card">
+              <h3>Body Site Categories</h3>
+              <div className="stat-value">{Object.keys(bodySiteGroups).length}</div>
+              <p>Unique categories represented</p>
+            </div>
+            
+            <div className="stat-card">
+              <h3>Age Group Categories</h3>
+              <div className="stat-value">{Object.keys(ageGroups).length}</div>
+              <p>Unique categories represented</p>
+            </div>
+          </div>
+          
+          <div className="projects-table-container">
+            <h3>Projects with Highest Sample Counts</h3>
+            <div className="projects-table-wrapper">
+              <table className="projects-table">
                 <thead>
                   <tr>
+                    <th>Project ID</th>
+                    <th>Cohort Name</th>
+                    <th>Body Site</th>
                     <th>Age Group</th>
                     <th>Samples</th>
-                    <th>% of Total</th>
+                    <th>Participants</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedAgeGroups.map(([age, count], index) => (
-                    <tr key={age}>
-                      <td>
-                        <span className="color-dot" style={{backgroundColor: COLORS[index % COLORS.length]}}></span>
-                        {age}
-                      </td>
-                      <td>{count.toLocaleString()}</td>
-                      <td>{((count / totalSamples) * 100).toFixed(1)}%</td>
-                    </tr>
-                  ))}
+                  {filteredProjects
+                    .filter(project => project['Samples'] !== 'Archive')
+                    .sort((a, b) => {
+                      const samplesA = parseInt(a['Samples']) || 0;
+                      const samplesB = parseInt(b['Samples']) || 0;
+                      return samplesB - samplesA;
+                    })
+                    .slice(0, 10)
+                    .map(project => (
+                      <tr key={project['Project ID']}>
+                        <td>{project['Project ID']}</td>
+                        <td>{project['Cohort Name']}</td>
+                        <td>{project['Body Site Category']}</td>
+                        <td>{project['Age Group Category']}</td>
+                        <td>{project['Samples']}</td>
+                        <td>{project['Participants'] === 'Unknown' ? 'Unknown' : project['Participants']}</td>
+                      </tr>
+                    ))
+                  }
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <div className="stats-grid">
-        <div className="stat-card">
-          <h3>Total Samples</h3>
-          <div className="stat-value">{totalSamples.toLocaleString()}</div>
-          <p>From {filteredProjects.length} projects</p>
-        </div>
-        
-        <div className="stat-card">
-          <h3>Body Site Categories</h3>
-          <div className="stat-value">{Object.keys(bodySiteGroups).length}</div>
-          <p>Unique categories represented</p>
-        </div>
-        
-        <div className="stat-card">
-          <h3>Age Group Categories</h3>
-          <div className="stat-value">{Object.keys(ageGroups).length}</div>
-          <p>Unique categories represented</p>
-        </div>
-      </div>
-      
-      <div className="projects-table-container">
-        <h3>Projects with Highest Sample Counts</h3>
-        <div className="projects-table-wrapper">
-          <table className="projects-table">
-            <thead>
-              <tr>
-                <th>Project ID</th>
-                <th>Cohort Name</th>
-                <th>Body Site</th>
-                <th>Age Group</th>
-                <th>Samples</th>
-                <th>Participants</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProjects
-                .filter(project => project['Samples'] !== 'Archive')
-                .sort((a, b) => {
-                  const samplesA = parseInt(a['Samples']) || 0;
-                  const samplesB = parseInt(b['Samples']) || 0;
-                  return samplesB - samplesA;
-                })
-                .slice(0, 10)
-                .map(project => (
-                  <tr key={project['Project ID']}>
-                    <td>{project['Project ID']}</td>
-                    <td>{project['Cohort Name']}</td>
-                    <td>{project['Body Site Category']}</td>
-                    <td>{project['Age Group Category']}</td>
-                    <td>{project['Samples']}</td>
-                    <td>{project['Participants'] === 'Unknown' ? 'Unknown' : project['Participants']}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }
