@@ -1,0 +1,105 @@
+{
+  "programTitle": "NIH Human Virome Program Timeline",
+  "description": "Key milestones and events in the development and implementation of the NIH Human Virome Program",
+  "milestones": [
+    {
+      "id": "workshop-2022",
+      "milestone": "Public Workshop on Human Virome Concept",
+      "date": "2022-04-29",
+      "displayDate": "April 29, 2022",
+      "type": "Planning",
+      "description": "Initial public workshop to gather input from scientific community on the concept of a human virome initiative",
+      "completed": true
+    },
+    {
+      "id": "council-presentation",
+      "milestone": "DPCPSI Council of Councils Presentation",
+      "date": "2022-09-08",
+      "displayDate": "September 8, 2022",
+      "type": "Planning",
+      "description": "Formal presentation of the Human Virome Program concept to the NIH Division of Program Coordination, Planning, and Strategic Initiatives Council of Councils",
+      "completed": true
+    },
+    {
+      "id": "funding-announcement",
+      "milestone": "Initial Funding Opportunities Published",
+      "date": "2023-08-15",
+      "displayDate": "August 2023",
+      "type": "Funding",
+      "description": "Publication of funding opportunity announcements for Virome Characterization Centers and Functional Studies projects",
+      "completed": true
+    },
+    {
+      "id": "webinar",
+      "milestone": "Pre-application Webinar",
+      "date": "2023-10-16",
+      "displayDate": "October 16, 2023",
+      "type": "Funding",
+      "description": "Informational webinar for potential applicants to explain program goals and application requirements",
+      "completed": true
+    },
+    {
+      "id": "grants-awarded",
+      "milestone": "Major Center Grants Awarded",
+      "date": "2025-02-15",
+      "displayDate": "January-February 2025",
+      "type": "Implementation",
+      "description": "Announcement of grant awards for VCCs and Functional Studies projects",
+      "completed": false
+    },
+    {
+      "id": "kickoff",
+      "milestone": "HVP Kickoff Meeting",
+      "date": "2025-05-15",
+      "displayDate": "Q1 2025",
+      "type": "Implementation",
+      "description": "Initial consortium-wide meeting to establish collaborative framework (3 months after awards)",
+      "completed": false
+    },
+    {
+      "id": "setup-phase",
+      "milestone": "6-Month Setup Phase",
+      "date": "2025-08-15",
+      "displayDate": "Q2-Q3 2025",
+      "type": "Implementation",
+      "description": "Protocol standardization and harmonization across all research sites",
+      "completed": false
+    },
+    {
+      "id": "infrastructure",
+      "milestone": "Infrastructure Development",
+      "date": "2026-01-01",
+      "displayDate": "2025-2026",
+      "type": "Research",
+      "description": "Development of technologies, methodologies, and data infrastructure",
+      "completed": false
+    },
+    {
+      "id": "data-generation",
+      "milestone": "Major Data Generation Phase",
+      "date": "2027-01-01",
+      "displayDate": "2026-2027",
+      "type": "Research",
+      "description": "Peak period of sample collection and processing across all projects",
+      "completed": false
+    },
+    {
+      "id": "data-analysis",
+      "milestone": "Data Analysis and Synthesis",
+      "date": "2028-01-01",
+      "displayDate": "2027-2028",
+      "type": "Research",
+      "description": "Integration and analysis of data across projects, preparation of major publications",
+      "completed": false
+    },
+    {
+      "id": "completion",
+      "milestone": "Program Completion (Phase 1)",
+      "date": "2028-12-31",
+      "displayDate": "2028",
+      "type": "Completion",
+      "description": "Completion of initial phase of Human Virome Program with comprehensive data release and assessment of outcomes",
+      "completed": false
+    }
+  ]
+}

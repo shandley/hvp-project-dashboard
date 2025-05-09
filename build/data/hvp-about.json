@@ -1,0 +1,65 @@
+{
+  "overview": {
+    "title": "NIH Human Virome Program",
+    "description": "The NIH Human Virome Program (HVP) is a comprehensive research initiative aimed at characterizing the human virome—the collection of all viruses that inhabit the human body. The program seeks to understand how these viruses interact with human cells, the microbiome, and the immune system in both health and disease."
+  },
+  "mission": {
+    "statement": "To comprehensively characterize the human virome and elucidate its role in human health and disease.",
+    "goals": [
+      "Develop standardized methods for virome detection and characterization",
+      "Create reference datasets of the human virome across diverse populations",
+      "Investigate virome-host interactions in health and disease contexts",
+      "Build collaborative infrastructure for virome research",
+      "Train the next generation of virome scientists"
+    ]
+  },
+  "funding": {
+    "total": "Approximately $140 million over 5 years",
+    "source": "NIH Common Fund",
+    "period": "FY2023-2028",
+    "details": "The program funds Virome Characterization Centers (VCCs) and Functional Studies projects to establish a comprehensive catalog of viruses found in or on the human body and to understand their impact on human health."
+  },
+  "leadership": {
+    "directors": [
+      "Dr. Richard Conroy (NIH Common Fund)",
+      "Dr. Liliana Brown (NIAID)",
+      "Dr. Michael Fischbach (Stanford University)",
+      "Dr. Ramnik Xavier (Broad Institute)"
+    ],
+    "working_group": "The NIH HVP Working Group comprises scientific leaders from multiple NIH Institutes and Centers, representing diverse expertise in virology, microbiology, and human biology."
+  },
+  "program_structure": {
+    "centers": [
+      {
+        "name": "Virome Characterization Centers (VCCs)",
+        "description": "Major research centers focused on comprehensive virome profiling across diverse human populations and body sites",
+        "count": 5
+      },
+      {
+        "name": "Functional Studies Projects",
+        "description": "Targeted research projects investigating specific aspects of human virome biology and virus-host interactions",
+        "count": 5
+      },
+      {
+        "name": "Consortium Organization and Data Collaboration Center (CODCC)",
+        "description": "Coordination hub for administrative activities, data management, and cross-consortium collaboration"
+      }
+    ]
+  },
+  "scientific_impact": {
+    "expected_outcomes": [
+      "Comprehensive catalog of human-associated viruses across diverse populations",
+      "Standardized protocols for virome characterization",
+      "New tools for viral discovery and functional characterization",
+      "Insights into virome's role in human health and disease",
+      "Open data resources for the broader scientific community"
+    ],
+    "significance": "This program represents the first coordinated, large-scale effort to systematically characterize the human virome across diverse populations and body sites. The insights gained will transform our understanding of the role viruses play in human biology and provide new paradigms for diagnosing, treating, and preventing viral-associated diseases."
+  },
+  "resources": {
+    "website": "https://commonfund.nih.gov/humanvirome",
+    "data_portal": "HVP Data Portal (in development)",
+    "contact_email": "humanvirome@nih.gov",
+    "publications": "An growing collection of scientific publications from program researchers that will be maintained in the NIH HVP Publications Database"
+  }
+}
