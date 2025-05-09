@@ -26,7 +26,7 @@ function DiseaseViromeNetwork() {
   
   // Load network data
   useEffect(() => {
-    fetch('/data/disease-virome-network.json')
+    fetch(`${process.env.PUBLIC_URL}/data/disease-virome-network.json`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load disease-virome network data');

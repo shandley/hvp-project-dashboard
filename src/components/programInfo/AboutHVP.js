@@ -15,7 +15,7 @@ function AboutHVP() {
   
   // Load about data
   useEffect(() => {
-    fetch('/data/hvp-about.json')
+    fetch(`${process.env.PUBLIC_URL}/data/hvp-about.json`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load HVP information');

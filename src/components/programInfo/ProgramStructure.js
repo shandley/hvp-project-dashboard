@@ -18,6 +18,26 @@ function ProgramStructure() {
   
   const chartRef = useRef(null);
   
+  // Load structure data
+  useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/data/hvp-governance.json`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load program structure data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setStructureData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error loading program structure data:', err);
+        setError('Failed to load program structure data. Please try again later.');
+        setLoading(false);
+      });
+  }, []);
+  
   // Function to create governance organizational chart
   const createGovernanceChart = useCallback(() => {
     const container = chartRef.current;
@@ -304,6 +324,17 @@ function ProgramStructure() {
     setViewMode(mode);
     setSelectedEntity(null);
   };
+  
+  // Update visualization when data or view mode changes
+  useEffect(() => {
+    if (!structureData || !chartRef.current) return;
+    
+    if (viewMode === 'governance') {
+      createGovernanceChart();
+    } else {
+      createCollaborationChart();
+    }
+  }, [structureData, viewMode, createGovernanceChart, createCollaborationChart]);
   
   if (loading) {
     return (
