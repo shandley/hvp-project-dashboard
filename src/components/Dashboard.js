@@ -44,15 +44,18 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
       case 'disease-virome':
         console.log('Rendering DiseaseViromeNetwork component');
         return <DiseaseViromeNetwork />;
-      case 'program-info':
+      case 'program-info': {
         console.log('Rendering ProgramInfo component');
         console.log('Dashboard time:', new Date().toISOString());
+        
         try {
-          return <ProgramInfo />;
+          const programInfoComponent = <ProgramInfo />;
+          return programInfoComponent;
         } catch (error) {
           console.error('Error rendering ProgramInfo in Dashboard:', error);
           return <div>Error rendering ProgramInfo: {error.message}</div>;
         }
+      }
       default:
         console.log('Default: Rendering Overview component');
         return <Overview data={data} filters={filters} />;
