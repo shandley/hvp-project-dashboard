@@ -216,27 +216,35 @@ export const throttledSearchPublicationsByProjects = throttle(searchPublications
  * Transform API publication data to match our internal format
  * 
  * @param {Array} apiPublications - Publications from NIH RePORTER API
+ * @param {Array} grantIds - The grant IDs used to fetch these publications
  * @returns {Promise<Array>} Transformed publications in our internal format
  */
-export const transformPublicationData = async (apiPublications = []) => {
+export const transformPublicationData = async (apiPublications = [], grantIds = []) => {
+  console.log(`Starting to transform ${apiPublications.length} publications for ${grantIds.length} grants`);
   const transformedPublications = [];
   
   // Process publications one by one to allow for fetching additional info when needed
-  for (let i = 0; i < apiPublications.length; i++) {
+  for (let i = 0; i < apiPublications.length && i < 20; i++) { // Limit to 20 for testing
     const pub = apiPublications[i];
     const pmid = pub.pmid;
     
+    console.log(`Processing publication ${i+1}/${Math.min(apiPublications.length, 20)}, PMID: ${pmid}`);
+    
     try {
       // The NIH RePORTER data is very limited, so for each PMID we need to fetch detailed info from PubMed
+      console.log(`Fetching PubMed data for PMID ${pmid}`);
       const pubmedResponse = await fetch(`https://pubmed.ncbi.nlm.nih.gov/api/coreutils/pubmed-pinger/article-page/${pmid}`);
       let pubmedData = {};
       
       if (pubmedResponse.ok) {
         try {
           pubmedData = await pubmedResponse.json();
+          console.log(`Successfully fetched PubMed data for PMID ${pmid}: ${pubmedData.title || 'No title'}`);
         } catch (e) {
           console.error(`Failed to parse PubMed data for PMID ${pmid}:`, e);
         }
+      } else {
+        console.warn(`PubMed API returned status ${pubmedResponse.status} for PMID ${pmid}`);
       }
       
       // Extract author information
@@ -251,12 +259,13 @@ export const transformPublicationData = async (apiPublications = []) => {
           affiliation: author.affiliation || ''
         }));
 
-      // Extract grant information
-      const grants = (pub.projects || []).map(project => ({
-        grantId: project.project_num || '',
-        grantTitle: project.project_title || '',
-        institutionName: project.organization_name || '',
-        principalInvestigator: project.contact_pi_name || ''
+      // Since the API doesn't return projects info, we'll create placeholder grant info
+      // based on the grant IDs used for the search
+      const grants = grantIds.map(grantId => ({
+        grantId: grantId,
+        grantTitle: `Grant ${grantId}`,
+        institutionName: 'Unknown Institution',
+        principalInvestigator: 'Unknown PI'
       }));
       
       // Filter to only include virome-related papers in results
@@ -264,12 +273,15 @@ export const transformPublicationData = async (apiPublications = []) => {
       const abstract = pubmedData.abstract || pub.abstract_text || '';
       const keywords = pubmedData.keywords || pub.keywords || [];
       
+      console.log(`Checking if publication is virome-related. Title: "${title.substring(0, 50)}..."`);
+      
       // Only include papers that mention virome or related terms
       const viromeTerms = ['virome', 'virus', 'viral', 'virology', 'microbiome'];
       const isViromeRelated = 
         viromeTerms.some(term => title.toLowerCase().includes(term)) ||
         viromeTerms.some(term => abstract.toLowerCase().includes(term)) ||
-        viromeTerms.some(term => keywords.some(k => k.toLowerCase().includes(term)));
+        viromeTerms.some(term => keywords.some(k => k.toLowerCase().includes(term))) ||
+        true; // Temporarily disable filtering for testing
       
       if (isViromeRelated) {
         transformedPublications.push({
@@ -324,7 +336,7 @@ export const fetchHvpPublications = async () => {
     }
     
     // Step 2: Transform to our internal format with additional enrichment
-    const transformedPublications = await transformPublicationData(publications);
+    const transformedPublications = await transformPublicationData(publications, REPORTER_API_CONFIG.hvpGrantIds);
     console.log(`Filtered to ${transformedPublications.length} HVP-related publications`);
     
     return transformedPublications;
@@ -352,7 +364,7 @@ export const fetchOtherViromePublications = async () => {
     console.log(`Found ${publications.length} publications from NIH RePORTER for other virome grants`);
     
     // Step 2: Transform to our internal format with additional enrichment
-    const transformedPublications = await transformPublicationData(publications);
+    const transformedPublications = await transformPublicationData(publications, REPORTER_API_CONFIG.otherViromeGrantIds);
     console.log(`Filtered to ${transformedPublications.length} other virome-related publications`);
     
     return transformedPublications;
