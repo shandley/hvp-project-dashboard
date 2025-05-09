@@ -242,6 +242,54 @@
   margin-bottom: 1.5rem;
 }
 
+.timeline-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.timeline-container h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+.timeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.timeline-table th,
+.timeline-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* Milestone chart specific styles */
+.milestone-chart {
+  height: 450px;
+}
+
+.milestone-point {
+  cursor: pointer;
+  transition: r 0.3s ease;
+}
+
+.milestone-point:hover {
+  r: 10;
+}
+
 .chart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -369,6 +417,76 @@
   background-color: #e0e0e0;
 }
 
+/* Network visualization specific styles */
+.network-chart {
+  height: auto;
+  min-height: 450px;
+}
+
+.chart-area {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.chart-info {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.usage-tip {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.selected-node-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  height: auto;
+}
+
+.selected-node-details h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+.selected-node-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.node-info {
+  padding-right: 1rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.node-info p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.chart-content {
+  padding: 0.5rem;
+}
+
+.chart-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chart-content li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .visualization-container {
@@ -389,10 +507,21 @@
   }
   
   .chart-card {
-    height: 250px;
+    height: auto;
   }
   
   .map-container {
     height: 300px;
+  }
+  
+  .selected-node-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .node-info {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
