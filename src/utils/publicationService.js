@@ -249,10 +249,13 @@ export const fetchAllHvpPublications = async () => {
   }
 };
 
-export default {
+// Create a named object for the service
+const publicationService = {
   loadLocalPublications,
   searchHvpGrants,
   searchPublicationsByProjects,
   fetchAllHvpPublications,
   transformPublicationData
 };
+
+export default publicationService;
