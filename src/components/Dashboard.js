@@ -6,7 +6,7 @@ import GeographicDistribution from './visualizations/GeographicDistribution';
 import SampleDistribution from './visualizations/SampleDistribution';
 import ProjectTimeline from './visualizations/ProjectTimeline';
 import NetworkRelationships from './visualizations/NetworkRelationships';
-import DiseaseViromeNetwork from './visualizations/DiseaseViromeNetwork';
+import DiseaseViromeTable from './visualizations/DiseaseViromeTable';
 import ProgramInfo from './programInfo/ProgramInfo';
 
 function Dashboard({ data, filters, updateFilters, activeView }) {
@@ -42,8 +42,8 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
         console.log('Rendering NetworkRelationships component');
         return <NetworkRelationships data={data} filters={filters} />;
       case 'disease-virome':
-        console.log('Rendering DiseaseViromeNetwork component');
-        return <DiseaseViromeNetwork />;
+        console.log('Rendering DiseaseViromeTable component');
+        return <DiseaseViromeTable />;
       case 'program-info': {
         console.log('Rendering ProgramInfo component');
         console.log('Dashboard time:', new Date().toISOString());
