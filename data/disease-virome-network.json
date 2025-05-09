@@ -1,0 +1,139 @@
+{
+  "diseaseViromeAssociations": [
+    {
+      "disease": "Inflammatory Bowel Disease",
+      "viromeChanges": "Expansion of Caudovirales, reduced bacterial diversity",
+      "biomarkers": "Caudovirales:Microviridae ratio",
+      "references": "Clooney et al. (2019), Gogokhia et al. (2019)",
+      "category": "Gastrointestinal"
+    },
+    {
+      "disease": "Type 1 Diabetes",
+      "viromeChanges": "Altered temperate phage communities",
+      "biomarkers": "Specific phage signatures",
+      "references": "Zhao et al. (2017), Ma et al. (2018)",
+      "category": "Metabolic"
+    },
+    {
+      "disease": "Type 2 Diabetes",
+      "viromeChanges": "Changes in gut bacteriophage composition",
+      "biomarkers": "Phage community dysbiosis",
+      "references": "de Jonge et al. (2022)",
+      "category": "Metabolic"
+    },
+    {
+      "disease": "Necrotizing Enterocolitis",
+      "viromeChanges": "Convergence of virome beta diversity before disease onset",
+      "biomarkers": "Specific virus expansion patterns",
+      "references": "Kaelin et al. (2022)",
+      "category": "Gastrointestinal"
+    },
+    {
+      "disease": "Rheumatoid Arthritis",
+      "viromeChanges": "Altered AMGs (auxiliary metabolic genes) for bacterial cell surfaces",
+      "biomarkers": "AMG patterns in phages",
+      "references": "Mangalea et al. (2021)",
+      "category": "Autoimmune"
+    },
+    {
+      "disease": "Parkinson's Disease",
+      "viromeChanges": "Changes in bacteriophage abundance",
+      "biomarkers": "Specific bacteriophages",
+      "references": "Tetz et al. (2018)",
+      "category": "Neurological"
+    },
+    {
+      "disease": "Colorectal Cancer",
+      "viromeChanges": "Altered virome signatures",
+      "biomarkers": "Cancer-associated virome patterns",
+      "references": "Hannigan et al. (2018)",
+      "category": "Oncological"
+    },
+    {
+      "disease": "HIV Infection",
+      "viromeChanges": "Increased Anelloviridae abundance",
+      "biomarkers": "Anelloviridae correlation with CD4 counts",
+      "references": "Bhagchandani et al. (2024)",
+      "category": "Infectious"
+    },
+    {
+      "disease": "Non-alcoholic Fatty Liver Disease",
+      "viromeChanges": "Altered gut virome",
+      "biomarkers": "Phage compositions",
+      "references": "Lang et al. (2020)",
+      "category": "Hepatic"
+    },
+    {
+      "disease": "Chronic Obstructive Pulmonary Disease",
+      "viromeChanges": "Gut virome alterations",
+      "biomarkers": "Specific viral signatures",
+      "references": "Liu et al. (2024)",
+      "category": "Respiratory"
+    }
+  ],
+  "diseaseCategories": {
+    "Gastrointestinal": {
+      "color": "#4e79a7",
+      "description": "Diseases affecting the digestive system"
+    },
+    "Metabolic": {
+      "color": "#f28e2c",
+      "description": "Diseases affecting metabolism and hormonal regulation"
+    },
+    "Autoimmune": {
+      "color": "#e15759",
+      "description": "Conditions involving immune system attacks on healthy cells"
+    },
+    "Neurological": {
+      "color": "#76b7b2",
+      "description": "Diseases of the nervous system"
+    },
+    "Oncological": {
+      "color": "#59a14f",
+      "description": "Cancer and tumor-related conditions"
+    },
+    "Infectious": {
+      "color": "#edc949",
+      "description": "Diseases caused by infectious agents"
+    },
+    "Hepatic": {
+      "color": "#af7aa1",
+      "description": "Liver-related diseases"
+    },
+    "Respiratory": {
+      "color": "#ff9da7",
+      "description": "Diseases affecting the respiratory system"
+    }
+  },
+  "networkStructure": {
+    "nodeTypes": [
+      {
+        "type": "disease",
+        "label": "Disease",
+        "description": "Clinical disease or condition"
+      },
+      {
+        "type": "virome_change",
+        "label": "Virome Change",
+        "description": "Observed alteration in viral communities"
+      },
+      {
+        "type": "biomarker",
+        "label": "Biomarker",
+        "description": "Potential diagnostic indicators"
+      }
+    ],
+    "linkTypes": [
+      {
+        "type": "association",
+        "label": "Associated with",
+        "description": "Disease is associated with virome change"
+      },
+      {
+        "type": "indicates",
+        "label": "Indicates",
+        "description": "Biomarker indicates disease state"
+      }
+    ]
+  }
+}
