@@ -19,6 +19,12 @@ function NetworkRelationships({ data, filters }) {
   // Refs for D3.js visualizations
   const networkChartRef = useRef(null);
   
+  // Handle relationship type change
+  const handleRelationshipTypeChange = (type) => {
+    setRelationshipType(type);
+    setSelectedNode(null);
+  };
+  
   // 2. Check if data is available
   useEffect(() => {
     if (!data || !data.projects) {
@@ -27,7 +33,13 @@ function NetworkRelationships({ data, filters }) {
     } else {
       setHasData(true);
       setLoading(false);
+      // Force a redraw by triggering the same relationship type
+      // This ensures we draw the graph on initial load without user needing to click
+      setTimeout(() => {
+        handleRelationshipTypeChange('institution-research');
+      }, 100);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
   
   // 3. Process data with useMemo
@@ -489,12 +501,6 @@ function NetworkRelationships({ data, filters }) {
   // Helper function to truncate text
   const truncateText = (text, maxLength) => {
     return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-  };
-  
-  // Handle relationship type change
-  const handleRelationshipTypeChange = (type) => {
-    setRelationshipType(type);
-    setSelectedNode(null);
   };
   
   // If no data is available
