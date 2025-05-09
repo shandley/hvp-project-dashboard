@@ -2,73 +2,91 @@
   "diseaseViromeAssociations": [
     {
       "disease": "Inflammatory Bowel Disease",
-      "viromeChanges": "Expansion of Caudovirales, reduced bacterial diversity",
-      "biomarkers": "Caudovirales:Microviridae ratio",
-      "references": "Clooney et al. (2019), Gogokhia et al. (2019), Norman et al. (2015)",
-      "category": "Gastrointestinal"
+      "viromeChanges": "Expansion of Caudovirales bacteriophages, decrease in Microviridae, strong correlation with bacteriome changes",
+      "biomarkers": "Caudovirales:Microviridae ratio, specific bacteriophage signatures",
+      "references": "Clooney et al. (2019), Norman et al. (2015), Zuo et al. (2019), Gogokhia et al. (2019)",
+      "category": "Gastrointestinal",
+      "hvpRelevance": "High priority for multi-site sampling (gut, oral, skin) with focus on temporal dynamics"
     },
     {
       "disease": "Type 1 Diabetes",
-      "viromeChanges": "Altered temperate phage communities",
-      "biomarkers": "Specific phage signatures",
-      "references": "Zhao et al. (2017), Kim et al. (2019)",
-      "category": "Metabolic"
+      "viromeChanges": "Virome changes precede autoantibody development, reduced virome diversity in children who develop autoantibodies",
+      "biomarkers": "Specific phage signatures, prolonged Enterovirus B infections",
+      "references": "Zhao et al. (2017), Park & Zhao (2018), Vehik et al. (2019)",
+      "category": "Metabolic",
+      "hvpRelevance": "Critical for longitudinal sampling and analysis of children at risk (WUSTL-VBH-1, BROAD-VID-5 projects)"
     },
     {
       "disease": "Type 2 Diabetes",
-      "viromeChanges": "Changes in gut bacteriophage composition",
-      "biomarkers": "Phage community dysbiosis",
-      "references": "de Jonge et al. (2022)",
-      "category": "Metabolic"
+      "viromeChanges": "Alterations in gut microbiome (including virome), deficiency in short-chain fatty acid production",
+      "biomarkers": "Bacterial-phage patterns associated with metabolic dysregulation",
+      "references": "Zhao et al. (2018), Ma et al. (2018), de Jonge et al. (2022)",
+      "category": "Metabolic",
+      "hvpRelevance": "Potential for exploration in adult cohorts with metabolic markers (UCLA-OGB-7, STAN-VAST-16)"
     },
     {
       "disease": "Necrotizing Enterocolitis",
-      "viromeChanges": "Convergence of virome beta diversity before disease onset",
-      "biomarkers": "Specific virus expansion patterns",
-      "references": "Kaelin et al. (2022)",
-      "category": "Gastrointestinal"
+      "viromeChanges": "Virome convergence prior to disease onset, expansion of specific viruses precedes clinical symptoms",
+      "biomarkers": "Virome convergence pattern, specific virus expansion",
+      "references": "Kaelin et al. (2022), Yi et al. (2024)",
+      "category": "Gastrointestinal",
+      "hvpRelevance": "Important for preterm infant studies (WUSTL-VBH-1, STAN-VAST-8 projects)"
     },
     {
       "disease": "Rheumatoid Arthritis",
-      "viromeChanges": "Altered AMGs (auxiliary metabolic genes) for bacterial cell surfaces",
+      "viromeChanges": "Altered auxiliary metabolic genes (AMGs) in phages, influence on bacterial surface modifications",
       "biomarkers": "AMG patterns in phages",
       "references": "Mangalea et al. (2021)",
-      "category": "Autoimmune"
+      "category": "Autoimmune",
+      "hvpRelevance": "Relevant for assessing immune-modulating effects of virome"
     },
     {
       "disease": "Parkinson's Disease",
-      "viromeChanges": "Changes in bacteriophage abundance",
+      "viromeChanges": "Changes in bacteriophage abundance, potential influence on gut-brain axis",
       "biomarkers": "Specific bacteriophages",
       "references": "Tetz et al. (2018)",
-      "category": "Neurological"
+      "category": "Neurological",
+      "hvpRelevance": "Applicable to brain-focused studies (UCLA-OGB-1, UCLA-OGB-2)"
     },
     {
       "disease": "Colorectal Cancer",
-      "viromeChanges": "Altered virome signatures",
+      "viromeChanges": "Altered virome signatures, associations with treatment outcomes",
       "biomarkers": "Cancer-associated virome patterns",
-      "references": "Hannigan et al. (2015)",
-      "category": "Cancer"
+      "references": "Hannigan et al. (2018)",
+      "category": "Cancer",
+      "hvpRelevance": "Relevant for gut tissue sampling approaches"
     },
     {
       "disease": "HIV Infection",
-      "viromeChanges": "Increased Anelloviridae abundance",
-      "biomarkers": "Anelloviridae correlation with CD4 counts",
-      "references": "Monaco et al. (2016)",
-      "category": "Infectious"
+      "viromeChanges": "Increased abundance of Anelloviridae, correlation between virome and CD4 counts",
+      "biomarkers": "Anelloviridae abundance, correlation with CD4 counts",
+      "references": "Bhagchandani et al. (2024)",
+      "category": "Infectious",
+      "hvpRelevance": "Important for immune-focused studies (UCSF-DEEP-1)"
     },
     {
       "disease": "Non-alcoholic Fatty Liver Disease",
-      "viromeChanges": "Altered gut virome",
+      "viromeChanges": "Specific alterations in gut virome composition, potential influence on liver inflammation",
       "biomarkers": "Phage compositions",
       "references": "Lang et al. (2020)",
-      "category": "Hepatic"
+      "category": "Hepatic",
+      "hvpRelevance": "Relevant for gut-liver axis studies"
     },
     {
       "disease": "Chronic Obstructive Pulmonary Disease",
-      "viromeChanges": "Gut virome alterations",
+      "viromeChanges": "Gut virome alterations detected, possible gut-lung axis involvement",
       "biomarkers": "Specific viral signatures",
-      "references": "Molyneaux et al. (2013)",
-      "category": "Respiratory"
+      "references": "Liu et al. (2024)",
+      "category": "Respiratory",
+      "hvpRelevance": "Potential for cross-site respiratory-gut studies"
+    },
+    {
+      "disease": "Early Life Development",
+      "viromeChanges": "Extremely high interpersonal variation, significant temporal changes, 68.3% of species absent from adult databases",
+      "biomarkers": "Age-specific virome signatures, developmental patterns",
+      "references": "Liang et al. (2021), Maqsood et al. (2019)",
+      "category": "Developmental",
+      "hvpRelevance": "Critical for infant cohorts (VANDY-V2C2-1, STAN-VAST-8, UCLA-OGB-4)"
     }
   ],
   "diseaseCategories": {
@@ -103,6 +121,10 @@
     "Respiratory": {
       "color": "#ff9da7",
       "description": "Diseases affecting the respiratory system"
+    },
+    "Developmental": {
+      "color": "#b07aa3",
+      "description": "Processes related to human development and aging"
     }
   },
   "networkStructure": {
@@ -121,6 +143,11 @@
         "type": "biomarker",
         "label": "Biomarker",
         "description": "Potential diagnostic indicators"
+      },
+      {
+        "type": "hvp_relevance",
+        "label": "HVP Relevance",
+        "description": "Relevance to Human Virome Project studies"
       }
     ],
     "linkTypes": [
@@ -133,6 +160,11 @@
         "type": "indicates",
         "label": "Indicates",
         "description": "Biomarker indicates disease state"
+      },
+      {
+        "type": "informs",
+        "label": "Informs",
+        "description": "Research informs HVP studies"
       }
     ]
   }

@@ -132,6 +132,7 @@ function DiseaseViromeTable() {
           row.disease.toLowerCase().includes(query) ||
           row.viromeChanges.toLowerCase().includes(query) ||
           (row.biomarkers && row.biomarkers.toLowerCase().includes(query)) ||
+          (row.hvpRelevance && row.hvpRelevance.toLowerCase().includes(query)) ||
           row.category.toLowerCase().includes(query) ||
           row.references.toLowerCase().includes(query)
         );
@@ -188,6 +189,7 @@ function DiseaseViromeTable() {
       Category: row.category,
       'Virome Changes': row.viromeChanges,
       Biomarkers: row.biomarkers || 'N/A',
+      'HVP Relevance': row.hvpRelevance || 'N/A',
       References: row.references
     }));
   };
@@ -313,6 +315,12 @@ function DiseaseViromeTable() {
                   >
                     Biomarkers {getSortDirectionIndicator('biomarkers')}
                   </th>
+                  <th 
+                    onClick={() => requestSort('hvpRelevance')}
+                    className={sortConfig.key === 'hvpRelevance' ? 'sorted' : ''}
+                  >
+                    HVP Relevance {getSortDirectionIndicator('hvpRelevance')}
+                  </th>
                   <th>References</th>
                 </tr>
               </thead>
@@ -340,12 +348,13 @@ function DiseaseViromeTable() {
                         </td>
                         <td className="virome-cell">{row.viromeChanges}</td>
                         <td className="biomarker-cell">{row.biomarkers || 'N/A'}</td>
+                        <td className="hvp-relevance-cell">{row.hvpRelevance || 'N/A'}</td>
                         <td className="reference-cell">
                           {renderReferences(row.disease, row.references)}
                         </td>
                       </tr>
                       <tr className={`mobile-row ${isExpanded ? 'visible' : ''}`}>
-                        <td colSpan="5">
+                        <td colSpan="6">
                           <div className="mobile-content">
                             <div className="mobile-field">
                               <strong>Category:</strong>
@@ -361,6 +370,9 @@ function DiseaseViromeTable() {
                             </div>
                             <div className="mobile-field">
                               <strong>Biomarkers:</strong> {row.biomarkers || 'N/A'}
+                            </div>
+                            <div className="mobile-field">
+                              <strong>HVP Relevance:</strong> {row.hvpRelevance || 'N/A'}
                             </div>
                             <div className="mobile-field">
                               <strong>References:</strong> 

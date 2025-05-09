@@ -177,6 +177,11 @@
   color: var(--text-secondary);
 }
 
+.hvp-relevance-cell {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
 .mobile-row {
   display: none;
 }

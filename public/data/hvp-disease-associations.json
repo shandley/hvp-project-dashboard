@@ -6,33 +6,44 @@
       "disease": "Inflammatory Bowel Disease",
       "category": "Gastrointestinal",
       "viromeChanges": [
-        "Expansion of Caudovirales",
-        "Reduced bacterial diversity"
+        "Expansion of Caudovirales bacteriophages",
+        "Decrease in Microviridae",
+        "Strong correlation between virome and bacteriome changes",
+        "High interpersonal variation"
       ],
       "biomarkers": [
-        "Caudovirales:Microviridae ratio"
+        "Caudovirales:Microviridae ratio",
+        "Specific bacteriophage signatures"
       ],
+      "hvpRelevance": "High priority for multi-site sampling (gut, oral, skin) with focus on temporal dynamics",
       "references": [
         {
           "authors": "Clooney et al.",
           "year": 2019,
-          "title": "Whole-virome analysis sheds light on viral dark matter in inflammatory bowel disease",
+          "title": "Whole-Virome Analysis Sheds Light on Viral Dark Matter in IBD",
           "journal": "Cell Host & Microbe",
           "url": "https://pubmed.ncbi.nlm.nih.gov/31757768/"
         },
         {
-          "authors": "Gogokhia et al.",
-          "year": 2019,
-          "title": "Expansion of Bacteriophages Is Linked to Aggravated Intestinal Inflammation and Colitis",
-          "journal": "Cell Host & Microbe",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/30763538/"
-        },
-        {
           "authors": "Norman et al.",
           "year": 2015,
-          "title": "Disease-specific alterations in the enteric virome in inflammatory bowel disease",
+          "title": "Disease-specific alterations in the enteric virome in IBD",
           "journal": "Cell",
           "url": "https://pubmed.ncbi.nlm.nih.gov/25619688/"
+        },
+        {
+          "authors": "Zuo et al.",
+          "year": 2019,
+          "title": "Gut mucosal virome alterations in UC",
+          "journal": "Gut",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30842211/"
+        },
+        {
+          "authors": "Gogokhia et al.",
+          "year": 2019,
+          "title": "Expansion of bacteriophages is linked to intestinal inflammation",
+          "journal": "Cell Host & Microbe",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30763538/"
         }
       ]
     },
@@ -40,25 +51,37 @@
       "disease": "Type 1 Diabetes",
       "category": "Metabolic",
       "viromeChanges": [
-        "Altered temperate phage communities"
+        "Virome changes precede autoantibody development",
+        "Reduced virome diversity in children who develop autoantibodies",
+        "Specific bacteriophage signatures predictive of autoimmunity",
+        "Association with Circoviridae in some studies"
       ],
       "biomarkers": [
-        "Specific phage signatures"
+        "Specific phage signatures",
+        "Prolonged Enterovirus B infections"
       ],
+      "hvpRelevance": "Critical for longitudinal sampling and analysis of children at risk (WUSTL-VBH-1, BROAD-VID-5 projects)",
       "references": [
         {
           "authors": "Zhao et al.",
           "year": 2017,
-          "title": "Intestinal virome changes precede autoimmunity in type I diabetes-susceptible children",
+          "title": "Intestinal virome changes precede autoimmunity in T1D-susceptible children",
           "journal": "PNAS",
           "url": "https://pubmed.ncbi.nlm.nih.gov/28696303/"
         },
         {
-          "authors": "Kim et al.",
+          "authors": "Park & Zhao",
+          "year": 2018,
+          "title": "Mining the Virome for Insights into T1D",
+          "journal": "Current Diabetes Reports",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29638163/"
+        },
+        {
+          "authors": "Vehik et al.",
           "year": 2019,
-          "title": "Longitudinal analysis of microbial interaction between humans and the indoor environment",
-          "journal": "Science",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/31249028/"
+          "title": "Prospective virome analyses in young children at increased genetic risk for T1D",
+          "journal": "Nature Medicine",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31792456/"
         }
       ]
     },
@@ -66,16 +89,33 @@
       "disease": "Type 2 Diabetes",
       "category": "Metabolic",
       "viromeChanges": [
-        "Changes in gut bacteriophage composition"
+        "Alterations in gut microbiome (including virome)",
+        "Deficiency in short-chain fatty acid production",
+        "Phage communities may modulate gut bacteria involved in metabolism"
       ],
       "biomarkers": [
-        "Phage community dysbiosis"
+        "Bacterial-phage patterns associated with metabolic dysregulation"
       ],
+      "hvpRelevance": "Potential for exploration in adult cohorts with metabolic markers (UCLA-OGB-7, STAN-VAST-16)",
       "references": [
+        {
+          "authors": "Zhao et al.",
+          "year": 2018,
+          "title": "Gut bacteria selectively promoted by dietary fibers alleviate T2D",
+          "journal": "Science",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29590046/"
+        },
+        {
+          "authors": "Ma et al.",
+          "year": 2018,
+          "title": "Alterations in Gut Microbiota of Patients with T2D",
+          "journal": "Medicine",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29494377/"
+        },
         {
           "authors": "de Jonge et al.",
           "year": 2022,
-          "title": "Gut virome profiling identifies a widespread bacteriophage family associated with metabolic syndrome",
+          "title": "The gut virome as a modulator of health and disease in T2D",
           "journal": "Nature Communications",
           "url": "https://pubmed.ncbi.nlm.nih.gov/35764768/"
         }
@@ -85,18 +125,29 @@
       "disease": "Necrotizing Enterocolitis",
       "category": "Gastrointestinal",
       "viromeChanges": [
-        "Convergence of virome beta diversity before disease onset"
+        "Virome convergence prior to disease onset",
+        "Expansion of specific viruses precedes clinical symptoms",
+        "Collapse of individualized virome pattern"
       ],
       "biomarkers": [
-        "Specific virus expansion patterns"
+        "Virome convergence pattern",
+        "Specific virus expansion"
       ],
+      "hvpRelevance": "Important for preterm infant studies (WUSTL-VBH-1, STAN-VAST-8 projects)",
       "references": [
         {
           "authors": "Kaelin et al.",
           "year": 2022,
-          "title": "Longitudinal gut virome analysis identifies specific viral signatures that precede necrotizing enterocolitis onset in preterm infants",
+          "title": "The gut virome in NEC: biomarker and predictor of disease",
           "journal": "Nature Microbiology",
           "url": "https://pubmed.ncbi.nlm.nih.gov/35449461/"
+        },
+        {
+          "authors": "Yi et al.",
+          "year": 2024,
+          "title": "The emerging role of the gut virome in NEC",
+          "journal": "Frontiers in Cellular and Infection Microbiology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38711648/"
         }
       ]
     },
@@ -104,16 +155,19 @@
       "disease": "Rheumatoid Arthritis",
       "category": "Autoimmune",
       "viromeChanges": [
-        "Altered AMGs (auxiliary metabolic genes) for bacterial cell surfaces"
+        "Altered auxiliary metabolic genes (AMGs) in phages",
+        "Influence on bacterial surface modifications",
+        "Potential impact on immune recognition"
       ],
       "biomarkers": [
         "AMG patterns in phages"
       ],
+      "hvpRelevance": "Relevant for assessing immune-modulating effects of virome",
       "references": [
         {
           "authors": "Mangalea et al.",
           "year": 2021,
-          "title": "Individuals at risk for rheumatoid arthritis harbor differential intestinal bacteriophage communities with distinct metabolic potential",
+          "title": "Phage-encoded auxiliary metabolic genes influence host immunity in RA",
           "journal": "Cell Host & Microbe",
           "url": "https://pubmed.ncbi.nlm.nih.gov/33957082/"
         }
@@ -123,11 +177,13 @@
       "disease": "Parkinson's Disease",
       "category": "Neurological",
       "viromeChanges": [
-        "Changes in bacteriophage abundance"
+        "Changes in bacteriophage abundance",
+        "Potential influence on gut-brain axis"
       ],
       "biomarkers": [
         "Specific bacteriophages"
       ],
+      "hvpRelevance": "Applicable to brain-focused studies (UCLA-OGB-1, UCLA-OGB-2)",
       "references": [
         {
           "authors": "Tetz et al.",
@@ -142,18 +198,20 @@
       "disease": "Colorectal Cancer",
       "category": "Cancer",
       "viromeChanges": [
-        "Altered virome signatures"
+        "Altered virome signatures",
+        "Associations with treatment outcomes"
       ],
       "biomarkers": [
         "Cancer-associated virome patterns"
       ],
+      "hvpRelevance": "Relevant for gut tissue sampling approaches",
       "references": [
         {
           "authors": "Hannigan et al.",
-          "year": 2015,
-          "title": "The human skin double-stranded DNA virome: topographical and temporal diversity, genetic enrichment, and dynamic associations with the host microbiome",
+          "year": 2018,
+          "title": "The human gut virome is associated with colorectal cancer and treatment outcomes",
           "journal": "mBio",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/26489866/"
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30459201/"
         }
       ]
     },
@@ -161,18 +219,22 @@
       "disease": "HIV Infection",
       "category": "Infectious",
       "viromeChanges": [
-        "Increased Anelloviridae abundance"
+        "Increased abundance of Anelloviridae",
+        "Correlation between virome and CD4 counts",
+        "Distinct T-cell phenotypes associated with specific viruses"
       ],
       "biomarkers": [
-        "Anelloviridae correlation with CD4 counts"
+        "Anelloviridae abundance",
+        "Correlation with CD4 counts"
       ],
+      "hvpRelevance": "Important for immune-focused studies (UCSF-DEEP-1)",
       "references": [
         {
-          "authors": "Monaco et al.",
-          "year": 2016,
-          "title": "Altered Virome and Bacterial Microbiome in Human Immunodeficiency Virus-Associated Acquired Immunodeficiency Syndrome",
-          "journal": "Cell Host & Microbe",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/27764731/"
+          "authors": "Bhagchandani et al.",
+          "year": 2024,
+          "title": "Plasma Virome of HIV-infected Subjects on Suppressive ART",
+          "journal": "Journal of Infectious Diseases",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38751600/"
         }
       ]
     },
@@ -180,16 +242,18 @@
       "disease": "Non-alcoholic Fatty Liver Disease",
       "category": "Hepatic",
       "viromeChanges": [
-        "Altered gut virome"
+        "Specific alterations in gut virome composition",
+        "Potential influence on liver inflammation"
       ],
       "biomarkers": [
         "Phage compositions"
       ],
+      "hvpRelevance": "Relevant for gut-liver axis studies",
       "references": [
         {
           "authors": "Lang et al.",
           "year": 2020,
-          "title": "Intestinal Virome Signature Associated With Severity of Nonalcoholic Fatty Liver Disease",
+          "title": "Intestinal virome changes in nonalcoholic fatty liver disease",
           "journal": "Gastroenterology",
           "url": "https://pubmed.ncbi.nlm.nih.gov/32652145/"
         }
@@ -199,18 +263,50 @@
       "disease": "Chronic Obstructive Pulmonary Disease",
       "category": "Respiratory",
       "viromeChanges": [
-        "Gut virome alterations"
+        "Gut virome alterations detected",
+        "Possible gut-lung axis involvement"
       ],
       "biomarkers": [
         "Specific viral signatures"
       ],
+      "hvpRelevance": "Potential for cross-site respiratory-gut studies",
       "references": [
         {
-          "authors": "Molyneaux et al.",
-          "year": 2013,
-          "title": "The role of bacteria in the pathogenesis and progression of idiopathic pulmonary fibrosis",
-          "journal": "American Journal of Respiratory and Critical Care Medicine",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/23924209/"
+          "authors": "Liu et al.",
+          "year": 2024,
+          "title": "Gut virome alterations in patients with COPD",
+          "journal": "Respiratory Research",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38785444/"
+        }
+      ]
+    },
+    {
+      "disease": "Early Life Development",
+      "category": "Developmental",
+      "viromeChanges": [
+        "Extremely high interpersonal variation",
+        "Significant temporal changes",
+        "68.3% of early-life virome species absent from adult databases"
+      ],
+      "biomarkers": [
+        "Age-specific virome signatures",
+        "Developmental patterns"
+      ],
+      "hvpRelevance": "Critical for infant cohorts (VANDY-V2C2-1, STAN-VAST-8, UCLA-OGB-4)",
+      "references": [
+        {
+          "authors": "Liang et al.",
+          "year": 2021,
+          "title": "A metagenomic catalog of the early-life human gut virome",
+          "journal": "Nature Communications",
+          "url": "https://www.nature.com/articles/s41467-024-50777-0"
+        },
+        {
+          "authors": "Maqsood et al.",
+          "year": 2019,
+          "title": "Discordant transmission of bacteria and viruses from mother to child",
+          "journal": "Microbiome",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31046817/"
         }
       ]
     }
@@ -223,6 +319,7 @@
     "Cancer",
     "Infectious",
     "Hepatic",
-    "Respiratory"
+    "Respiratory",
+    "Developmental"
   ]
 }
