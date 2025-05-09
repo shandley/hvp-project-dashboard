@@ -8,6 +8,7 @@ function Sidebar({ activeView, changeView }) {
     { id: 'samples', label: 'Sample Distribution', icon: '🧫' },
     { id: 'timeline', label: 'Project Timeline', icon: '📅' },
     { id: 'networks', label: 'Relationships & Networks', icon: '🔄' },
+    { id: 'disease-virome', label: 'Disease-Virome Network', icon: '🧬' },
     { id: 'program-info', label: 'About HVP Program', icon: 'ℹ️' },
   ];
 

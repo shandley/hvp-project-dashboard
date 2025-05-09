@@ -6,12 +6,13 @@ import GeographicDistribution from './visualizations/GeographicDistribution';
 import SampleDistribution from './visualizations/SampleDistribution';
 import ProjectTimeline from './visualizations/ProjectTimeline';
 import NetworkRelationships from './visualizations/NetworkRelationships';
+import DiseaseViromeNetwork from './visualizations/DiseaseViromeNetwork';
 import ProgramInfo from './programInfo/ProgramInfo';
 
 function Dashboard({ data, filters, updateFilters, activeView }) {
   // Render the appropriate visualization based on the active view
   const renderContent = () => {
-    if (!data && activeView !== 'program-info') return <div>No data available</div>;
+    if (!data && !['program-info', 'disease-virome'].includes(activeView)) return <div>No data available</div>;
 
     switch (activeView) {
       case 'overview':
@@ -24,6 +25,8 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
         return <ProjectTimeline data={data} filters={filters} />;
       case 'networks':
         return <NetworkRelationships data={data} filters={filters} />;
+      case 'disease-virome':
+        return <DiseaseViromeNetwork />;
       case 'program-info':
         return <ProgramInfo />;
       default:
@@ -33,14 +36,14 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
 
   return (
     <div className="dashboard">
-      {activeView !== 'program-info' && (
+      {!['program-info', 'disease-virome'].includes(activeView) && (
         <FilterPanel 
           data={data} 
           filters={filters} 
           updateFilters={updateFilters} 
         />
       )}
-      <div className={`dashboard-content ${activeView === 'program-info' ? 'full-width' : ''}`}>
+      <div className={`dashboard-content ${['program-info', 'disease-virome'].includes(activeView) ? 'full-width' : ''}`}>
         {renderContent()}
       </div>
     </div>

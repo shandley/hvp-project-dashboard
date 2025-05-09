@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, no-use-before-define */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import * as d3 from 'd3';
 import './ProgramTimeline.css';
