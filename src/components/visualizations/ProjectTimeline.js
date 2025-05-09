@@ -97,11 +97,16 @@ function ProjectTimeline({ data, filters }) {
   useEffect(() => {
     if (!hasData) return;
     
+    // Store refs to avoid ESLint warnings about using .current in cleanup
+    const sampleTimelineElement = sampleTimelineRef.current;
+    const statusChartElement = statusChartRef.current;
+    const milestonesElement = milestonesRef.current;
+    
     try {
       setLoading(true);
       
       // Only proceed if we have the container elements
-      if (sampleTimelineRef.current && statusChartRef.current) {
+      if (sampleTimelineElement && statusChartElement) {
         // Create the sample timeline visualization
         createSampleTimelineChart();
         
@@ -109,7 +114,7 @@ function ProjectTimeline({ data, filters }) {
         createStatusChart();
         
         // Create the milestones timeline
-        if (milestonesRef.current) {
+        if (milestonesElement) {
           createMilestonesTimeline();
         }
       }
@@ -504,17 +509,17 @@ function ProjectTimeline({ data, filters }) {
     
     // Cleanup function
     return () => {
-      if (sampleTimelineRef.current) {
-        d3.select(sampleTimelineRef.current).selectAll("*").remove();
+      if (sampleTimelineElement) {
+        d3.select(sampleTimelineElement).selectAll("*").remove();
       }
-      if (statusChartRef.current) {
-        d3.select(statusChartRef.current).selectAll("*").remove();
+      if (statusChartElement) {
+        d3.select(statusChartElement).selectAll("*").remove();
       }
-      if (milestonesRef.current) {
-        d3.select(milestonesRef.current).selectAll("*").remove();
+      if (milestonesElement) {
+        d3.select(milestonesElement).selectAll("*").remove();
       }
     };
-  }, [hasData, processedData]);
+  }, [hasData, processedData, sampleTimeline, statusCounts, milestones]);
   
   // Timeline view toggle handler
   const handleViewChange = (view) => {
