@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import * as d3 from 'd3';
 import './ProgramTimeline.css';
 
@@ -18,13 +18,13 @@ function ProgramTimeline() {
   const timelineRef = useRef(null);
   
   // Milestone type colors
-  const typeColors = {
+  const typeColors = React.useMemo(() => ({
     'Planning': 'var(--chart-color-6)', // Yellow
     'Funding': 'var(--chart-color-2)', // Orange
     'Implementation': 'var(--chart-color-4)', // Teal
     'Research': 'var(--chart-color-1)', // Blue
     'Completion': 'var(--chart-color-5)' // Green
-  };
+  }), []);
   
   // Load timeline data
   useEffect(() => {

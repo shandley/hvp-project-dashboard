@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import * as d3 from 'd3';
 import './ProgramStructure.css';
 
@@ -17,54 +17,8 @@ function ProgramStructure() {
   
   const chartRef = useRef(null);
   
-  // Load structure data
-  useEffect(() => {
-    fetch('/data/hvp-governance.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to load governance data');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setStructureData(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error loading governance data:', err);
-        setError('Failed to load governance data. Please try again later.');
-        setLoading(false);
-      });
-  }, []);
-  
-  // Create or update chart visualization
-  useEffect(() => {
-    if (!structureData || !chartRef.current) return;
-    
-    // Store ref to avoid React Hook cleanup warning
-    const currentChartRef = chartRef.current;
-    
-    try {
-      if (viewMode === 'governance') {
-        createGovernanceChart();
-      } else {
-        createCollaborationChart();
-      }
-    } catch (err) {
-      console.error('Error creating chart visualization:', err);
-      setError('Failed to create chart visualization.');
-    }
-    
-    // Cleanup function
-    return () => {
-      if (currentChartRef) {
-        d3.select(currentChartRef).selectAll('*').remove();
-      }
-    };
-  }, [structureData, viewMode, createGovernanceChart, createCollaborationChart]);
-  
   // Function to create governance organizational chart
-  const createGovernanceChart = () => {
+  const createGovernanceChart = useCallback(() => {
     const container = chartRef.current;
     d3.select(container).selectAll('*').remove();
     
@@ -212,10 +166,10 @@ function ProgramStructure() {
         }
       });
     }
-  };
+  }, [structureData, setSelectedEntity, chartRef]);
   
   // Function to create collaboration mechanisms chart
-  const createCollaborationChart = () => {
+  const createCollaborationChart = useCallback(() => {
     const container = chartRef.current;
     d3.select(container).selectAll('*').remove();
     
@@ -342,7 +296,7 @@ function ProgramStructure() {
         }
       });
     }
-  };
+  }, [structureData, setSelectedEntity, chartRef]);
   
   // Handle view mode change
   const handleViewModeChange = (mode) => {
