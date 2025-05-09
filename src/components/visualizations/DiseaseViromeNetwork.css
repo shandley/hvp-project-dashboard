@@ -199,6 +199,15 @@
   opacity: 0.3;
 }
 
+.node.dragging {
+  cursor: grabbing;
+}
+
+.node.dragging circle {
+  stroke-width: 2.5px;
+  stroke: var(--primary-color);
+}
+
 line.link {
   stroke-opacity: 0.6;
   transition: all 0.3s ease;

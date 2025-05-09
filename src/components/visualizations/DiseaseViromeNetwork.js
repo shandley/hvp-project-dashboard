@@ -185,15 +185,35 @@ function DiseaseViromeNetwork() {
     const linkStrength = networkMode === 'simple' ? 0.2 : 0.1;
     const linkDistance = networkMode === 'simple' ? 150 : 180;
     
-    // Create force simulation
+    // Set initial positions for nodes to avoid initial jumpy behavior
+    nodes.forEach((node, i) => {
+      if (!node.x || !node.y) {
+        const angle = (i / nodes.length) * 2 * Math.PI;
+        const radius = Math.min(width, height) * 0.3;
+        node.x = width / 2 + radius * Math.cos(angle);
+        node.y = height / 2 + radius * Math.sin(angle);
+      }
+      // Pre-compute fx and fy for fixed nodes (maintained during simulation)
+      if (node.fixed) {
+        node.fx = node.x;
+        node.fy = node.y;
+      }
+    });
+    
+    // Create force simulation with reduced forces and increased alpha decay
     const simulation = d3.forceSimulation(nodes)
+      .alphaDecay(0.028) // Increased decay for quicker settling
+      .alphaMin(0.001)   // Lower minimum threshold
+      .velocityDecay(0.4) // Increased velocity decay to reduce jitter
       .force('link', d3.forceLink(links)
         .id(d => d.id)
         .strength(linkStrength)
         .distance(linkDistance))
-      .force('charge', d3.forceManyBody().strength(-300))
+      .force('charge', d3.forceManyBody()
+        .strength(-200)
+        .distanceMax(300)) // Limit the distance of charge effect
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(50));
+      .force('collision', d3.forceCollide().radius(30).strength(0.8)); // Stronger collision prevention
     
     simulationRef.current = simulation;
     
@@ -224,26 +244,6 @@ function DiseaseViromeNetwork() {
       .on('click', (event, d) => {
         setSelectedNode(d === selectedNode ? null : d);
         event.stopPropagation();
-      })
-      .on('mouseover', function(event, d) {
-        // Highlight connected nodes
-        highlightConnections(d, true);
-        
-        // Add tooltip
-        const [x, y] = d3.pointer(event, container);
-        d3.select(container)
-          .append('div')
-          .attr('class', 'tooltip')
-          .style('left', `${x + 15}px`)
-          .style('top', `${y}px`)
-          .html(`<strong>${d.name}</strong><br/>${d.type.replace('_', ' ')}`);
-      })
-      .on('mouseout', function(event, d) {
-        // Remove highlight
-        highlightConnections(d, false);
-        
-        // Remove tooltip
-        d3.select(container).selectAll('.tooltip').remove();
       });
     
     // Add circles to nodes
@@ -281,34 +281,113 @@ function DiseaseViromeNetwork() {
       .attr('opacity', d => highlightedNodes.length > 0 ? 
         (highlightedNodes.includes(d.id) ? 1 : 0.3) : 1);
     
+    // Create a separate tooltip element that's always available
+    const tooltip = d3.select(container)
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0);
+    
+    // Add mouse events for tooltips and highlighting with debouncing
+    node.on('mouseover', function(event, d) {
+      // Show tooltip
+      tooltip
+        .style('left', `${event.pageX - container.getBoundingClientRect().left + 15}px`)
+        .style('top', `${event.pageY - container.getBoundingClientRect().top}px`)
+        .html(`<strong>${d.name}</strong><br/>${d.type.replace('_', ' ')}`)
+        .transition()
+        .duration(200)
+        .style('opacity', 1);
+      
+      // Highlight connected nodes
+      highlightConnections(d, true);
+    })
+    .on('mousemove', function(event) {
+      // Update tooltip position
+      tooltip
+        .style('left', `${event.pageX - container.getBoundingClientRect().left + 15}px`)
+        .style('top', `${event.pageY - container.getBoundingClientRect().top}px`);
+    })
+    .on('mouseout', function(event, d) {
+      // Hide tooltip
+      tooltip.transition()
+        .duration(200)
+        .style('opacity', 0);
+      
+      // Remove highlight
+      highlightConnections(d, false);
+    });
+    
     // Update node and link positions on each tick
     simulation.on('tick', () => {
+      // Keep nodes within the bounds
+      nodes.forEach(d => {
+        d.x = Math.max(20, Math.min(width - 20, d.x));
+        d.y = Math.max(20, Math.min(height - 20, d.y));
+      });
+      
+      // Update link positions
       link
         .attr('x1', d => d.source.x)
         .attr('y1', d => d.source.y)
         .attr('x2', d => d.target.x)
         .attr('y2', d => d.target.y);
       
+      // Update node positions
       node
         .attr('transform', d => `translate(${d.x}, ${d.y})`);
     });
     
-    // Dragging functions
+    // Dragging functions with improved behavior
     function dragstarted(event, d) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
+      // Stop the simulation during drag for more responsive interaction
+      simulation.alphaTarget(0).stop();
+      
       d.fx = d.x;
       d.fy = d.y;
+      
+      // Apply "dragging" class to indicate active dragging state
+      d3.select(this).classed("dragging", true);
     }
     
     function dragged(event, d) {
-      d.fx = event.x;
-      d.fy = event.y;
+      // For better dragging experience, update position directly
+      d.fx = Math.max(20, Math.min(width - 20, event.x));
+      d.fy = Math.max(20, Math.min(height - 20, event.y));
+      
+      // Move the node immediately during drag without simulation
+      d3.select(this).attr("transform", `translate(${d.fx}, ${d.fy})`);
+      
+      // Update connected links during drag for immediate feedback
+      link
+        .filter(l => l.source === d || l.target === d)
+        .attr('x1', l => l.source === d ? d.fx : l.source.x)
+        .attr('y1', l => l.source === d ? d.fy : l.source.y)
+        .attr('x2', l => l.target === d ? d.fx : l.target.x)
+        .attr('y2', l => l.target === d ? d.fy : l.target.y);
     }
     
     function dragended(event, d) {
-      if (!event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
+      // Remove dragging class
+      d3.select(this).classed("dragging", false);
+      
+      // When drag ends, keep node position fixed for networks with many nodes
+      if (nodes.length > 20) {
+        // Keep position fixed
+        d.fixed = true;
+      } else {
+        // For smaller networks, release nodes to allow settling
+        d.fx = null;
+        d.fy = null;
+        d.fixed = false;
+      }
+      
+      // Restart the simulation with reduced alpha
+      simulation.alphaTarget(0.05).restart();
+      
+      // Then decrease alpha to 0 after a short time to let nodes settle
+      setTimeout(() => {
+        simulation.alphaTarget(0);
+      }, 300);
     }
     
     // Function to highlight connected nodes and links
@@ -325,19 +404,35 @@ function DiseaseViromeNetwork() {
         }
       });
       
-      // Highlight/unhighlight nodes
+      // Highlight/unhighlight nodes with transition for smoother effect
       d3.selectAll('.node')
-        .classed('dimmed', highlight ? d => !connected.has(d.id) : false);
+        .transition()
+        .duration(200)
+        .style('opacity', highlight ? d => connected.has(d.id) ? 1 : 0.3 : 1)
+        .select('circle')
+        .style('stroke-width', d => highlight && connected.has(d.id) ? 2.5 : 1.5);
       
       // Highlight/unhighlight links
       d3.selectAll('line')
-        .classed('dimmed', highlight ? d => 
-          !connected.has(d.source.id) || !connected.has(d.target.id) : false);
+        .transition()
+        .duration(200)
+        .style('opacity', highlight ? d => 
+          connected.has(d.source.id) && connected.has(d.target.id) ? 1 : 0.1 : 0.6);
     }
     
     // Update labels visibility on initial render
     d3.selectAll('.node-label')
       .style('display', 'block');
+    
+    // Run simulation with higher alpha for initial positioning
+    simulation
+      .alpha(1)
+      .restart();
+    
+    // After initial positioning has settled, reduce forces for stability
+    setTimeout(() => {
+      simulation.alpha(0.1).restart();
+    }, 1500);
     
     // Initial zoom reset to fit network in view
     resetZoom();
