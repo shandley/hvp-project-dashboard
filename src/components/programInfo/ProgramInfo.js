@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProgramInfo.css';
 import ProgramTimeline from './ProgramTimeline';
-import AboutHVP from './AboutHVP';
+import AboutHVPNew from './AboutHVPNew';
 import ProgramStructure from './ProgramStructure';
 
 /**
@@ -44,8 +44,8 @@ function ProgramInfo() {
           console.log('ProgramInfo: Rendering ProgramTimeline component');
           return <ProgramTimeline />;
         case 'about':
-          console.log('ProgramInfo: Rendering AboutHVP component');
-          return <AboutHVP />;
+          console.log('ProgramInfo: Rendering AboutHVPNew component');
+          return <AboutHVPNew />;
         case 'structure':
           console.log('ProgramInfo: Rendering ProgramStructure component');
           return <ProgramStructure />;
