@@ -45,7 +45,13 @@
   font-size: 2rem;
   font-weight: bold;
   color: var(--primary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-detail {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
 }
 
 .stat-breakdown h4 {
@@ -126,6 +132,27 @@
   color: #17a2b8;
 }
 
+/* Error and loading messages */
+.error-message, 
+.loading-message {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.loading-message {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
 /* Map visualization */
 .map-container {
   height: 500px;
@@ -133,6 +160,80 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Leaflet map legend styles */
+.info.legend {
+  padding: 0.75rem;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  line-height: 1.5;
+}
+
+.info.legend h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.legend-size {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.legend-circle {
+  display: inline-block;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.2);
+  margin-right: 0.5rem;
+}
+
+/* Map popup styles */
+.map-popup {
+  max-width: 300px;
+}
+
+.map-popup h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.25rem;
+}
+
+.map-popup p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.map-popup ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.map-popup li {
+  margin-bottom: 0.25rem;
 }
 
 /* Chart containers */
@@ -183,5 +284,9 @@
   
   .chart-card {
     height: 250px;
+  }
+  
+  .map-container {
+    height: 300px;
   }
 }

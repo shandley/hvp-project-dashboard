@@ -25,8 +25,8 @@ export const loadData = async () => {
     return processProjectData(projects);
   } catch (error) {
     console.error('Error loading data:', error);
-    // Fallback to mock data if an error occurs
-    return getMockData();
+    // No fallback to mock data - we only use real data
+    throw new Error(`Could not load HVP data: ${error.message}. Please check that data files are correctly placed in the public/data directory.`);
   }
 };
 
@@ -156,75 +156,4 @@ const calculateMetrics = (projects) => {
   };
 };
 
-/**
- * Generate mock data for development and fallback purposes
- * @returns {Object} Mock dashboard data
- */
-const getMockData = () => {
-  return {
-    // Sample projects data based on the CSV structure - this is only used if CSV loading fails
-    projects: [
-      {
-        'Project ID': 'UCLA-OGB-1',
-        'Initiative Type': 'VCC',
-        'Grant Number': 'AG089335-01',
-        'Contact PI': 'Yvonne Kapila',
-        'Institution': 'UCLA',
-        'Cohort Name': 'UCLA Autopsy Bank',
-        'Participants': '33',
-        'Samples': '99',
-        'Age Group Category': 'Adults',
-        'Body Site Category': 'Brain',
-        'Study Type': 'Cross-sectional; case-control',
-        'Storage': '-80C',
-        'Status': 'Ongoing',
-        'Primary Research Focus': 'Oral-Gut-Brain virome',
-        'Geographic Region': 'West'
-      },
-      {
-        'Project ID': 'PENN-ORG-1',
-        'Initiative Type': 'VCC',
-        'Grant Number': 'AG089323-01',
-        'Contact PI': 'Ron Collman',
-        'Institution': 'UPenn',
-        'Cohort Name': 'IGRAMS Repository',
-        'Participants': '236',
-        'Samples': '3068',
-        'Age Group Category': 'Infants/Children',
-        'Body Site Category': 'Gut/Blood',
-        'Study Type': 'Longitudinal',
-        'Storage': '-80C',
-        'Status': 'Complete',
-        'Primary Research Focus': 'Oro-Respiratory-Gut virome',
-        'Geographic Region': 'Northeast'
-      }
-    ],
-    
-    // Basic metrics (would be calculated properly from real data)
-    metrics: {
-      bodySite: {
-        'Brain': { count: 1, samples: 99, percentage: 3.1, cohorts: 1 },
-        'Gut/Blood': { count: 1, samples: 3068, percentage: 96.9, cohorts: 1 }
-      },
-      ageGroup: {
-        'Adults': { count: 1, percentage: 50.0, cohorts: 1 },
-        'Infants/Children': { count: 1, percentage: 50.0, cohorts: 1 }
-      },
-      status: {
-        'Ongoing': { count: 1, projects: ['UCLA-OGB-1'] },
-        'Complete': { count: 1, projects: ['PENN-ORG-1'] }
-      },
-      region: {
-        'West': { count: 1, samples: 99 },
-        'Northeast': { count: 1, samples: 3068 }
-      },
-      timeline: [
-        { year: 2024, projectedSamples: 5000, cumulativeTotal: 5000, percentComplete: 7.0 },
-        { year: 2025, projectedSamples: 20000, cumulativeTotal: 25000, percentComplete: 35.2 },
-        { year: 2026, projectedSamples: 25000, cumulativeTotal: 50000, percentComplete: 70.4 },
-        { year: 2027, projectedSamples: 15000, cumulativeTotal: 65000, percentComplete: 91.5 },
-        { year: 2028, projectedSamples: 6000, cumulativeTotal: 71000, percentComplete: 100.0 }
-      ]
-    }
-  };
-};
+// Mock data generation function has been removed to ensure only real data is used
