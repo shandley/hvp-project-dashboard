@@ -16,21 +16,36 @@ const REPORTER_API_CONFIG = {
   },
   // List of actual HVP-related grant IDs
   hvpGrantIds: [
-    // Virome Characterization Centers (VCC) Grants
+    // Virome Characterization Centers (VCC) Grants - With hyphens
+    'U54AG089335-01',
+    'U54AG089323-01',
+    'U54AG089326-01',
+    'U54AG089325-01',
+    'U54AG089334-01',
+    
+    // Also try without hyphens
     'U54AG089335',
     'U54AG089323',
     'U54AG089326',
     'U54AG089325',
     'U54AG089334',
     
-    // Functional Studies Grants
+    // Functional Studies Grants - With hyphens
+    'AT012990-01',
+    'AT012984-01',
+    'AT012970-01',
+    'AT012998-01',
+    'AT012993-01',
+    
+    // Also try without hyphens
     'AT012990',
     'AT012984',
     'AT012970',
     'AT012998',
     'AT012993',
     
-    // Tools Development Grant
+    // Tools Development Grant - Both formats
+    'U01DE034199-01',
     'U01DE034199'
   ],
   // Other NIH virome-related grants (kept separate from HVP grants)
@@ -229,6 +244,14 @@ export const throttledSearchPublicationsByProjects = throttle(searchPublications
  */
 export const transformPublicationData = async (apiPublications = [], grantIds = []) => {
   console.log(`Starting to transform ${apiPublications.length} publications for ${grantIds.length} grants`);
+  
+  // Log the structure of the first publication to understand API response format
+  if (apiPublications.length > 0) {
+    console.log('First publication structure:', JSON.stringify(apiPublications[0], null, 2));
+    console.log('Publication properties:', Object.keys(apiPublications[0]).join(', '));
+  } else {
+    console.log('No publications found in API response to transform');
+  }
   
   const transformedPublications = [];
   
