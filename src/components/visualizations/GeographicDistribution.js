@@ -107,18 +107,24 @@ function GeographicDistribution({ data, filters }) {
     // Clean up previous map instance if it exists
     if (mapRef.current) {
       mapRef.current.remove();
+      mapRef.current = null;
     }
-
-    try {
-      setLoading(true);
-      
-      // Only proceed if we have the container element
-      if (!mapContainerRef.current) {
-        return;
-      }
-
-      // Initialize the map
-      const map = L.map(mapContainerRef.current).setView([39.8283, -98.5795], 4);
+    
+    // Delay map creation slightly to ensure DOM is updated
+    const timer = setTimeout(() => {
+      try {
+        setLoading(true);
+        
+        // Only proceed if we have the container element
+        if (!mapContainerRef.current) {
+          setLoading(false);
+          return;
+        }
+        
+        // Initialize the map with an ID to avoid reuse conflicts
+        const mapId = `map-${Date.now()}`;
+        mapContainerRef.current.id = mapId;
+        const map = L.map(mapContainerRef.current).setView([39.8283, -98.5795], 4);
       
       // Add the tile layer (OpenStreetMap)
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -283,11 +289,17 @@ function GeographicDistribution({ data, filters }) {
       setError('Failed to create map visualization. See console for details.');
       setLoading(false);
     }
+    }, 100); // Small delay to ensure DOM is updated
     
-    // Cleanup on unmount
+    // Cleanup on unmount and when dependencies change
     return () => {
+      // Clear the timeout
+      clearTimeout(timer);
+      
+      // Remove the map if it exists
       if (mapRef.current) {
         mapRef.current.remove();
+        mapRef.current = null;
       }
     };
   }, [hasData, filteredProjects, regionSamples, data, filters, regionCoordinates, institutionCoordinates]);
@@ -323,8 +335,8 @@ function GeographicDistribution({ data, filters }) {
       
       {hasData && (
         <>
-          <div 
-            id="map" 
+          <div
+            key={`map-container-${JSON.stringify(filters)}`}
             ref={mapContainerRef} 
             className="map-container" 
             style={{ height: '500px', width: '100%' }}
