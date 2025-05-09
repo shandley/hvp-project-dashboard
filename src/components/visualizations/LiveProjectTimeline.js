@@ -100,11 +100,8 @@ function LiveProjectTimeline({ data, filters }) {
   }, [data, filters, timelineData]);
   
   // Extract variables from processedData
+  // eslint-disable-next-line no-unused-vars
   const { 
-    filteredProjects, 
-    statusCounts, 
-    initiativeCounts, 
-    bodySiteCounts,
     currentYear, 
     currentQuarter 
   } = processedData;
