@@ -18,7 +18,6 @@ function SampleDistribution({ data, filters }) {
   const [chartType, setChartType] = useState('pie');
   const [sortOrder, setSortOrder] = useState('desc');
   const [showLegend, setShowLegend] = useState(true);
-  const [showLabels, setShowLabels] = useState(true);
   const [hasData, setHasData] = useState(true);
   
   // Check if data is available
@@ -141,7 +140,7 @@ function SampleDistribution({ data, filters }) {
       sortedAgeGroups,
       totalSamples
     };
-  }, [data.projects, filters, sortOrder]);
+  }, [data, data.projects, filters, sortOrder, hasData]);
   
   // Extract variables from processedData
   const {
