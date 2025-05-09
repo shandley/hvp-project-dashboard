@@ -8,6 +8,7 @@ import LiveProjectTimeline from './visualizations/LiveProjectTimeline';
 import NetworkRelationships from './visualizations/NetworkRelationships';
 import DiseaseViromeTable from './visualizations/DiseaseViromeTable';
 import ProgramInfo from './programInfo/ProgramInfo';
+import Publications from './publications/Publications';
 
 function Dashboard({ data, filters, updateFilters, activeView }) {
   // Render the appropriate visualization based on the active view
@@ -20,7 +21,7 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
       return <div className="loading-transition">Changing view...</div>;
     }
     
-    if (!data && !['program-info', 'disease-virome'].includes(activeView)) {
+    if (!data && !['program-info', 'disease-virome', 'publications'].includes(activeView)) {
       console.log('No data available for view:', activeView);
       return <div>No data available</div>;
     }
@@ -44,6 +45,9 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
       case 'disease-virome':
         console.log('Rendering DiseaseViromeTable component');
         return <DiseaseViromeTable />;
+      case 'publications':
+        console.log('Rendering Publications component');
+        return <Publications data={data} filters={filters} />;
       case 'program-info': {
         console.log('Rendering ProgramInfo component');
         console.log('Dashboard time:', new Date().toISOString());
@@ -65,7 +69,7 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
   return (
     <div className="dashboard">
       {console.log('Dashboard rendering, activeView:', activeView)}
-      {!['program-info', 'disease-virome'].includes(activeView) && (
+      {!['program-info', 'disease-virome', 'publications'].includes(activeView) && (
         <FilterPanel 
           data={data} 
           filters={filters} 
@@ -73,7 +77,7 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
         />
       )}
       <div 
-        className={`dashboard-content ${['program-info', 'disease-virome'].includes(activeView) ? 'full-width' : ''}`}
+        className={`dashboard-content ${['program-info', 'disease-virome', 'publications'].includes(activeView) ? 'full-width' : ''}`}
         style={{ width: '100%' }}
       >
         {renderContent()}

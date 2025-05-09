@@ -9,6 +9,7 @@ function Sidebar({ activeView, changeView }) {
     { id: 'timeline', label: 'Project Timeline', icon: '📅', disabled: true },
     { id: 'networks', label: 'Relationships & Networks', icon: '🔄' },
     { id: 'disease-virome', label: 'Disease-Virome Associations', icon: '🧬' },
+    { id: 'publications', label: 'HVP Publications', icon: '📚' },
     { id: 'program-info', label: 'About HVP Program', icon: 'ℹ️' },
   ];
 
