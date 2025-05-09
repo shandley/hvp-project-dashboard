@@ -6,7 +6,7 @@ function Sidebar({ activeView, changeView }) {
     { id: 'overview', label: 'Program Overview', icon: '📊' },
     { id: 'geographic', label: 'Geographic Distribution', icon: '🗺️' },
     { id: 'samples', label: 'Sample Distribution', icon: '🧫' },
-    { id: 'timeline', label: 'Project Timeline', icon: '📅' },
+    { id: 'timeline', label: 'Project Timeline', icon: '📅', disabled: true },
     { id: 'networks', label: 'Relationships & Networks', icon: '🔄' },
     { id: 'disease-virome', label: 'Disease-Virome Associations', icon: '🧬' },
     { id: 'program-info', label: 'About HVP Program', icon: 'ℹ️' },
@@ -22,9 +22,16 @@ function Sidebar({ activeView, changeView }) {
           {menuItems.map(item => (
             <li 
               key={item.id}
-              className={activeView === item.id ? 'active' : ''}
+              className={`${activeView === item.id ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
+                
+                // Don't do anything if the item is disabled
+                if (item.disabled) {
+                  console.log('Sidebar: Ignoring click on disabled item', item.id);
+                  return;
+                }
+                
                 console.log('Sidebar: Clicked on', item.id, 'at', new Date().toISOString());
                 
                 if (item.id === 'program-info') {
@@ -43,6 +50,7 @@ function Sidebar({ activeView, changeView }) {
             >
               <span className="item-icon">{item.icon}</span>
               <span className="item-label">{item.label}</span>
+              {item.disabled && <span className="coming-soon-badge">Coming Soon</span>}
             </li>
           ))}
         </ul>
