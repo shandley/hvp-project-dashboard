@@ -66,9 +66,26 @@ function GeographicDistribution({ data, filters }) {
   // Extract filtered data
   const { filteredProjects, regionCounts, regionSamples } = filteredData;
   
-  // Define region coordinates (approximate centers) using useMemo to avoid re-creation
+  // Define institution coordinates based on actual locations
+  const institutionCoordinates = useMemo(() => ({
+    // NOTE: Leaflet uses [latitude, longitude] format
+    'UCLA': [34.0689, -118.4452],
+    'UPenn': [39.9522, -75.1932],
+    'VUMC': [36.1445, -86.8027],
+    'UTHealth/VUMC': [29.7030, -95.4032],
+    'Broad/BWH': [42.3371, -71.1070],
+    'Stanford': [37.4275, -122.1697],
+    'UConn Health': [41.7317, -72.7930],
+    'Cornell': [42.4534, -76.4735],
+    'NBDC': [47.9127, -97.0730],
+    'University of Utah': [40.7649, -111.8421],
+    'MSKCC': [40.7645, -73.9565],
+    'Washington University': [38.6488, -90.3108], 
+    'UCSF': [37.7631, -122.4586]
+  }), []);
+  
+  // Define fallback region coordinates for cases where institution isn't matched
   const regionCoordinates = useMemo(() => ({
-    // NOTE: Leaflet uses [latitude, longitude] format, not [longitude, latitude]
     'West': [37.7749, -122.4194],      // San Francisco coordinates
     'Northeast': [40.7128, -74.0060],  // New York coordinates
     'South': [32.7767, -96.7970],      // Dallas coordinates
@@ -135,37 +152,43 @@ function GeographicDistribution({ data, filters }) {
         'Space': [0.0, -160.0]  // Off the map in the Pacific
       };
 
-      // Add markers for each region
-      Object.entries(regionSamples).forEach(([region, stats]) => {
+      // Group projects by institution
+      const institutionProjects = filteredProjects.reduce((acc, project) => {
+        const institution = project['Institution'];
+        if (!acc[institution]) {
+          acc[institution] = [];
+        }
+        acc[institution].push(project);
+        return acc;
+      }, {});
+
+      // Add markers for each institution
+      Object.entries(institutionProjects).forEach(([institution, projects]) => {
         let coordinates;
         
-        // Handle special regions
-        if (region === 'International' || region === 'Space') {
-          if (region === 'International') {
-            // Check if any projects mention Antarctica
-            const hasAntarctica = filteredProjects.some(project => 
-              project['Geographic Region'] === 'International' && 
-              project['Cohort Name']?.includes('Antarctica')
-            );
-            
-            if (hasAntarctica) {
-              coordinates = specialLocations['International']['Antarctica'];
-            } else {
-              coordinates = specialLocations['International']['International'];
-            }
-          } else {
-            coordinates = specialLocations['Space'];
-          }
+        // Handle special cases first
+        if (projects.some(p => p['Geographic Region'] === 'Space')) {
+          coordinates = specialLocations['Space'];
+        } else if (projects.some(p => p['Geographic Region'] === 'International' && 
+                                   p['Cohort Name']?.includes('Antarctica'))) {
+          coordinates = specialLocations['International']['Antarctica'];
+        } else if (projects.some(p => p['Geographic Region'] === 'International')) {
+          coordinates = specialLocations['International']['International'];
         } else {
-          coordinates = regionCoordinates[region];
+          // Try to get coordinates from the institution mapping
+          coordinates = institutionCoordinates[institution];
+          
+          // Fallback to region coordinates if institution not found
+          if (!coordinates) {
+            // Get the region of the first project for this institution
+            const region = projects[0]['Geographic Region'];
+            coordinates = regionCoordinates[region];
+          }
         }
 
         if (coordinates) {
-          // Get all projects for this region
-          const regionProjects = filteredProjects.filter(p => p['Geographic Region'] === region);
-          
-          // Group projects by initiative type for this region
-          const initiativeGroups = regionProjects.reduce((groups, project) => {
+          // Group projects by initiative type for this institution
+          const initiativeGroups = projects.reduce((groups, project) => {
             const type = project['Initiative Type'];
             if (!groups[type]) {
               groups[type] = [];
@@ -191,13 +214,13 @@ function GeographicDistribution({ data, filters }) {
             // Create popup content with project details
             const popupContent = `
               <div class="map-popup">
-                <h3>${region}: ${initiative}</h3>
+                <h3>${institution}: ${initiative}</h3>
                 <p><strong>${projects.length}</strong> projects with <strong>${totalSamples.toLocaleString()}</strong> samples</p>
                 <ul>
                   ${projects.map(p => `
                     <li>
                       <strong>${p['Project ID']}</strong>: ${p['Cohort Name']} 
-                      (${p['Samples']} samples) - ${p['Status']}
+                      (${p['Samples'] || 'Unknown'} samples) - ${p['Status']}
                     </li>
                   `).join('')}
                 </ul>
@@ -258,7 +281,7 @@ function GeographicDistribution({ data, filters }) {
         mapRef.current.remove();
       }
     };
-  }, [hasData, filteredProjects, regionSamples, data, filters, regionCoordinates]);
+  }, [hasData, filteredProjects, regionSamples, data, filters, regionCoordinates, institutionCoordinates]);
 
   return (
     <div className="visualization-container">
