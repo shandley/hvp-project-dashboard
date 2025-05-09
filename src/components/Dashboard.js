@@ -4,7 +4,7 @@ import FilterPanel from './FilterPanel';
 import Overview from './visualizations/Overview';
 import GeographicDistribution from './visualizations/GeographicDistribution';
 import SampleDistribution from './visualizations/SampleDistribution';
-import ProjectTimeline from './visualizations/ProjectTimeline';
+import LiveProjectTimeline from './visualizations/LiveProjectTimeline';
 import NetworkRelationships from './visualizations/NetworkRelationships';
 import DiseaseViromeTable from './visualizations/DiseaseViromeTable';
 import ProgramInfo from './programInfo/ProgramInfo';
@@ -36,8 +36,8 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
         console.log('Rendering SampleDistribution component');
         return <SampleDistribution data={data} filters={filters} />;
       case 'timeline':
-        console.log('Rendering ProjectTimeline component');
-        return <ProjectTimeline data={data} filters={filters} />;
+        console.log('Rendering LiveProjectTimeline component');
+        return <LiveProjectTimeline data={data} filters={filters} />;
       case 'networks':
         console.log('Rendering NetworkRelationships component');
         return <NetworkRelationships data={data} filters={filters} />;

@@ -1,0 +1,231 @@
+{
+  "title": "HVP Project Status Timeline",
+  "description": "Temporal distribution of HVP projects by status and initiative type",
+  "lastUpdated": "May 2025",
+  "projectsByQuarter": [
+    {
+      "quarter": "Q1 2024",
+      "ongoing": 8,
+      "complete": 2,
+      "initiatives": {
+        "VCC": 6,
+        "Functional Studies": 3,
+        "Technology Development": 1
+      },
+      "samplesCollected": 2500
+    },
+    {
+      "quarter": "Q2 2024",
+      "ongoing": 12,
+      "complete": 3,
+      "initiatives": {
+        "VCC": 8,
+        "Functional Studies": 5,
+        "Technology Development": 2
+      },
+      "samplesCollected": 4800
+    },
+    {
+      "quarter": "Q3 2024",
+      "ongoing": 22,
+      "complete": 4,
+      "initiatives": {
+        "VCC": 14,
+        "Functional Studies": 8,
+        "Technology Development": 4
+      },
+      "samplesCollected": 8200
+    },
+    {
+      "quarter": "Q4 2024",
+      "ongoing": 30,
+      "complete": 5,
+      "initiatives": {
+        "VCC": 18,
+        "Functional Studies": 12,
+        "Technology Development": 5
+      },
+      "samplesCollected": 12000
+    },
+    {
+      "quarter": "Q1 2025",
+      "ongoing": 38,
+      "complete": 8,
+      "initiatives": {
+        "VCC": 24,
+        "Functional Studies": 15,
+        "Technology Development": 7
+      },
+      "samplesCollected": 18500
+    },
+    {
+      "quarter": "Q2 2025",
+      "ongoing": 44,
+      "complete": 14,
+      "initiatives": {
+        "VCC": 28,
+        "Functional Studies": 20,
+        "Technology Development": 10
+      },
+      "samplesCollected": 22800
+    }
+  ],
+  "projectionsByYear": [
+    {
+      "year": 2024,
+      "ongoing": 30,
+      "complete": 5,
+      "samplesCollected": 12000,
+      "projectedSamples": 5000
+    },
+    {
+      "year": 2025,
+      "ongoing": 44,
+      "complete": 14,
+      "samplesCollected": 22800,
+      "projectedSamples": 20000
+    },
+    {
+      "year": 2026,
+      "ongoing": 35,
+      "complete": 35,
+      "samplesCollected": 47500,
+      "projectedSamples": 25000
+    },
+    {
+      "year": 2027,
+      "ongoing": 20,
+      "complete": 55,
+      "samplesCollected": 62500,
+      "projectedSamples": 15000
+    },
+    {
+      "year": 2028,
+      "ongoing": 5,
+      "complete": 70,
+      "samplesCollected": 71000,
+      "projectedSamples": 6000
+    }
+  ],
+  "samplesByBodySite": {
+    "2024": {
+      "Multiple": 4500,
+      "Oral": 2500,
+      "Blood": 1500,
+      "Gut": 1200,
+      "Respiratory": 800,
+      "Brain": 500,
+      "Skin": 500,
+      "Other": 500
+    },
+    "2025": {
+      "Multiple": 8000,
+      "Oral": 4000,
+      "Blood": 3000,
+      "Gut": 2500,
+      "Respiratory": 2000,
+      "Brain": 1500,
+      "Skin": 1000,
+      "Other": 800
+    },
+    "2026": {
+      "Multiple": 15000,
+      "Oral": 7500,
+      "Blood": 6000,
+      "Gut": 5000,
+      "Respiratory": 4000,
+      "Brain": 3000,
+      "Skin": 2000,
+      "Other": 5000
+    }
+  },
+  "initiativeTimeline": [
+    {
+      "type": "VCC",
+      "events": [
+        {
+          "date": "January 2024",
+          "description": "Initial VCC awards announced"
+        },
+        {
+          "date": "March 2024",
+          "description": "First VCC protocols established"
+        },
+        {
+          "date": "June 2024",
+          "description": "Sample collection infrastructure completed"
+        },
+        {
+          "date": "August 2024",
+          "description": "First quarterly progress reports due"
+        },
+        {
+          "date": "January 2025",
+          "description": "Initial analysis of first batch samples"
+        },
+        {
+          "date": "March 2025",
+          "description": "Cross-center methodology standardization"
+        }
+      ]
+    },
+    {
+      "type": "Functional Studies",
+      "events": [
+        {
+          "date": "February 2024",
+          "description": "Functional studies grants awarded"
+        },
+        {
+          "date": "May 2024",
+          "description": "Laboratory setup and protocol development"
+        },
+        {
+          "date": "July 2024",
+          "description": "First experimental cohort identified"
+        },
+        {
+          "date": "October 2024",
+          "description": "Initial functional characterization begins"
+        },
+        {
+          "date": "February 2025",
+          "description": "Preliminary functional analysis results"
+        },
+        {
+          "date": "April 2025",
+          "description": "Integration with VCC characterization data"
+        }
+      ]
+    },
+    {
+      "type": "Technology Development",
+      "events": [
+        {
+          "date": "March 2024",
+          "description": "Technology development grants awarded"
+        },
+        {
+          "date": "June 2024",
+          "description": "Initial technology prototypes developed"
+        },
+        {
+          "date": "September 2024",
+          "description": "First validation experiments"
+        },
+        {
+          "date": "December 2024",
+          "description": "Technology assessment reports"
+        },
+        {
+          "date": "March 2025",
+          "description": "Technology refinement based on validation"
+        },
+        {
+          "date": "May 2025",
+          "description": "Technology deployment to VCC centers"
+        }
+      ]
+    }
+  ]
+}
