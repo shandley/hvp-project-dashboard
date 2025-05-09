@@ -66,8 +66,8 @@ function GeographicDistribution({ data, filters }) {
   // Extract filtered data
   const { filteredProjects, regionCounts, regionSamples } = filteredData;
   
-  // Define region coordinates (approximate centers)
-  const regionCoordinates = {
+  // Define region coordinates (approximate centers) using useMemo to avoid re-creation
+  const regionCoordinates = useMemo(() => ({
     'West': [37.7749, -122.4194],      // San Francisco coordinates
     'Northeast': [40.7128, -74.0060],  // New York coordinates
     'South': [32.7767, -96.7970],      // Dallas coordinates
@@ -75,7 +75,7 @@ function GeographicDistribution({ data, filters }) {
     'National': [39.8283, -98.5795],   // Geographic center of the US
     'International': [0, 0],           // Global - will be adjusted with specific locations
     'Space': [0, 0]                    // Special handling for space
-  };
+  }), []);
 
   // Create map when component mounts or when data/filters change
   useEffect(() => {
@@ -257,7 +257,7 @@ function GeographicDistribution({ data, filters }) {
         mapRef.current.remove();
       }
     };
-  }, [hasData, filteredProjects, regionSamples, data, filters]);
+  }, [hasData, filteredProjects, regionSamples, data, filters, regionCoordinates]);
 
   return (
     <div className="visualization-container">
