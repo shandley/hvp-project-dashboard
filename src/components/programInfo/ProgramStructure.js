@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import './ProgramStructure.css';
 
 /**
@@ -6,6 +6,8 @@ import './ProgramStructure.css';
  * 
  * Displays the organizational chart of the NIH Human Virome Program's
  * governance structure and collaboration mechanisms.
+ * 
+ * @returns {JSX.Element} The ProgramStructure component
  */
 function ProgramStructure() {
   const [viewMode, setViewMode] = useState('governance'); // 'governance' or 'collaboration'
