@@ -14,14 +14,24 @@ const REPORTER_API_CONFIG = {
     projects: '/projects/search',
     publications: '/publications/search'
   },
-  // List of HVP-related grant IDs to search for
-  // These should be updated as new grants are added to the program
+  // List of actual HVP-related grant IDs
   hvpGrantIds: [
-    'U19AI142733',
-    'U19AI110818',
-    'U01AI151698',
-    'R01DE029992',
-    'U01AI141990'
+    // Virome Characterization Centers (VCC) Grants
+    'U54AG089335',
+    'U54AG089323',
+    'U54AG089326',
+    'U54AG089325',
+    'U54AG089334',
+    
+    // Functional Studies Grants
+    'AT012990',
+    'AT012984',
+    'AT012970',
+    'AT012998',
+    'AT012993',
+    
+    // Tools Development Grant
+    'U01DE034199'
   ],
   // Request delay to comply with API rate limiting (1 request per second)
   requestDelay: 1000
