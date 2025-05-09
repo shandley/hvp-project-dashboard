@@ -8,8 +8,19 @@ function GeographicDistribution({ data, filters }) {
   const mapContainerRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasData, setHasData] = useState(true);
 
-  if (!data || !data.projects) {
+  // Check if data is available
+  useEffect(() => {
+    if (!data || !data.projects) {
+      setHasData(false);
+    } else {
+      setHasData(true);
+    }
+  }, [data]);
+
+  // Show error message if no data is available
+  if (!hasData) {
     return (
       <div className="visualization-container">
         <div className="error-message">
