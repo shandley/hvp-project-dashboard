@@ -26,20 +26,25 @@ function DiseaseViromeNetwork() {
   
   // Load network data
   useEffect(() => {
+    console.log('DiseaseViromeNetwork: Loading data...');
+    console.log('URL path:', `${process.env.PUBLIC_URL}/data/disease-virome-network.json`);
+    
     fetch(`${process.env.PUBLIC_URL}/data/disease-virome-network.json`)
       .then(response => {
+        console.log('DiseaseViromeNetwork: Response received', response.status);
         if (!response.ok) {
-          throw new Error('Failed to load disease-virome network data');
+          throw new Error(`Failed to load disease-virome network data: ${response.status}`);
         }
         return response.json();
       })
       .then(data => {
+        console.log('DiseaseViromeNetwork: Data loaded successfully', data);
         setNetworkData(data);
         setLoading(false);
       })
       .catch(err => {
         console.error('Error loading disease-virome network data:', err);
-        setError('Failed to load network data. Please try again later.');
+        setError(`Failed to load network data: ${err.message}`);
         setLoading(false);
       });
   }, []);

@@ -20,20 +20,25 @@ function ProgramStructure() {
   
   // Load structure data
   useEffect(() => {
+    console.log('ProgramStructure: Loading data...');
+    console.log('URL path:', `${process.env.PUBLIC_URL}/data/hvp-governance.json`);
+    
     fetch(`${process.env.PUBLIC_URL}/data/hvp-governance.json`)
       .then(response => {
+        console.log('ProgramStructure: Response received', response.status);
         if (!response.ok) {
-          throw new Error('Failed to load program structure data');
+          throw new Error(`Failed to load program structure data: ${response.status}`);
         }
         return response.json();
       })
       .then(data => {
+        console.log('ProgramStructure: Data loaded successfully', data);
         setStructureData(data);
         setLoading(false);
       })
       .catch(err => {
         console.error('Error loading program structure data:', err);
-        setError('Failed to load program structure data. Please try again later.');
+        setError(`Failed to load program structure data: ${err.message}`);
         setLoading(false);
       });
   }, []);

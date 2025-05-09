@@ -1,51 +1,48 @@
 {
-  "title": "NIH Human Virome Program Governance Structure",
-  "description": "The organizational structure and governance mechanisms of the NIH Human Virome Program.",
   "governance": [
     {
       "id": "steering-committee",
       "name": "HVP Steering Committee",
       "description": "Main governing body for all HVP initiatives",
-      "meeting": "Monthly videoconferences, Annual in-person meetings",
-      "members": "PDs/PIs from each award, NIH Program Officials, NIH Project Scientists, NIH HVP Working Group",
       "level": 1,
-      "parent": null
+      "meeting": "Monthly videoconferences, Annual in-person meetings",
+      "members": "PDs/PIs from each award, NIH Program Officials, NIH Project Scientists, NIH HVP Working Group"
     },
     {
       "id": "executive-committee",
       "name": "Executive Committee",
       "description": "Manages the Steering Committee",
-      "meeting": "Formed at first Steering Committee meeting",
-      "members": "Two PD/PI chairs (from different projects), key project personnel, key NIH officials",
       "level": 2,
-      "parent": "steering-committee"
+      "parent": "steering-committee",
+      "meeting": "Formed at first Steering Committee meeting",
+      "members": "Two PD/PI chairs (from different projects), key project personnel, key NIH officials"
     },
     {
       "id": "codcc",
-      "name": "Consortium Organization and Data Collaboration Center (CODCC)",
+      "name": "Consortium Organization and Data Collaboration Center",
       "description": "Coordination hub for administrative activities and data management",
-      "meeting": "Established 2023-2024",
-      "members": "Dedicated staff managing cross-consortium activities",
       "level": 2,
-      "parent": "steering-committee"
+      "parent": "steering-committee",
+      "meeting": "Established 2023-2024",
+      "members": "Dedicated staff managing cross-consortium activities"
     },
     {
       "id": "working-groups",
       "name": "Scientific Working Groups",
       "description": "Focused on specific research areas and collaborative projects",
-      "meeting": "Formed as needed",
-      "members": "Representatives from relevant projects",
       "level": 2,
-      "parent": "steering-committee"
+      "parent": "steering-committee",
+      "meeting": "Formed as needed",
+      "members": "Representatives from relevant projects"
     },
     {
       "id": "investigator-meetings",
       "name": "Annual HVP Investigator Meetings",
       "description": "Full consortium gathering for research presentations and collaboration",
-      "meeting": "Annual (first meeting 3 months after awards)",
-      "members": "All HVP investigators, NIH staff",
       "level": 2,
-      "parent": "steering-committee"
+      "parent": "steering-committee",
+      "meeting": "Annual (first meeting 3 months after awards)",
+      "members": "All HVP investigators, NIH staff"
     }
   ],
   "collaboration": [
@@ -63,7 +60,7 @@
     },
     {
       "id": "pilot-projects",
-      "name": "Collaborative Pilot Projects (CPPs)",
+      "name": "Collaborative Pilot Projects",
       "description": "Cross-center studies for new tools, methods, and discoveries",
       "implementation": "$250,000/year set aside by VCCs for years 3-5"
     },
@@ -74,7 +71,7 @@
       "implementation": "Developed during 6-month setup phase"
     },
     {
-      "id": "confidentiality",
+      "id": "cda",
       "name": "Confidentiality Disclosure Agreement",
       "description": "Protection of unpublished data and intellectual property",
       "implementation": "Required for all HVP participants"

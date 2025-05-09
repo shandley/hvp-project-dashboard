@@ -23,7 +23,14 @@ function Sidebar({ activeView, changeView }) {
             <li 
               key={item.id}
               className={activeView === item.id ? 'active' : ''}
-              onClick={() => changeView(item.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                console.log('Sidebar: Clicked on', item.id);
+                // First set the view to null to force a re-render
+                changeView(null);
+                // Then set it to the actual view after a small delay
+                setTimeout(() => changeView(item.id), 50);
+              }}
             >
               <span className="item-icon">{item.icon}</span>
               <span className="item-label">{item.label}</span>

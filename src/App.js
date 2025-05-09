@@ -11,6 +11,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeView, setActiveView] = useState('overview');
+  
+  // Force an initial reset of the view to ensure clean rendering
+  useEffect(() => {
+    // Clear any previous view state that might be causing issues
+    setTimeout(() => {
+      console.log('App: Forced view reset to ensure clean state');
+      setActiveView('overview');
+    }, 100);
+  }, []);
   const [filters, setFilters] = useState({
     initiativeType: null,
     geographicRegion: null,
@@ -40,7 +49,19 @@ function App() {
   };
 
   const changeView = (view) => {
-    setActiveView(view);
+    console.log('App: Changing view to:', view);
+    // If view is null, we're in the intermediate state during a view change
+    if (view === null) {
+      console.log('App: View temporarily set to null for re-rendering');
+      setActiveView(null);
+      return;
+    }
+    
+    // Add a small delay before setting the view to ensure components unmount/remount properly
+    setTimeout(() => {
+      console.log('App: Actually setting view to:', view);
+      setActiveView(view);
+    }, 10);
   };
 
   if (loading) {

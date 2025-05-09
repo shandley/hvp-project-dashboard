@@ -1,93 +1,104 @@
 {
-  "title": "NIH Human Virome Program Timeline and Milestones",
-  "description": "Key events and milestones in the NIH Human Virome Program from planning through completion.",
+  "programTitle": "NIH Human Virome Program Timeline",
+  "description": "Key milestones and events in the development and implementation of the NIH Human Virome Program",
   "milestones": [
     {
+      "id": "workshop-2022",
+      "milestone": "Public Workshop on Human Virome Concept",
       "date": "2022-04-29",
       "displayDate": "April 29, 2022",
-      "milestone": "Public Workshop on Human Virome Concept",
       "type": "Planning",
-      "description": "Initial public workshop to discuss the concept and scope of the Human Virome Program.",
+      "description": "Initial public workshop to gather input from scientific community on the concept of a human virome initiative",
       "completed": true
     },
     {
+      "id": "council-presentation",
+      "milestone": "DPCPSI Council of Councils Presentation",
       "date": "2022-09-08",
       "displayDate": "September 8, 2022",
-      "milestone": "DPCPSI Council of Councils Presentation",
       "type": "Planning",
-      "description": "Presentation to the Division of Program Coordination, Planning, and Strategic Initiatives Council of Councils.",
+      "description": "Formal presentation of the Human Virome Program concept to the NIH Division of Program Coordination, Planning, and Strategic Initiatives Council of Councils",
       "completed": true
     },
     {
-      "date": "2023-08-01",
-      "displayDate": "August 2023",
+      "id": "funding-announcement",
       "milestone": "Initial Funding Opportunities Published",
+      "date": "2023-08-15",
+      "displayDate": "August 2023",
       "type": "Funding",
-      "description": "Publication of funding opportunity announcements for the HVP program.",
+      "description": "Publication of funding opportunity announcements for Virome Characterization Centers and Functional Studies projects",
       "completed": true
     },
     {
+      "id": "webinar",
+      "milestone": "Pre-application Webinar",
       "date": "2023-10-16",
       "displayDate": "October 16, 2023",
-      "milestone": "Pre-application Webinar",
       "type": "Funding",
-      "description": "Webinar for potential applicants to learn about the program and application process.",
+      "description": "Informational webinar for potential applicants to explain program goals and application requirements",
       "completed": true
     },
     {
-      "date": "2025-01-15",
-      "displayDate": "January-February 2025",
+      "id": "grants-awarded",
       "milestone": "Major Center Grants Awarded",
+      "date": "2025-02-15",
+      "displayDate": "January-February 2025",
       "type": "Implementation",
-      "description": "Award of major center grants to establish the HVP research infrastructure.",
+      "description": "Announcement of grant awards for VCCs and Functional Studies projects",
       "completed": false
     },
     {
-      "date": "2025-04-01",
-      "displayDate": "Q1 2025",
+      "id": "kickoff",
       "milestone": "HVP Kickoff Meeting",
+      "date": "2025-05-15",
+      "displayDate": "Q1 2025",
       "type": "Implementation",
-      "description": "Initial meeting of all HVP investigators, scheduled 3 months after awards.",
+      "description": "Initial consortium-wide meeting to establish collaborative framework (3 months after awards)",
       "completed": false
     },
     {
-      "date": "2025-06-01",
-      "displayDate": "Q2-Q3 2025",
+      "id": "setup-phase",
       "milestone": "6-Month Setup Phase",
+      "date": "2025-08-15",
+      "displayDate": "Q2-Q3 2025",
       "type": "Implementation",
-      "description": "Initial phase focused on protocol standardization and establishment of common methods across centers.",
+      "description": "Protocol standardization and harmonization across all research sites",
       "completed": false
     },
     {
-      "date": "2025-07-01",
-      "displayDate": "2025-2026",
+      "id": "infrastructure",
       "milestone": "Infrastructure Development",
+      "date": "2026-01-01",
+      "displayDate": "2025-2026",
       "type": "Research",
-      "description": "Development of research infrastructure, tools, and methods across centers.",
+      "description": "Development of technologies, methodologies, and data infrastructure",
       "completed": false
     },
     {
-      "date": "2026-07-01",
-      "displayDate": "2026-2027",
+      "id": "data-generation",
       "milestone": "Major Data Generation Phase",
+      "date": "2027-01-01",
+      "displayDate": "2026-2027",
       "type": "Research",
-      "description": "Primary phase of data collection and generation across all HVP projects.",
+      "description": "Peak period of sample collection and processing across all projects",
       "completed": false
     },
     {
-      "date": "2027-07-01",
-      "displayDate": "2027-2028",
+      "id": "data-analysis",
       "milestone": "Data Analysis and Synthesis",
+      "date": "2028-01-01",
+      "displayDate": "2027-2028",
       "type": "Research",
-      "description": "Comprehensive analysis and synthesis of collected data across centers.",
+      "description": "Integration and analysis of data across projects, preparation of major publications",
       "completed": false
     },
     {
-      "date": "2028-07-01",
-      "displayDate": "2028",
+      "id": "completion",
       "milestone": "Program Completion (Phase 1)",
+      "date": "2028-12-31",
+      "displayDate": "2028",
       "type": "Completion",
-      "description": "Completion of the first phase of the HVP program.",
+      "description": "Completion of initial phase of Human Virome Program with comprehensive data release and assessment of outcomes",
       "completed": false
     }
   ]

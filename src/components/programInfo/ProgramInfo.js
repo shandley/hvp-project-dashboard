@@ -36,15 +36,31 @@ function ProgramInfo() {
   
   // Render the active tab content
   const renderTabContent = () => {
-    switch (activeTab) {
-      case 'timeline':
-        return <ProgramTimeline />;
-      case 'about':
-        return <AboutHVP />;
-      case 'structure':
-        return <ProgramStructure />;
-      default:
-        return <div>Select a tab to view information</div>;
+    console.log('ProgramInfo: Rendering tab content for', activeTab);
+    
+    try {
+      switch (activeTab) {
+        case 'timeline':
+          console.log('ProgramInfo: Rendering ProgramTimeline component');
+          return <ProgramTimeline />;
+        case 'about':
+          console.log('ProgramInfo: Rendering AboutHVP component');
+          return <AboutHVP />;
+        case 'structure':
+          console.log('ProgramInfo: Rendering ProgramStructure component');
+          return <ProgramStructure />;
+        default:
+          console.log('ProgramInfo: No matching tab, showing default content');
+          return <div>Select a tab to view information</div>;
+      }
+    } catch (error) {
+      console.error('Error rendering tab content:', error);
+      return (
+        <div className="error-message">
+          <h3>Error</h3>
+          <p>An error occurred while rendering this content: {error.message}</p>
+        </div>
+      );
     }
   };
   
