@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="hvp_hex_logo.png" alt="HVP Dashboard Logo" width="200" />
+  <img src="HVP_logo_white.png" alt="HVP Dashboard Logo" width="200" />
 </p>
 
 # NIH Human Virome Program Dashboard
