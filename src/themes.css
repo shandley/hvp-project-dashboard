@@ -2,8 +2,8 @@
 
 :root {
   /* Base Colors - Light Theme (Default) */
-  --primary-color: #3366cc;
-  --primary-color-rgb: 51, 102, 204; /* RGB equivalent for rgba() */
+  --primary-color: #0056b3; /* Darker for better contrast */
+  --primary-color-rgb: 0, 86, 179; /* RGB equivalent for rgba() */
   --primary-light: #5888da;
   --primary-dark: #1e4c99;
   --secondary-color: #2c3e50;
@@ -28,14 +28,14 @@
   --border-focus: #3366cc;
   
   /* Status Colors */
-  --success-color: #28a745;
-  --success-color-rgb: 40, 167, 69;
-  --warning-color: #ffc107;
-  --warning-color-rgb: 255, 193, 7;
-  --danger-color: #dc3545;
-  --danger-color-rgb: 220, 53, 69;
-  --info-color: #17a2b8;
-  --info-color-rgb: 23, 162, 184;
+  --success-color: #1e8e3e; /* Darker for better contrast */
+  --success-color-rgb: 30, 142, 62;
+  --warning-color: #e67700; /* Darker for better contrast */
+  --warning-color-rgb: 230, 119, 0;
+  --danger-color: #c62828; /* Darker for better contrast */
+  --danger-color-rgb: 198, 40, 40;
+  --info-color: #0277bd; /* Darker for better contrast */
+  --info-color-rgb: 2, 119, 189;
   
   /* Chart Colors */
   --chart-color-1: #4e79a7;
@@ -65,8 +65,8 @@
 /* Dark Theme */
 [data-theme="dark"] {
   /* Base Colors - Dark Theme */
-  --primary-color: #4d7ed8;
-  --primary-color-rgb: 77, 126, 216; /* RGB equivalent for rgba() */
+  --primary-color: #5c8ee6; /* Brighter for better contrast */
+  --primary-color-rgb: 92, 142, 230; /* RGB equivalent for rgba() */
   --primary-light: #6e9ae0;
   --primary-dark: #2e5db3;
   --secondary-color: #34495e;
@@ -75,7 +75,7 @@
   /* Text Colors */
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
-  --text-tertiary: #888888;
+  --text-tertiary: #999999; /* Lighter for better contrast */
   --text-inverted: #222222;
   
   /* Background Colors */

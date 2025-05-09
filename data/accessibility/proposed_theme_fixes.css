@@ -1,0 +1,28 @@
+/* Accessibility Contrast Fixes for themes.css */
+
+/* Light Theme Fixes */
+:root {
+  /* Darker link color for better contrast on main background */
+  --primary-color: #0056b3; /* Darker than original #3366cc */
+  --primary-color-rgb: 0, 86, 179; /* RGB equivalent */
+  
+  /* Darkened status colors for better contrast on white backgrounds */
+  --success-color: #1e8e3e; /* Darker than original #28a745 */
+  --success-color-rgb: 30, 142, 62;
+  --warning-color: #e67700; /* Darker than original #ffc107 */
+  --warning-color-rgb: 230, 119, 0;
+  --danger-color: #c62828; /* Darker than original #dc3545 */
+  --danger-color-rgb: 198, 40, 40;
+  --info-color: #0277bd; /* Darker than original #17a2b8 */
+  --info-color-rgb: 2, 119, 189;
+}
+
+/* Dark Theme Fixes */
+[data-theme="dark"] {
+  /* Brighten tertiary text for better contrast */
+  --text-tertiary: #999999; /* Lighter than original #888888 */
+  
+  /* Brighter link color for better contrast on dark card backgrounds */
+  --primary-color: #5c8ee6; /* Brighter than original #4d7ed8 */
+  --primary-color-rgb: 92, 142, 230; /* RGB equivalent */
+}

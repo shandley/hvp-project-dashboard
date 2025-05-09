@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="hvp_hex_logo.png" alt="HVP Dashboard Logo" width="200" />
+</p>
+
 # NIH Human Virome Program Dashboard
 
 An interactive dashboard visualizing data from the NIH Human Virome Program (HVP).

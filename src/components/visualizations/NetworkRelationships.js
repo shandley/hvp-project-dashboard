@@ -15,6 +15,7 @@ function NetworkRelationships({ data, filters }) {
   const [error] = useState(null);
   const [relationshipType, setRelationshipType] = useState('institution-research');
   const [selectedNode, setSelectedNode] = useState(null);
+  const [forceRender, setForceRender] = useState(0);
   
   // Refs for D3.js visualizations
   const networkChartRef = useRef(null);
@@ -25,7 +26,7 @@ function NetworkRelationships({ data, filters }) {
     setSelectedNode(null);
   };
   
-  // 2. Check if data is available
+  // 2. Check if data is available and initialize visualization
   useEffect(() => {
     if (!data || !data.projects) {
       setHasData(false);
@@ -33,13 +34,14 @@ function NetworkRelationships({ data, filters }) {
     } else {
       setHasData(true);
       setLoading(false);
-      // Force a redraw by triggering the same relationship type
-      // This ensures we draw the graph on initial load without user needing to click
-      setTimeout(() => {
-        handleRelationshipTypeChange('institution-research');
+      
+      // Trigger a render after data is available
+      const timer = setTimeout(() => {
+        setForceRender(prev => prev + 1);
       }, 100);
+      
+      return () => clearTimeout(timer);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
   
   // 3. Process data with useMemo
@@ -284,7 +286,8 @@ function NetworkRelationships({ data, filters }) {
   
   // 5. Create or update the force-directed graph visualization
   useEffect(() => {
-    if (!hasData || !networkChartRef.current) return;
+    // Only run if we have data, a ref to render to, and networkData is ready
+    if (!hasData || !networkChartRef.current || networkData.nodes.length === 0) return;
     
     const { nodes, links } = networkData;
     
@@ -508,7 +511,7 @@ function NetworkRelationships({ data, filters }) {
       tooltip.remove();
       simulation.stop();
     };
-  }, [networkData, hasData, relationshipType]);
+  }, [networkData, hasData, forceRender]);
   
   // Helper function to truncate text
   const truncateText = (text, maxLength) => {
