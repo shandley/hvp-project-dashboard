@@ -13,7 +13,7 @@ function NetworkRelationships({ data, filters }) {
   const [hasData, setHasData] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error] = useState(null);
-  const [relationshipType, setRelationshipType] = useState('institution-research');
+  const [relationshipType, setRelationshipType] = useState('institution-bodysite');
   const [selectedNode, setSelectedNode] = useState(null);
   const [forceRender, setForceRender] = useState(0);
   
