@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
 import './Visualization.css';
+import ExportDataButton from '../ExportDataButton';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale, BarElement);
@@ -39,6 +40,10 @@ function SampleDistribution({ data, filters }) {
   const [sortOrder, setSortOrder] = useState('desc');
   const [showLegend, setShowLegend] = useState(true);
   const [hasData, setHasData] = useState(true);
+  
+  // Refs for visualization containers
+  const bodySiteChartRef = useRef(null);
+  const ageGroupChartRef = useRef(null);
   
   // Check if data is available
   useEffect(() => {
@@ -279,6 +284,26 @@ function SampleDistribution({ data, filters }) {
       <div className="visualization-header">
         <h2>Sample Distribution</h2>
         <p className="subtitle">Distribution of samples by body site and age group</p>
+        <div className="visualization-actions">
+          <ExportDataButton 
+            data={{
+              bodySite: {
+                labels: sortedBodySites.map(([site]) => site),
+                values: sortedBodySites.map(([_, count]) => count),
+                percentages: sortedBodySites.map(([_, count]) => ((count / totalSamples) * 100).toFixed(1))
+              },
+              ageGroup: {
+                labels: sortedAgeGroups.map(([age]) => age),
+                values: sortedAgeGroups.map(([_, count]) => count),
+                percentages: sortedAgeGroups.map(([_, count]) => ((count / totalSamples) * 100).toFixed(1))
+              },
+              totalSamples
+            }} 
+            filename="hvp-sample-distribution"
+            visualizationRef={chartType === 'bodySite' ? bodySiteChartRef : ageGroupChartRef}
+            exportOptions={['csv', 'json', 'png', 'print']}
+          />
+        </div>
       </div>
       
       {!hasData ? (
@@ -331,7 +356,7 @@ function SampleDistribution({ data, filters }) {
           <div className="chart-grid">
             <div className="chart-card">
               <h3>Samples by Body Site</h3>
-              <div className="chart-container">
+              <div className="chart-container" ref={bodySiteChartRef}>
                 {chartType === 'pie' ? (
                   <Pie data={bodySiteChartData} options={pieChartOptions} />
                 ) : (
@@ -367,7 +392,7 @@ function SampleDistribution({ data, filters }) {
             
             <div className="chart-card">
               <h3>Samples by Age Group</h3>
-              <div className="chart-container">
+              <div className="chart-container" ref={ageGroupChartRef}>
                 {chartType === 'pie' ? (
                   <Pie data={ageGroupChartData} options={pieChartOptions} />
                 ) : (

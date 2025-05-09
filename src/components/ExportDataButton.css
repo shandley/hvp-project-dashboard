@@ -1,0 +1,155 @@
+/* Export Button Styles */
+.export-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-fast) ease,
+              color var(--transition-fast) ease,
+              border-color var(--transition-fast) ease;
+}
+
+.export-button:hover {
+  background-color: var(--background-card-hover);
+  border-color: var(--primary-light);
+}
+
+.export-button:active {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.export-icon {
+  margin-right: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+}
+
+.export-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--spacing-xs);
+  background-color: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  min-width: 180px;
+  z-index: 10;
+  transition: background-color var(--transition-medium) ease,
+              border-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
+}
+
+.export-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.export-menu li {
+  border-bottom: 1px solid var(--border-light);
+  transition: border-color var(--transition-medium) ease;
+}
+
+.export-menu li:last-child {
+  border-bottom: none;
+}
+
+.export-menu button {
+  width: 100%;
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: background-color var(--transition-fast) ease,
+              color var(--transition-fast) ease;
+}
+
+.export-menu button:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+}
+
+/* Print styles for exported content */
+@media print {
+  .print-container {
+    padding: 2cm;
+    max-width: 100%;
+  }
+  
+  .print-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1cm;
+    padding-bottom: 0.5cm;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .print-logo {
+    height: 60px;
+    width: auto;
+  }
+  
+  .print-header h1 {
+    font-size: 20pt;
+    margin: 0;
+    color: #000;
+  }
+  
+  .print-header p {
+    font-size: 10pt;
+    margin: 0;
+    color: #555;
+  }
+  
+  .print-content {
+    page-break-inside: avoid;
+  }
+  
+  .print-content h3 {
+    margin-top: 0.5cm;
+    color: #000;
+  }
+  
+  /* Override any dark theme colors for printing */
+  [data-theme="dark"] {
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-tertiary: #555555;
+    --background-card: #ffffff;
+    --border-color: #cccccc;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .export-button-container {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .export-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .export-menu {
+    width: 100%;
+    right: 0;
+  }
+}

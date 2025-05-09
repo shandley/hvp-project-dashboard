@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as d3 from 'd3';
 import './Visualization.css';
+import ExportDataButton from '../ExportDataButton';
 
 /**
  * Network Relationships Visualization Component
@@ -630,6 +631,14 @@ function NetworkRelationships({ data, filters }) {
       <div className="visualization-header">
         <h2>Relationships & Networks</h2>
         <p className="subtitle">Exploring connections between institutions, research focus areas, and cohorts</p>
+        <div className="visualization-actions">
+          <ExportDataButton 
+            data={networkData} 
+            filename={`hvp-network-${relationshipType}`}
+            visualizationRef={networkChartRef}
+            exportOptions={['csv', 'json', 'png', 'print']}
+          />
+        </div>
       </div>
       
       {/* Network Type Controls */}

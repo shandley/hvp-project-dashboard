@@ -9,6 +9,7 @@
 
 .visualization-header {
   margin-bottom: var(--spacing-lg);
+  position: relative;
 }
 
 .visualization-header h2 {
@@ -24,6 +25,14 @@
   color: var(--text-tertiary);
   font-size: var(--font-size-sm);
   transition: color var(--transition-medium) ease;
+}
+
+.visualization-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: var(--spacing-sm);
 }
 
 /* Stats Grid */

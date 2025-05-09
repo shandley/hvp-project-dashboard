@@ -4,16 +4,17 @@
   "private": true,
   "homepage": "https://shandley.github.io/hvp-project-dashboard",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "d3": "^7.8.5",
     "chart.js": "^4.4.0",
-    "react-chartjs-2": "^5.2.0",
+    "d3": "^7.8.5",
+    "html2canvas": "^1.4.1",
     "leaflet": "^1.9.4",
-    "react-leaflet": "^4.2.1",
+    "markdown-it": "^13.0.1",
     "papaparse": "^5.4.1",
-    "markdown-it": "^13.0.1"
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
