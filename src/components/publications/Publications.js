@@ -74,7 +74,7 @@ const Publications = ({ data, filters }) => {
     };
     
     loadPublications();
-  }, []);
+  }, [activeTab]);
   
   // Handle tab change
   const handleTabChange = (tab) => {
@@ -352,7 +352,7 @@ const Publications = ({ data, filters }) => {
       
       {/* Results count */}
       <p className="publications-subtitle">
-        Showing {filteredPublications.length} of {publications.length} publications
+        Showing {filteredPublications.length} of {currentPublications.length} publications
       </p>
       
       {/* Publications Table */}
