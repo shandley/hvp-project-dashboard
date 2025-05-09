@@ -511,7 +511,7 @@ function NetworkRelationships({ data, filters }) {
       tooltip.remove();
       simulation.stop();
     };
-  }, [networkData, hasData, forceRender]);
+  }, [networkData, hasData, forceRender, relationshipType]);
   
   // Helper function to truncate text
   const truncateText = (text, maxLength) => {
