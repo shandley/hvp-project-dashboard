@@ -1,0 +1,72 @@
+.header {
+  background-color: var(--card-background);
+  box-shadow: var(--card-shadow);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.header-metrics {
+  display: flex;
+  gap: 2rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .header-metrics {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .metric {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-title h1 {
+    font-size: 1.2rem;
+  }
+  
+  .metric-value {
+    font-size: 1rem;
+  }
+  
+  .metric-label {
+    font-size: 0.7rem;
+  }
+}
