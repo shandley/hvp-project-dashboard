@@ -10,6 +10,7 @@ import ExportDataButton from '../ExportDataButton';
  */
 function DiseaseViromeTable() {
   const [tableData, setTableData] = useState(null);
+  const [referencesData, setReferencesData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: 'disease', direction: 'ascending' });
@@ -21,23 +22,98 @@ function DiseaseViromeTable() {
   
   // Load data
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/data/disease-virome-network.json`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Failed to load disease-virome data: ${response.status}`);
+    // Load both data sources in parallel
+    Promise.all([
+      fetch(`${process.env.PUBLIC_URL}/data/disease-virome-network.json`).then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to load disease-virome data: ${res.status}`);
         }
-        return response.json();
+        return res.json();
+      }),
+      fetch(`${process.env.PUBLIC_URL}/data/hvp-disease-associations.json`).then(res => {
+        if (!res.ok) {
+          throw new Error(`Failed to load reference data: ${res.status}`);
+        }
+        return res.json();
       })
-      .then(data => {
-        setTableData(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error loading disease-virome data:', err);
-        setError(`Failed to load data: ${err.message}`);
-        setLoading(false);
-      });
+    ])
+    .then(([networkData, associationsData]) => {
+      setTableData(networkData);
+      setReferencesData(associationsData);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Error loading data:', err);
+      setError(`Failed to load data: ${err.message}`);
+      setLoading(false);
+    });
   }, []);
+  
+  // Find reference URLs for a given disease and reference text
+  const findReferenceUrls = (diseaseName, referencesText) => {
+    if (!referencesData || !referencesText) return [];
+    
+    // Find the disease in the references data
+    const diseaseEntry = referencesData.associations.find(
+      assoc => assoc.disease.toLowerCase() === diseaseName.toLowerCase()
+    );
+    
+    if (!diseaseEntry || !diseaseEntry.references) return [];
+    
+    // Extract author names and years from the reference text
+    const refMatches = referencesText.split(',').map(ref => ref.trim());
+    
+    // Map each reference to its URL if found
+    return refMatches.map(refText => {
+      // Extract author and year from the reference text (e.g., "Clooney et al. (2019)")
+      const match = refText.match(/([A-Za-z]+(?:\s+et\s+al\.)?)\s*\((\d{4})\)/);
+      if (!match) return { text: refText, url: null };
+      
+      const [, author, year] = match;
+      const authorLastName = author.split(' ')[0]; // Get last name
+      
+      // Find matching reference in the disease entry
+      const reference = diseaseEntry.references.find(ref => {
+        const refAuthorLastName = ref.authors.split(' ')[0];
+        return refAuthorLastName.toLowerCase() === authorLastName.toLowerCase() && 
+               ref.year.toString() === year;
+      });
+      
+      return {
+        text: refText,
+        url: reference?.url || null
+      };
+    });
+  };
+  
+  // Render references with links when available
+  const renderReferences = (diseaseName, referencesText) => {
+    const referenceLinks = findReferenceUrls(diseaseName, referencesText);
+    
+    if (referenceLinks.length === 0) return referencesText;
+    
+    return (
+      <>
+        {referenceLinks.map((ref, index) => (
+          <React.Fragment key={index}>
+            {index > 0 && ', '}
+            {ref.url ? (
+              <a 
+                href={ref.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="reference-link"
+              >
+                {ref.text}
+              </a>
+            ) : (
+              ref.text
+            )}
+          </React.Fragment>
+        ))}
+      </>
+    );
+  };
   
   // Filter and sort data
   const getProcessedData = () => {
@@ -264,7 +340,9 @@ function DiseaseViromeTable() {
                         </td>
                         <td className="virome-cell">{row.viromeChanges}</td>
                         <td className="biomarker-cell">{row.biomarkers || 'N/A'}</td>
-                        <td className="reference-cell">{row.references}</td>
+                        <td className="reference-cell">
+                          {renderReferences(row.disease, row.references)}
+                        </td>
                       </tr>
                       <tr className={`mobile-row ${isExpanded ? 'visible' : ''}`}>
                         <td colSpan="5">
@@ -285,7 +363,8 @@ function DiseaseViromeTable() {
                               <strong>Biomarkers:</strong> {row.biomarkers || 'N/A'}
                             </div>
                             <div className="mobile-field">
-                              <strong>References:</strong> {row.references}
+                              <strong>References:</strong> 
+                              {renderReferences(row.disease, row.references)}
                             </div>
                           </div>
                         </td>

@@ -152,6 +152,27 @@
   color: var(--text-tertiary);
 }
 
+.reference-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px dotted var(--primary-color);
+  padding-bottom: 1px;
+}
+
+.reference-link:hover {
+  text-decoration: none;
+  color: var(--link-hover-color, var(--primary-color));
+  opacity: 0.85;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.reference-link:focus {
+  outline: 2px solid rgba(var(--primary-color-rgb), 0.4);
+  border-radius: 2px;
+}
+
 .biomarker-cell {
   color: var(--text-secondary);
 }
