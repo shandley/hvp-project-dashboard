@@ -14,22 +14,10 @@
  */
 export const loadData = async () => {
   try {
-    // In a real implementation, we would load the CSV data using Papa Parse
-    // const response = await fetch('/data/HVP_master.csv');
-    // const csvText = await response.text();
-    // const { data } = Papa.parse(csvText, { header: true });
-    
-    // For now, we'll fetch the processed JSON data (which would be created by a data processing script)
-    const response = await fetch(`${process.env.PUBLIC_URL}/data/dashboard-data.json`);
-    
-    if (!response.ok) {
-      // If the processed data isn't available yet, we'll use mock data for initial development
-      console.warn('Using mock data for development');
-      return getMockData();
-    }
-    
-    const data = await response.json();
-    return data;
+    // For initial deployment, we'll use mock data 
+    // Later we can implement actual CSV processing
+    console.log('Loading dashboard data');
+    return getMockData();
   } catch (error) {
     console.error('Error loading data:', error);
     // Fallback to mock data if an error occurs
@@ -178,37 +166,5 @@ const getMockData = () => {
         { year: 2028, projectedSamples: 6000, cumulativeTotal: 71000, percentComplete: 100.0 }
       ]
     }
-  };
-};
-
-/**
- * Process raw project data to prepare for visualization
- * @param {Array} projects The raw project data from CSV
- * @returns {Object} Processed data with calculated metrics
- */
-export const processProjectData = (projects) => {
-  // This would process the raw CSV data to calculate metrics and prepare for visualization
-  // In a real implementation, this would be more complex
-  return {
-    projects,
-    metrics: calculateMetrics(projects)
-  };
-};
-
-/**
- * Calculate aggregated metrics from project data
- * @param {Array} projects The project data
- * @returns {Object} Calculated metrics
- */
-const calculateMetrics = (projects) => {
-  // This would calculate the metrics shown in the implementation plan
-  // For now, we'll return empty placeholders
-  return {
-    bodySite: {},
-    ageGroup: {},
-    studyType: {},
-    status: {},
-    region: {},
-    timeline: []
   };
 };
