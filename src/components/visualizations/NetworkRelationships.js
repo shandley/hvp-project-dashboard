@@ -12,7 +12,7 @@ function NetworkRelationships({ data, filters }) {
   // 1. Declare all hooks at the top level
   const [hasData, setHasData] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [relationshipType, setRelationshipType] = useState('institution-research');
   const [selectedNode, setSelectedNode] = useState(null);
   
