@@ -1,0 +1,89 @@
+{
+  "title": "NIH Human Virome Program Governance Structure",
+  "description": "The organizational structure and governance mechanisms of the NIH Human Virome Program.",
+  "governance": [
+    {
+      "id": "steering-committee",
+      "name": "HVP Steering Committee",
+      "description": "Main governing body for all HVP initiatives",
+      "meeting": "Monthly videoconferences, Annual in-person meetings",
+      "members": "PDs/PIs from each award, NIH Program Officials, NIH Project Scientists, NIH HVP Working Group",
+      "level": 1,
+      "parent": null
+    },
+    {
+      "id": "executive-committee",
+      "name": "Executive Committee",
+      "description": "Manages the Steering Committee",
+      "meeting": "Formed at first Steering Committee meeting",
+      "members": "Two PD/PI chairs (from different projects), key project personnel, key NIH officials",
+      "level": 2,
+      "parent": "steering-committee"
+    },
+    {
+      "id": "codcc",
+      "name": "Consortium Organization and Data Collaboration Center (CODCC)",
+      "description": "Coordination hub for administrative activities and data management",
+      "meeting": "Established 2023-2024",
+      "members": "Dedicated staff managing cross-consortium activities",
+      "level": 2,
+      "parent": "steering-committee"
+    },
+    {
+      "id": "working-groups",
+      "name": "Scientific Working Groups",
+      "description": "Focused on specific research areas and collaborative projects",
+      "meeting": "Formed as needed",
+      "members": "Representatives from relevant projects",
+      "level": 2,
+      "parent": "steering-committee"
+    },
+    {
+      "id": "investigator-meetings",
+      "name": "Annual HVP Investigator Meetings",
+      "description": "Full consortium gathering for research presentations and collaboration",
+      "meeting": "Annual (first meeting 3 months after awards)",
+      "members": "All HVP investigators, NIH staff",
+      "level": 2,
+      "parent": "steering-committee"
+    }
+  ],
+  "collaboration": [
+    {
+      "id": "data-portal",
+      "name": "HVP Data Portal",
+      "description": "Central repository for all virome data and tools",
+      "implementation": "Managed by CODCC, integrates with Common Fund Data Ecosystem"
+    },
+    {
+      "id": "reference-dataset",
+      "name": "Human Virome Reference Dataset",
+      "description": "Comprehensive catalog of identified viruses",
+      "implementation": "Compiled by CODCC from all VCC contributions"
+    },
+    {
+      "id": "pilot-projects",
+      "name": "Collaborative Pilot Projects (CPPs)",
+      "description": "Cross-center studies for new tools, methods, and discoveries",
+      "implementation": "$250,000/year set aside by VCCs for years 3-5"
+    },
+    {
+      "id": "protocols",
+      "name": "Standardized Protocols",
+      "description": "Common methods for sample collection, processing, and analysis",
+      "implementation": "Developed during 6-month setup phase"
+    },
+    {
+      "id": "confidentiality",
+      "name": "Confidentiality Disclosure Agreement",
+      "description": "Protection of unpublished data and intellectual property",
+      "implementation": "Required for all HVP participants"
+    },
+    {
+      "id": "workshops",
+      "name": "Inter-Consortium Workshops",
+      "description": "Focused meetings on specific research challenges",
+      "implementation": "Organized as needed"
+    }
+  ]
+}

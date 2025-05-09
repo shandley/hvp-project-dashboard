@@ -1,0 +1,101 @@
+/* Program Info Component Styles */
+.program-info-container {
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
+}
+
+.program-info-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.program-info-header h2 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--secondary-color);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-medium) ease;
+}
+
+.program-info-tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  overflow-x: auto;
+  transition: border-color var(--transition-medium) ease;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  transition: color var(--transition-fast) ease,
+              background-color var(--transition-fast) ease;
+}
+
+.tab-button:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+  color: var(--primary-color);
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-medium);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.program-info-content {
+  min-height: 400px;
+}
+
+/* Loading and Error Messages */
+.loading-message, 
+.error-message {
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  transition: background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease,
+              border-color var(--transition-medium) ease;
+}
+
+.loading-message {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+}
+
+.error-message {
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(var(--danger-color-rgb), 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .program-info-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .program-info-content {
+    min-height: 300px;
+  }
+}
