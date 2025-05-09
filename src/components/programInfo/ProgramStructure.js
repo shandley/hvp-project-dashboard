@@ -41,6 +41,9 @@ function ProgramStructure() {
   useEffect(() => {
     if (!structureData || !chartRef.current) return;
     
+    // Store ref to avoid React Hook cleanup warning
+    const currentChartRef = chartRef.current;
+    
     try {
       if (viewMode === 'governance') {
         createGovernanceChart();
@@ -54,11 +57,11 @@ function ProgramStructure() {
     
     // Cleanup function
     return () => {
-      if (chartRef.current) {
-        d3.select(chartRef.current).selectAll('*').remove();
+      if (currentChartRef) {
+        d3.select(currentChartRef).selectAll('*').remove();
       }
     };
-  }, [structureData, viewMode]);
+  }, [structureData, viewMode, createGovernanceChart, createCollaborationChart]);
   
   // Function to create governance organizational chart
   const createGovernanceChart = () => {
@@ -197,7 +200,7 @@ function ProgramStructure() {
         const dy = parseFloat(text.attr("dy") || 0);
         let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
         
-        while (word = words.pop()) {
+        while ((word = words.pop())) {
           line.push(word);
           tspan.text(line.join(" "));
           if (tspan.node().getComputedTextLength() > width) {
@@ -327,7 +330,7 @@ function ProgramStructure() {
         const dy = -1;
         let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", `${dy}em`);
         
-        while (word = words.pop()) {
+        while ((word = words.pop())) {
           line.push(word);
           tspan.text(line.join(" "));
           if (tspan.node().getComputedTextLength() > width) {

@@ -13,7 +13,6 @@ import ProgramStructure from './ProgramStructure';
 function ProgramInfo() {
   const [activeTab, setActiveTab] = useState('timeline');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   
   // Tabs for the program information
   const tabs = [
@@ -49,16 +48,6 @@ function ProgramInfo() {
     }
   };
   
-  if (error) {
-    return (
-      <div className="program-info-container">
-        <div className="error-message">
-          <h3>Error</h3>
-          <p>{error}</p>
-        </div>
-      </div>
-    );
-  }
   
   return (
     <div className="program-info-container">

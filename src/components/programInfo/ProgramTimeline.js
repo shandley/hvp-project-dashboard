@@ -50,6 +50,9 @@ function ProgramTimeline() {
   useEffect(() => {
     if (!timelineData || !timelineRef.current) return;
     
+    // Store ref to avoid React Hook cleanup warning
+    const currentTimelineRef = timelineRef.current;
+    
     try {
       createTimelineVisualization();
     } catch (err) {
@@ -59,14 +62,14 @@ function ProgramTimeline() {
     
     // Cleanup function
     return () => {
-      if (timelineRef.current) {
-        d3.select(timelineRef.current).selectAll('*').remove();
+      if (currentTimelineRef) {
+        d3.select(currentTimelineRef).selectAll('*').remove();
       }
     };
-  }, [timelineData, activeFilter]);
+  }, [timelineData, activeFilter, createTimelineVisualization]);
   
   // Function to create the D3 timeline visualization
-  const createTimelineVisualization = () => {
+  const createTimelineVisualization = React.useCallback(() => {
     const container = timelineRef.current;
     const { width } = container.getBoundingClientRect();
     const height = 300;
@@ -216,7 +219,7 @@ function ProgramTimeline() {
         const dy = parseFloat(text.attr("dy") || 0);
         let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
         
-        while (word = words.pop()) {
+        while ((word = words.pop())) {
           line.push(word);
           tspan.text(line.join(" "));
           if (tspan.node().getComputedTextLength() > width) {
@@ -228,7 +231,7 @@ function ProgramTimeline() {
         }
       });
     }
-  };
+  }, [activeFilter, timelineData, typeColors]);
   
   // Handle filter change
   const handleFilterChange = (type) => {
