@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ProgramInfo.css';
-import ProgramTimeline from './ProgramTimeline';
-import AboutHVPNew from './AboutHVPNew';
-import ProgramStructure from './ProgramStructure';
+import MinimalProgramTimeline from './MinimalProgramTimeline';
+import DiagnosticAboutHVP from './DiagnosticAboutHVP';
+import MinimalProgramStructure from './MinimalProgramStructure';
 
 /**
  * ProgramInfo Component
@@ -41,14 +41,14 @@ function ProgramInfo() {
     try {
       switch (activeTab) {
         case 'timeline':
-          console.log('ProgramInfo: Rendering ProgramTimeline component');
-          return <ProgramTimeline />;
+          console.log('ProgramInfo: Rendering MinimalProgramTimeline component');
+          return <MinimalProgramTimeline />;
         case 'about':
-          console.log('ProgramInfo: Rendering AboutHVPNew component');
-          return <AboutHVPNew />;
+          console.log('ProgramInfo: Rendering DiagnosticAboutHVP component');
+          return <DiagnosticAboutHVP />;
         case 'structure':
-          console.log('ProgramInfo: Rendering ProgramStructure component');
-          return <ProgramStructure />;
+          console.log('ProgramInfo: Rendering MinimalProgramStructure component');
+          return <MinimalProgramStructure />;
         default:
           console.log('ProgramInfo: No matching tab, showing default content');
           return <div>Select a tab to view information</div>;

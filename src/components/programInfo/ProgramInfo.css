@@ -56,6 +56,11 @@
 
 .program-info-content {
   min-height: 400px;
+  display: block; /* Ensure display is block */
+  position: relative; /* Add position context */
+  overflow: visible; /* Prevent content clipping */
+  height: auto !important; /* Override any height limitations */
+  width: 100%; /* Ensure full width */
 }
 
 /* Loading and Error Messages */
