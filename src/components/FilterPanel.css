@@ -1,41 +1,46 @@
 .filter-panel {
-  background-color: var(--card-background);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  padding: 1rem;
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  padding: var(--spacing-md);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .filter-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .filter-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: var(--font-size-lg);
   color: var(--secondary-color);
+  transition: color var(--transition-medium) ease;
 }
 
 .reset-btn {
   background-color: transparent;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   cursor: pointer;
-  color: var(--text-color);
-  transition: all 0.2s;
+  color: var(--text-primary);
+  transition: all var(--transition-fast) ease;
+  font-size: var(--font-size-sm);
 }
 
 .reset-btn:hover {
-  background-color: var(--border-color);
+  background-color: var(--background-card-hover);
+  border-color: var(--primary-light);
 }
 
 .filters-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .filter-group {
@@ -45,25 +50,36 @@
 
 .filter-group label {
   display: block;
-  margin-bottom: 0.25rem;
-  font-size: 0.9rem;
-  color: #6c757d;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  transition: color var(--transition-medium) ease;
 }
 
 .filter-group select {
   width: 100%;
-  padding: 0.5rem;
+  padding: var(--spacing-sm);
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background-color: white;
-  font-size: 0.9rem;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--background-card);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  transition: border-color var(--transition-fast) ease,
+              background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .filters-container {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--spacing-sm);
   }
   
   .filter-group {

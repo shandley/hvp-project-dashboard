@@ -1,57 +1,68 @@
 .visualization-container {
-  background-color: var(--card-background);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  padding: 1.5rem;
+  background-color: var(--background-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  padding: var(--spacing-lg);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .visualization-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .visualization-header h2 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--spacing-sm) 0;
   color: var(--secondary-color);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-medium) ease;
 }
 
 .subtitle {
   margin: 0;
-  color: #6c757d;
-  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-medium) ease;
 }
 
 /* Stats Grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
 }
 
 .stat-card {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 1.25rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: var(--background-card-hover);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-light);
+  transition: background-color var(--transition-medium) ease,
+              box-shadow var(--transition-medium) ease;
 }
 
 .stat-card h3 {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 var(--spacing-sm) 0;
   color: var(--secondary-color);
-  font-size: 1rem;
+  font-size: var(--font-size-md);
+  transition: color var(--transition-medium) ease;
 }
 
 .stat-value {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
   color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-sm);
+  transition: color var(--transition-medium) ease;
 }
 
 .stat-detail {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-top: 0.25rem;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--spacing-xs);
+  transition: color var(--transition-medium) ease;
 }
 
 .stat-breakdown h4 {

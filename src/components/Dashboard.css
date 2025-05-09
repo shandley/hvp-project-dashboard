@@ -2,18 +2,22 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: var(--spacing-md);
   overflow-y: auto;
+  background-color: var(--background-main);
+  color: var(--text-primary);
+  transition: background-color var(--transition-medium) ease,
+              color var(--transition-medium) ease;
 }
 
 .dashboard-content {
   flex: 1;
-  margin-top: 1rem;
+  margin-top: var(--spacing-md);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .dashboard {
-    padding: 0.5rem;
+    padding: var(--spacing-sm);
   }
 }
