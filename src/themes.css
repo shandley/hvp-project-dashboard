@@ -1,0 +1,145 @@
+/* Theme variables for light and dark mode */
+
+:root {
+  /* Base Colors - Light Theme (Default) */
+  --primary-color: #3366cc;
+  --primary-light: #5888da;
+  --primary-dark: #1e4c99;
+  --secondary-color: #2c3e50;
+  --accent-color: #f39c12;
+  
+  /* Text Colors */
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --text-tertiary: #777777;
+  --text-inverted: #ffffff;
+  
+  /* Background Colors */
+  --background-main: #f5f7fa;
+  --background-card: #ffffff;
+  --background-card-hover: #f9f9f9;
+  --background-header: #ffffff;
+  --background-sidebar: #ffffff;
+  
+  /* Border Colors */
+  --border-color: #e0e0e0;
+  --border-light: #f0f0f0;
+  --border-focus: #3366cc;
+  
+  /* Status Colors */
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  
+  /* Chart Colors */
+  --chart-color-1: #4e79a7;
+  --chart-color-2: #f28e2c;
+  --chart-color-3: #e15759;
+  --chart-color-4: #76b7b2;
+  --chart-color-5: #59a14f;
+  --chart-color-6: #edc949;
+  --chart-color-7: #af7aa1;
+  --chart-color-8: #ff9da7;
+  
+  /* Shadow Effects */
+  --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 8px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Layout Dimensions */
+  --sidebar-width: 240px;
+  --header-height: 64px;
+  
+  /* Animation Speed */
+  --transition-fast: 0.15s;
+  --transition-medium: 0.3s;
+  --transition-slow: 0.5s;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  /* Base Colors - Dark Theme */
+  --primary-color: #4d7ed8;
+  --primary-light: #6e9ae0;
+  --primary-dark: #2e5db3;
+  --secondary-color: #34495e;
+  --accent-color: #f5a623;
+  
+  /* Text Colors */
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #888888;
+  --text-inverted: #222222;
+  
+  /* Background Colors */
+  --background-main: #1a1a1a;
+  --background-card: #2a2a2a;
+  --background-card-hover: #333333;
+  --background-header: #222222;
+  --background-sidebar: #222222;
+  
+  /* Border Colors */
+  --border-color: #444444;
+  --border-light: #333333;
+  --border-focus: #4d7ed8;
+  
+  /* Status Colors - Adjusted for dark mode */
+  --success-color: #3abb59;
+  --warning-color: #ffd23f;
+  --danger-color: #e05c68;
+  --info-color: #45b8cd;
+  
+  /* Chart Colors - Slightly adjusted for better contrast */
+  --chart-color-1: #5a8bc2;
+  --chart-color-2: #f5a14f;
+  --chart-color-3: #e57373;
+  --chart-color-4: #8fd0cb;
+  --chart-color-5: #75b867;
+  --chart-color-6: #f0d569;
+  --chart-color-7: #c192b9;
+  --chart-color-8: #ffb2bb;
+  
+  /* Shadow Effects - Adjusted for dark backgrounds */
+  --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-heavy: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Common Values that don't change between themes */
+:root, [data-theme="dark"] {
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-circle: 50%;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+
+/* Set transition for theme switching */
+body {
+  transition: background-color var(--transition-medium) ease, 
+              color var(--transition-medium) ease;
+}

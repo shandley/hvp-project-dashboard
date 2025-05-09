@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import { loadData } from './utils/dataLoader';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [data, setData] = useState(null);
@@ -51,18 +52,20 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Header data={data} />
-      <div className="main-content">
-        <Sidebar activeView={activeView} changeView={changeView} />
-        <Dashboard 
-          data={data} 
-          filters={filters} 
-          updateFilters={updateFilters}
-          activeView={activeView}
-        />
+    <ThemeProvider>
+      <div className="app">
+        <Header data={data} />
+        <div className="main-content">
+          <Sidebar activeView={activeView} changeView={changeView} />
+          <Dashboard 
+            data={data} 
+            filters={filters} 
+            updateFilters={updateFilters}
+            activeView={activeView}
+          />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
