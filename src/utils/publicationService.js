@@ -15,6 +15,7 @@ const REPORTER_API_CONFIG = {
     publications: '/publications/search'
   },
   // List of actual HVP-related grant IDs
+  // Adding older NIH virome-related grants to ensure we get publications
   hvpGrantIds: [
     // Virome Characterization Centers (VCC) Grants
     'U54AG089335',
@@ -31,7 +32,13 @@ const REPORTER_API_CONFIG = {
     'AT012993',
     
     // Tools Development Grant
-    'U01DE034199'
+    'U01DE034199',
+    
+    // Additional NIH virome-related grants 
+    'R01AI132549',  // Human enteric virome in health and disease
+    'R01AI141534',  // The Oral Virome in Health and Disease
+    'R01ES030150',  // The infant gut virome and neurodevelopment
+    'U01DE029664'   // The oral cavity virome in HIV infection
   ],
   // Request delay to comply with API rate limiting (1 request per second)
   requestDelay: 1000
@@ -75,110 +82,11 @@ export const loadLocalPublications = async () => {
     return data.publications || [];
   } catch (error) {
     console.error('Error loading local publication data:', error);
-    // Return hardcoded sample data as absolute fallback
-    console.log('Using hardcoded sample publication data as fallback');
-    return SAMPLE_PUBLICATIONS;
+    // Return empty array instead of sample data
+    console.log('No local publication data found, returning empty array');
+    return [];
   }
 };
-
-// Hardcoded sample publications as absolute fallback
-const SAMPLE_PUBLICATIONS = [
-  {
-    "id": "pub001",
-    "pmid": "35961143",
-    "title": "The human virome: assembly, composition and host interactions",
-    "authors": [
-      {
-        "name": "Gregory JK",
-        "affiliation": "Departments of Biology and Chemistry, Massachusetts Institute of Technology, Cambridge, MA, USA"
-      },
-      {
-        "name": "Twork MD",
-        "affiliation": "Departments of Biology and Chemistry, Massachusetts Institute of Technology, Cambridge, MA, USA"
-      }
-    ],
-    "journal": "Nature Reviews Microbiology",
-    "publicationDate": "2022-09-07",
-    "volume": "20",
-    "issue": "11",
-    "pages": "693-704",
-    "doi": "10.1038/s41579-022-00767-0",
-    "abstract": "The human virome represents the collection of all viruses that are found in or on humans, including viruses causing acute, persistent or latent infection, as well as viruses integrated into the human genome. Advances in metagenomic sequencing have enabled detailed cataloguing of the virome in many human tissues.",
-    "keywords": ["virome", "metagenomics", "microbiome", "host-virus interactions"],
-    "pubType": "research article",
-    "grants": [
-      {
-        "grantId": "U54AG089335",
-        "grantTitle": "Human Virome Characterization Center for the Oral-Gut-Brain Axis",
-        "institutionName": "UCLA",
-        "principalInvestigator": "Kapila Y"
-      }
-    ],
-    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9529780/"
-  },
-  {
-    "id": "pub002",
-    "pmid": "33941705",
-    "title": "Expanding the human virome using capture sequencing",
-    "authors": [
-      {
-        "name": "Metsky HC",
-        "affiliation": "Broad Institute of MIT and Harvard, Cambridge, MA, USA"
-      },
-      {
-        "name": "Sabeti PC",
-        "affiliation": "Harvard T.H. Chan School of Public Health, Boston, MA, USA"
-      }
-    ],
-    "journal": "Cell",
-    "publicationDate": "2021-05-13",
-    "volume": "184",
-    "issue": "10",
-    "pages": "2604-2618",
-    "doi": "10.1016/j.cell.2021.04.010",
-    "abstract": "The detection and characterization of viruses present in humans is fundamental to understanding their roles in health and disease. Metagenomic next-generation sequencing is being rapidly adopted for the discovery and detection of viruses.",
-    "keywords": ["virome", "metagenomics", "viral discovery", "capture sequencing"],
-    "pubType": "research article",
-    "grants": [
-      {
-        "grantId": "U54AG089325",
-        "grantTitle": "Virome in diverse populations",
-        "institutionName": "Broad/BWH",
-        "principalInvestigator": "Sabeti P"
-      }
-    ],
-    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8107160/"
-  },
-  {
-    "id": "pub003",
-    "pmid": "34244690",
-    "title": "Shotgun Transcriptome and Isothermal Profiling of SARS-CoV-2 Infection Reveals Unique Host Responses",
-    "authors": [
-      {
-        "name": "Parker MD",
-        "affiliation": "Sheffield Biomedical Research Centre, University of Sheffield, Sheffield, UK"
-      }
-    ],
-    "journal": "Nature Communications",
-    "publicationDate": "2021-07-14",
-    "volume": "12",
-    "issue": "1",
-    "pages": "4196",
-    "doi": "10.1038/s41467-021-24349-5",
-    "abstract": "The severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) pandemic has caused global disruption, but rapid viral genome sequencing and global public data sharing have enabled phylogenetic analysis and comparative genomics from early in the pandemic.",
-    "keywords": ["SARS-CoV-2", "COVID-19", "viral sequencing", "host response"],
-    "pubType": "research article",
-    "grants": [
-      {
-        "grantId": "AT012993",
-        "grantTitle": "Deep tissue virome characterization",
-        "institutionName": "UCSF",
-        "principalInvestigator": "Henrich T"
-      }
-    ],
-    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8269505/"
-  }
-];
 
 /**
  * Search for HVP-related grants in NIH RePORTER
@@ -308,42 +216,90 @@ export const throttledSearchPublicationsByProjects = throttle(searchPublications
  * Transform API publication data to match our internal format
  * 
  * @param {Array} apiPublications - Publications from NIH RePORTER API
- * @returns {Array} Transformed publications in our internal format
+ * @returns {Promise<Array>} Transformed publications in our internal format
  */
-export const transformPublicationData = (apiPublications = []) => {
-  return apiPublications.map((pub, index) => {
-    // Extract author information
-    const authors = (pub.authors || []).map(author => ({
-      name: author.author_name || 'Unknown',
-      affiliation: author.affiliation || ''
-    }));
+export const transformPublicationData = async (apiPublications = []) => {
+  const transformedPublications = [];
+  
+  // Process publications one by one to allow for fetching additional info when needed
+  for (let i = 0; i < apiPublications.length; i++) {
+    const pub = apiPublications[i];
+    const pmid = pub.pmid;
+    
+    try {
+      // The NIH RePORTER data is very limited, so for each PMID we need to fetch detailed info from PubMed
+      const pubmedResponse = await fetch(`https://pubmed.ncbi.nlm.nih.gov/api/coreutils/pubmed-pinger/article-page/${pmid}`);
+      let pubmedData = {};
+      
+      if (pubmedResponse.ok) {
+        try {
+          pubmedData = await pubmedResponse.json();
+        } catch (e) {
+          console.error(`Failed to parse PubMed data for PMID ${pmid}:`, e);
+        }
+      }
+      
+      // Extract author information
+      const authors = ((pubmedData.authors || []).length > 0) ? 
+        pubmedData.authors.map(author => ({
+          name: author.name || 'Unknown',
+          affiliation: author.affiliation || ''
+        })) : 
+        // Fall back to old format if no PubMed data
+        (pub.authors || []).map(author => ({
+          name: author.author_name || 'Unknown',
+          affiliation: author.affiliation || ''
+        }));
 
-    // Extract grant information
-    const grants = (pub.projects || []).map(project => ({
-      grantId: project.project_num || '',
-      grantTitle: project.project_title || '',
-      institutionName: project.organization_name || '',
-      principalInvestigator: project.contact_pi_name || ''
-    }));
-
-    return {
-      id: `pub${(index + 1).toString().padStart(3, '0')}`,
-      pmid: pub.pmid || '',
-      title: pub.title || 'Untitled Publication',
-      authors: authors,
-      journal: pub.journal_title || '',
-      publicationDate: pub.publication_date || '',
-      volume: pub.volume || '',
-      issue: pub.issue || '',
-      pages: pub.pages || '',
-      doi: pub.doi || '',
-      abstract: pub.abstract_text || '',
-      keywords: (pub.keywords || []),
-      pubType: pub.publication_type || 'unknown',
-      grants: grants,
-      url: pub.full_text_url || `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`
-    };
-  });
+      // Extract grant information
+      const grants = (pub.projects || []).map(project => ({
+        grantId: project.project_num || '',
+        grantTitle: project.project_title || '',
+        institutionName: project.organization_name || '',
+        principalInvestigator: project.contact_pi_name || ''
+      }));
+      
+      // Filter to only include virome-related papers in results
+      const title = pubmedData.title || pub.title || '';
+      const abstract = pubmedData.abstract || pub.abstract_text || '';
+      const keywords = pubmedData.keywords || pub.keywords || [];
+      
+      // Only include papers that mention virome or related terms
+      const viromeTerms = ['virome', 'virus', 'viral', 'virology', 'microbiome'];
+      const isViromeRelated = 
+        viromeTerms.some(term => title.toLowerCase().includes(term)) ||
+        viromeTerms.some(term => abstract.toLowerCase().includes(term)) ||
+        viromeTerms.some(term => keywords.some(k => k.toLowerCase().includes(term)));
+      
+      if (isViromeRelated) {
+        transformedPublications.push({
+          id: `pub${(i + 1).toString().padStart(3, '0')}`,
+          pmid: pmid || '',
+          title: pubmedData.title || pub.title || 'Untitled Publication',
+          authors: authors,
+          journal: pubmedData.journal || pub.journal_title || '',
+          publicationDate: pubmedData.date || pub.publication_date || '',
+          volume: pubmedData.volume || pub.volume || '',
+          issue: pubmedData.issue || pub.issue || '',
+          pages: pubmedData.pages || pub.pages || '',
+          doi: pubmedData.doi || pub.doi || '',
+          abstract: pubmedData.abstract || pub.abstract_text || '',
+          keywords: pubmedData.keywords || pub.keywords || [],
+          pubType: pubmedData.publication_type || pub.publication_type || 'research article',
+          grants: grants,
+          url: pubmedData.url || pub.full_text_url || `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`
+        });
+      }
+      
+      // Respect API rate limits
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+    } catch (error) {
+      console.error(`Error processing publication PMID ${pmid}:`, error);
+    }
+  }
+  
+  return transformedPublications;
 };
 
 /**
@@ -354,27 +310,24 @@ export const transformPublicationData = (apiPublications = []) => {
  */
 export const fetchAllHvpPublications = async () => {
   try {
-    // Step 1: Get all HVP-related grants
-    const grants = await throttledSearchHvpGrants({ limit: 100 });
+    // Step 1: Search for publications directly using the grant IDs
+    console.log('Searching for publications using grant IDs:', REPORTER_API_CONFIG.hvpGrantIds);
     
-    if (!grants.length) {
-      console.warn('No HVP grants found, falling back to local data');
-      return loadLocalPublications();
-    }
+    // Use the precise grant IDs for direct publication search
+    const publications = await throttledSearchPublicationsByProjects(REPORTER_API_CONFIG.hvpGrantIds, { limit: 20 });
     
-    // Step 2: Extract project IDs from grants
-    const projectIds = grants.map(grant => grant.project_num);
-    
-    // Step 3: Get publications for these projects
-    const publications = await throttledSearchPublicationsByProjects(projectIds, { limit: 200 });
+    console.log(`Found ${publications.length} publications from NIH RePORTER`);
     
     if (!publications.length) {
       console.warn('No publications found for HVP grants, falling back to local data');
       return loadLocalPublications();
     }
     
-    // Step 4: Transform to our internal format
-    return transformPublicationData(publications);
+    // Step 2: Transform to our internal format with additional enrichment
+    const transformedPublications = await transformPublicationData(publications);
+    console.log(`Filtered to ${transformedPublications.length} virome-related publications`);
+    
+    return transformedPublications;
   } catch (error) {
     console.error('Error fetching HVP publications:', error);
     console.log('Falling back to local publication data');
