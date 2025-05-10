@@ -2,26 +2,39 @@
   <img src="HVP_logo_white.png" alt="HVP Dashboard Logo" width="200" />
 </p>
 
-# NIH Human Virome Program Dashboard
+# 🧬 NIH Human Virome Program Dashboard
 
 An interactive dashboard visualizing data from the NIH Human Virome Program (HVP).
 
-## Project Overview
+## 🔍 Project Overview
 
 This dashboard provides visualization and exploration of data from the NIH Human Virome Program, including:
-- Project distribution and status
-- Sample demographics and metrics
-- Geographic distribution of research
-- Scientific impact and research focus
+- 📊 Project distribution and status
+- 🧪 Sample demographics and metrics
+- 🌎 Geographic distribution of research
+- 📑 Publications and scientific impact
+- 🔬 Research focus and virome exploration
 
 The dashboard is hosted using GitHub Pages at: https://shandley.github.io/hvp-project-dashboard/
 
-## Development
+## ✨ Features
+
+- **Interactive Visualizations**: Explore HVP data through dynamic charts and graphs
+- **Project Timeline**: Track project progress and key milestones
+- **Publications Tracker**: View and filter HVP-related scientific publications
+- **Data Export**: Download publication data for offline analysis
+- **Responsive Design**: Works on desktop and mobile devices
+- **Dark/Light Mode**: Choose your preferred visual theme
+
+## 🛠️ Technology Stack
 
 This project is built with:
-- React.js for the UI framework
-- D3.js and Chart.js for visualizations
-- GitHub Pages for hosting
+- ⚛️ React.js for the UI framework
+- 📈 D3.js and Chart.js for visualizations
+- 🌐 GitHub Pages for hosting
+- 🔄 GitHub Actions for automated workflows
+
+## 💻 Development
 
 ### Local Development
 
@@ -54,16 +67,28 @@ npm run build
 
 This will create optimized production files in the `build` directory.
 
-## Data Sources
+## 📊 Data Sources
 
 The dashboard is based on the following data sources:
 - `HVP_master.csv`: Primary data table of HVP projects
-- `additional-hvp-data.md`: Supplementary contextual information
+- `hvp-publications.json`: Publication data from iCite API
+- Various JSON files containing program information and visualization data
 
-## Implementation Plan
+## 🔄 Automated Workflows
 
-For details on the implementation strategy, see the [GitHub Pages Implementation Plan](github_pages_implementation_plan.md).
+The project uses GitHub Actions for automated processes:
 
-## License
+### Publication Data Update
+- 🤖 Nightly update of publication data via iCite API
+- 📋 Integration with PubMed for publication metadata
+- 🔍 Validation against ground truth publications
+- 📝 Automatic update of JSON data sources
+
+## 📝 Implementation Plans
+
+- [GitHub Pages Implementation Plan](github_pages_implementation_plan.md)
+- [Publication Analytics Future Plans](publication-analytics-future-plans.md)
+
+## 📄 License
 
 [MIT License](LICENSE)
