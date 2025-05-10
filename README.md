@@ -33,6 +33,35 @@ This project is built with:
 - 📈 D3.js and Chart.js for visualizations
 - 🌐 GitHub Pages for hosting
 - 🔄 GitHub Actions for automated workflows
+- 🔍 iCite API for publication data
+- 📑 PubMed integration for scientific metadata
+
+## 🧪 Project Structure
+
+```
+hvp-project-dashboard/
+├── public/                 # Static files and data
+│   ├── data/               # JSON data files
+│   │   ├── hvp-publications.json     # Publication data
+│   │   ├── hvp-about.json            # Program information
+│   │   └── ...                       # Other data files
+├── scripts/                # Data processing scripts
+│   ├── process-data.js     # CSV to JSON conversion
+│   └── update-publications.js  # Publication data updater
+├── src/                    # Source code
+│   ├── components/         # React components
+│   │   ├── Dashboard.js    # Main dashboard
+│   │   ├── publications/   # Publications components
+│   │   └── visualizations/ # Data visualization components
+│   ├── utils/              # Utility functions
+│   │   ├── dataLoader.js   # Data loading utilities
+│   │   ├── exportUtils.js  # Data export utilities
+│   │   └── publicationService.js # Publication API service
+│   └── context/            # React context providers
+│       └── ThemeContext.js # Theme (dark/light) management
+└── .github/workflows/      # GitHub Actions workflows
+    └── update-publications.yml # Publication data update workflow
+```
 
 ## 💻 Development
 
@@ -88,6 +117,35 @@ The project uses GitHub Actions for automated processes:
 
 - [GitHub Pages Implementation Plan](github_pages_implementation_plan.md)
 - [Publication Analytics Future Plans](publication-analytics-future-plans.md)
+- [Aesthetic Improvement Plan](aesthetic_improvement_plan.md)
+
+## 🔜 Roadmap
+
+Future enhancements planned for the dashboard include:
+
+- 📊 Enhanced publication analytics and citation metrics
+- 🔗 Network visualization of research collaborations
+- 📱 Mobile-optimized interface improvements
+- 🗂️ Additional data filtering and exploration options
+- 🔄 Real-time data updates from multiple sources
+
+## 👥 Contributing
+
+Contributions to the HVP Dashboard are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please ensure your code follows the project's style guidelines and includes appropriate tests.
+
+## 🙏 Acknowledgments
+
+- National Institutes of Health (NIH) for funding the Human Virome Program
+- All researchers and institutions participating in HVP
+- The open-source community for providing fantastic tools and libraries
 
 ## 📄 License
 
