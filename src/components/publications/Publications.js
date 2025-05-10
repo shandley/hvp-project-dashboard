@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadLocalPublications, fetchHvpPublications } from '../../utils/publicationService';
+import PublicationTimeline from './PublicationTimeline';
 import './Publications.css';
 
 /**
@@ -231,6 +232,9 @@ const Publications = ({ data, filters }) => {
           <p className="stat-value">{getJournals().length}</p>
         </div>
       </div>
+
+      {/* Publications Timeline */}
+      <PublicationTimeline publications={publications} />
       
       {/* Filter Bar */}
       <div className="publications-filter-bar">
