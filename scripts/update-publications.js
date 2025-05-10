@@ -120,6 +120,9 @@ function transformPublicationData(iCitePublications) {
 // In a real implementation, this would fetch from PubMed
 // For our purposes, we're hardcoding the correct mapping
 function determineGrantsForPublication(pmid, allGrantIds) {
+  // Convert pmid to string for consistent comparison
+  pmid = String(pmid);
+  
   // Mapping based on our ground truth
   const grantMapping = {
     "39788099": [{ // Clec12a controls colitis...
@@ -143,6 +146,9 @@ function determineGrantsForPublication(pmid, allGrantIds) {
 
 // Get affiliation for author (simplified implementation)
 function getAffiliationForAuthor(authorName, pmid) {
+  // Convert pmid to string for consistent comparison
+  pmid = String(pmid);
+  
   // Simplified mapping based on ground truth
   const affiliationMapping = {
     "39788099": "University of Utah",
@@ -155,58 +161,38 @@ function getAffiliationForAuthor(authorName, pmid) {
 // Validate publications against ground truth
 function validatePublications(publications) {
   console.log('Validating publications against ground truth...');
-
+  
   // Debug information
   console.log(`Debug: Ground truth PMIDs: ${CONFIG.groundTruthPmids.join(', ')}`);
   console.log(`Debug: Publication PMIDs received: ${publications.map(p => p.pmid).join(', ')}`);
-
+  
   // Check if we have all ground truth publications
-  const pmids = publications.map(pub => pub.pmid);
-  const missingPmids = CONFIG.groundTruthPmids.filter(pmid => !pmids.includes(pmid));
-
+  // Convert all PMIDs to strings for comparison
+  const pmids = publications.map(pub => String(pub.pmid));
+  const groundTruthPmids = CONFIG.groundTruthPmids.map(pmid => String(pmid));
+  
+  // Check for missing PMIDs
+  const missingPmids = groundTruthPmids.filter(pmid => !pmids.includes(pmid));
+  
   if (missingPmids.length > 0) {
     console.error(`Missing ${missingPmids.length} publications from ground truth:`, missingPmids);
-
-    // Since the iCite API might not have our ground truth PMIDs yet (they're very recent),
-    // we'll use our fallback local data instead of failing
-    console.log('Using fallback data since ground truth PMIDs are not yet in iCite API');
-    return true;
-  }
-
-  // Check if we have exactly the ground truth publications (no extras)
-  if (pmids.length !== CONFIG.groundTruthPmids.length) {
-    console.warn(`Found ${pmids.length} publications, expected ${CONFIG.groundTruthPmids.length}`);
-    // We'll still proceed, but warn about the discrepancy
-  }
-
-  console.log('✅ Validation passed: Publications match ground truth as closely as possible');
-  return true;
-}
-
-// Save publications data to JSON file
-function savePublicationsData(publications) {
-  const outputPath = path.resolve(__dirname, CONFIG.outputPath);
-  console.log(`Saving ${publications.length} publications to ${outputPath}...`);
-  
-  const data = {
-    publications,
-    lastUpdated: new Date().toISOString()
-  };
-  
-  try {
-    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
-    console.log('✅ Publications data saved successfully');
-    return true;
-  } catch (error) {
-    console.error('Error saving publications data:', error);
     return false;
   }
+  
+  // Check if we have exactly the ground truth publications (no extras)
+  if (pmids.length !== groundTruthPmids.length) {
+    console.warn(`Found ${pmids.length} publications, expected ${groundTruthPmids.length}`);
+    // We'll still proceed, but warn about the discrepancy
+  }
+  
+  console.log('✅ Validation passed: Publications match ground truth as closely as possible');
+  return true;
 }
 
 // Load fallback publications data
 function loadFallbackPublications() {
   console.log('Loading fallback publication data...');
-
+  
   // Create fallback data based on ground truth
   return [
     {
@@ -262,26 +248,46 @@ function loadFallbackPublications() {
   ];
 }
 
+// Save publications data to JSON file
+function savePublicationsData(publications) {
+  const outputPath = path.resolve(__dirname, CONFIG.outputPath);
+  console.log(`Saving ${publications.length} publications to ${outputPath}...`);
+  
+  const data = {
+    publications,
+    lastUpdated: new Date().toISOString()
+  };
+  
+  try {
+    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+    console.log('✅ Publications data saved successfully');
+    return true;
+  } catch (error) {
+    console.error('Error saving publications data:', error);
+    return false;
+  }
+}
+
 // Main function to update publications data
 async function updatePublicationsData() {
   try {
     console.log('Starting publications data update...');
-
+    
     // Fetch publications from iCite
     const iCitePublications = await fetchPublicationsFromIcite(CONFIG.groundTruthPmids);
-
+    
     let publicationsToSave = [];
-
+    
     if (iCitePublications.length === 0) {
       console.warn('No publications found from iCite API, using fallback data');
       publicationsToSave = loadFallbackPublications();
     } else {
       // Transform to our application format
       const transformedPublications = transformPublicationData(iCitePublications);
-
+      
       // Validate against ground truth
       const isValid = validatePublications(transformedPublications);
-
+      
       if (!isValid) {
         console.warn('Validation failed: Publications do not match ground truth, using fallback data');
         publicationsToSave = loadFallbackPublications();
@@ -290,18 +296,18 @@ async function updatePublicationsData() {
         publicationsToSave = transformedPublications;
       }
     }
-
+    
     // Save to JSON file
     const isSaved = savePublicationsData(publicationsToSave);
     if (!isSaved) {
       console.error('Failed to save publications data');
       process.exit(1);
     }
-
+    
     console.log('Publications data update completed successfully');
   } catch (error) {
     console.error('Error updating publications data:', error);
-
+    
     // Even if there's an error, try to save fallback data
     try {
       console.log('Attempting to save fallback data despite error...');

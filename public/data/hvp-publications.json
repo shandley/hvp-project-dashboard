@@ -1,126 +1,141 @@
 {
-  "metadata": {
-    "lastUpdated": "2024-05-09",
-    "totalCount": 4,
-    "source": "NIH RePORTER API with fallback data",
-    "version": "1.0"
-  },
   "publications": [
     {
       "id": "pub001",
-      "pmid": "36253455",
-      "title": "The human virome: assembly, composition and host interactions",
+      "pmid": 39648698,
+      "title": "Viral Load Measurements for Kaposi Sarcoma Herpesvirus (KSHV/HHV8): Review and an Updated Assay.",
       "authors": [
-        { "name": "Gregory JA", "affiliation": "Department of Microbiology, Icahn School of Medicine at Mount Sinai, New York, NY, USA" },
-        { "name": "Soveg F", "affiliation": "Department of Microbiology, Icahn School of Medicine at Mount Sinai, New York, NY, USA" },
-        { "name": "Virgin HW", "affiliation": "Vir Biotechnology, San Francisco, CA, USA" }
-      ],
-      "journal": "Nature Reviews Microbiology",
-      "publicationDate": "2023-02-01",
-      "volume": "21",
-      "issue": "2",
-      "pages": "73-84",
-      "doi": "10.1038/s41579-022-00785-y",
-      "abstract": "The human virome comprises all viruses found within and on humans, including eukaryotic viruses, prokaryotic viruses (bacteriophages) and archaeal viruses. The composition of the human virome varies based on individual factors such as health status, age, diet and geographical location, and is established early in life. The human virome is extraordinarily dynamic as it is shaped by environmental exposures and interactions with other components of the microbiome and with the host. Over the past decade, our understanding of the composition, dynamics and functional capacity of the virome has expanded, highlighting evolutionary, genetic and functional relationships between the human virome and host immunity. In this Review, we discuss recent advances in our molecular and immunological understanding of the human virome, highlighting important functions of the virome in human health and disease.",
-      "keywords": ["virome", "viral communities", "microbiome", "human health"],
-      "pubType": "review",
-      "grants": [
         {
-          "grantId": "U54AG089335",
-          "grantTitle": "Human Virome Project Grant U54AG089335",
-          "institutionName": "NIH",
-          "principalInvestigator": "Various PIs"
+          "name": "Patricio Cano",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Tischan Seltzer",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Jedediah Seltzer",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Alice Peng",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Justin Landis",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Linda Pluta",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Dirk P Dittmer",
+          "affiliation": "University of North Carolina"
         }
       ],
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36253455/"
+      "journal": "J Med Virol",
+      "journalAbbr": "",
+      "publicationDate": "2024",
+      "abstract": "",
+      "doi": "10.1002/jmv.70105",
+      "citationCount": 0,
+      "citationsPerYear": 0,
+      "grants": [
+        {
+          "grantId": "DE034199",
+          "grantTitle": "Innovative tools for virome analysis",
+          "principalInvestigator": "Rustem Ismagilov"
+        }
+      ],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39648698/"
     },
     {
-      "id": "pub002", 
-      "pmid": "35155868",
-      "title": "The Human Virome: Methodological Approaches and Relationships with Human Health and Disease",
+      "id": "pub002",
+      "pmid": 39788099,
+      "title": "Clec12a controls colitis by tempering inflammation and restricting expansion of specific commensals.",
       "authors": [
-        { "name": "Tamburini FB", "affiliation": "Department of Microbiology and Immunology, Stanford University School of Medicine, Stanford, CA, USA" },
-        { "name": "Bhatt AS", "affiliation": "Department of Microbiology and Immunology, Stanford University School of Medicine, Stanford, CA, USA" }
-      ],
-      "journal": "Cell Host & Microbe",
-      "publicationDate": "2022-02-09",
-      "volume": "30",
-      "issue": "2",
-      "pages": "170-183",
-      "doi": "10.1016/j.chom.2022.01.006",
-      "abstract": "The human body is inhabited by countless microorganisms, including viruses. Collectively referred to as the human virome, these viruses can contribute to health and disease. Recent advances in metagenomics and experimental technologies have significantly improved our understanding of the human virome. However, numerous experimental and computational challenges remain. Here, we review methodological advances in the field, including best practices and challenges, and examine established and emerging links between the human virome and health and disease. Finally, we explore new directions for human virome research.",
-      "keywords": ["virome", "metagenomics", "human health", "virus detection"],
-      "pubType": "review",
-      "grants": [
         {
-          "grantId": "U54AG089323",
-          "grantTitle": "Human Virome Project Grant U54AG089323",
-          "institutionName": "NIH",
-          "principalInvestigator": "Various PIs"
+          "name": "Tyson R Chiaro",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Morgan Greenewood",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Kaylyn M Bauer",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Kyla S Ost",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Emmanuel Stephen-Victor",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Michaela Murphy",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Allison M Weis",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Morgan C Nelson",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Jennifer H Hill",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Rickesha Bell",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Warren Voth",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Taylor Jackson",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Kendra A Klag",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "Ryan M O'Connell",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "W Zac Stephens",
+          "affiliation": "University of Utah"
+        },
+        {
+          "name": "June L Round",
+          "affiliation": "University of Utah"
         }
       ],
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35155868/"
-    },
-    {
-      "id": "pub003",
-      "pmid": "35683499",
-      "title": "Profiling the gut virome in human health and disease",
-      "authors": [
-        { "name": "Chang JT", "affiliation": "Department of Pathology, Stanford University, Stanford, CA, USA" },
-        { "name": "Lin JD", "affiliation": "Department of Microbiology and Immunobiology, Harvard Medical School, Boston, MA, USA" }
-      ],
-      "journal": "Molecular Systems Biology",
-      "publicationDate": "2022-06-15",
-      "volume": "18",
-      "issue": "6",
-      "pages": "e10815",
-      "doi": "10.15252/msb.202110815",
-      "abstract": "The human gut harbors an extensive viral community, termed the gut virome. Developments in metagenomic approaches have enabled characterization of the viruses in this overlooked component of the gut microbiome. However, there is still a significant gap in our understanding of the contribution of the virome to the balance of the gut ecosystem and its implications for human health and disease. Recent studies have shown remarkable alterations of the gut virome related to disease states, including inflammatory bowel disease, diabetes, and colorectal cancer. Nevertheless, the causality between virome abnormality and pathogenesis has yet to be thoroughly established. In this review, we present an overview of our current understanding of the gut virome and its interconnections with gut bacteria and host immunity, advancements in technology for virome profiling, and the relationships between virome alterations and human diseases.",
-      "keywords": ["gut virome", "metagenomics", "microbiome", "human disease"],
-      "pubType": "review",
+      "journal": "Cell Host Microbe",
+      "journalAbbr": "",
+      "publicationDate": "2025",
+      "abstract": "",
+      "doi": "10.1016/j.chom.2024.12.009",
+      "citationCount": 0,
+      "citationsPerYear": 0,
       "grants": [
         {
-          "grantId": "U54AG089326", 
-          "grantTitle": "Human Virome Project Grant U54AG089326",
-          "institutionName": "NIH",
-          "principalInvestigator": "Various PIs"
+          "grantId": "AT012990",
+          "grantTitle": "Antibody targeting of virome",
+          "principalInvestigator": "Zac Stephens"
         }
       ],
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35683499/"
-    },
-    {
-      "id": "pub004",
-      "pmid": "34070911",
-      "title": "The Human Virosphere: How Viruses Influence Us from Birth to Death",
-      "authors": [
-        { "name": "Mirzaei MK", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Xue J", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Costa R", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Ru J", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Schulz F", "affiliation": "DOE Joint Genome Institute, Berkeley, CA, USA" },
-        { "name": "Taranu ZE", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Belda-Ferre P", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Zengler K", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" },
-        { "name": "Pride DT", "affiliation": "Department of Medicine, University of California San Diego, La Jolla, CA, USA" }
-      ],
-      "journal": "Cell",
-      "publicationDate": "2021-06-10",
-      "volume": "184",
-      "issue": "12",
-      "pages": "5-25",
-      "doi": "10.1016/j.cell.2021.04.011",
-      "abstract": "Viruses have been largely considered pathogenic entities since their initial discovery. However, recent studies have revealed that many viruses follow a commensal lifestyle with their hosts and play vital roles in diverse ecosystems. In humans, viruses persist in us from birth to death, and we continuously acquire and harbor the virome, which is the collection of all viruses present in our bodies. The human virome consists of eukaryotic and prokaryotic viruses that may also include pathogenic viruses. The bacterial component of the human microbiome has been studied extensively, but the virome remains relatively unexplored, particularly as it pertains to sustaining human health. The virome is likely crucial to many aspects of human health and disease, including modulating the bacterial microbiome, influencing host gene expression, and training the immune system. Here, we review the emerging roles of the human virome in health and disease, challenges in virome exploration, and virome-targeted therapeutic opportunities.",
-      "keywords": ["virome", "virosphere", "microbiome", "human health"],
-      "pubType": "review",
-      "grants": [
-        {
-          "grantId": "U54AG089325",
-          "grantTitle": "Human Virome Project Grant U54AG089325",
-          "institutionName": "NIH",
-          "principalInvestigator": "Various PIs"
-        }
-      ],
-      "url": "https://pubmed.ncbi.nlm.nih.gov/34070911/"
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39788099/"
     }
-  ]
+  ],
+  "lastUpdated": "2025-05-10T00:40:52.532Z"
 }
