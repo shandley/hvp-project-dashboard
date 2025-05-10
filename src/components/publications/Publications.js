@@ -1,70 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { loadLocalPublications, fetchHvpPublications, fetchOtherViromePublications } from '../../utils/publicationService';
+import { loadLocalPublications, fetchHvpPublications } from '../../utils/publicationService';
 import './Publications.css';
 
 /**
  * Publications Component
- * 
+ *
  * Main component for displaying HVP-related publications
  * and associated metrics and visualizations.
  */
 const Publications = ({ data, filters }) => {
   // State for publications data
-  const [hvpPublications, setHvpPublications] = useState([]);
-  const [otherPublications, setOtherPublications] = useState([]);
+  const [publications, setPublications] = useState([]);
   const [filteredPublications, setFilteredPublications] = useState([]);
   const [selectedPublication, setSelectedPublication] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  // State for active tab
-  const [activeTab, setActiveTab] = useState('hvp');
-  
+
   // State for filters
   const [searchTerm, setSearchTerm] = useState('');
   const [yearFilter, setYearFilter] = useState('all');
   const [journalFilter, setJournalFilter] = useState('all');
-  
+
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  
+
   // Load publications data
   useEffect(() => {
     const loadPublications = async () => {
       setIsLoading(true);
-      
+
       try {
         // Load HVP publications
-        console.log('Fetching HVP publications from NIH RePORTER API...');
-        let hvpData = [];
+        console.log('Fetching HVP publications from API...');
+        let publicationsData = [];
         try {
-          hvpData = await fetchHvpPublications();
+          publicationsData = await fetchHvpPublications();
         } catch (apiError) {
-          console.error('Error fetching HVP publications from API:', apiError);
+          console.error('Error fetching publications from API:', apiError);
           console.log('Falling back to local data...');
-          hvpData = await loadLocalPublications();
+          publicationsData = await loadLocalPublications();
         }
-        
-        if (hvpData.length === 0) {
-          console.log('No HVP publications from API, loading from local data...');
-          hvpData = await loadLocalPublications();
+
+        if (publicationsData.length === 0) {
+          console.log('No publications from API, loading from local data...');
+          publicationsData = await loadLocalPublications();
         }
-        
-        setHvpPublications(hvpData);
-        
-        // Load other virome-related publications
-        console.log('Fetching other virome publications from NIH RePORTER API...');
-        const otherData = await fetchOtherViromePublications();
-        setOtherPublications(otherData);
-        
-        // Set filtered publications based on active tab
-        if (activeTab === 'hvp') {
-          setFilteredPublications(hvpData);
-        } else {
-          setFilteredPublications(otherData);
-        }
-        
+
+        setPublications(publicationsData);
+        setFilteredPublications(publicationsData);
         setIsLoading(false);
       } catch (err) {
         console.error('Error loading publications:', err);
@@ -72,49 +56,29 @@ const Publications = ({ data, filters }) => {
         setIsLoading(false);
       }
     };
-    
+
     loadPublications();
-  }, [activeTab]);
-  
-  // Handle tab change
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    setSelectedPublication(null);
-    setCurrentPage(1);
-    
-    // Reset filters when changing tabs
-    setSearchTerm('');
-    setYearFilter('all');
-    setJournalFilter('all');
-    
-    // Update filtered publications based on active tab
-    if (tab === 'hvp') {
-      setFilteredPublications(hvpPublications);
-    } else {
-      setFilteredPublications(otherPublications);
-    }
-  };
+  }, []);
   
   // Apply filters when search term or filters change
   useEffect(() => {
-    const currentPublications = activeTab === 'hvp' ? hvpPublications : otherPublications;
-    if (currentPublications.length === 0) return;
-    
+    if (publications.length === 0) return;
+
     const applyFilters = () => {
-      let filtered = [...currentPublications];
-      
+      let filtered = [...publications];
+
       // Apply search term filter
       if (searchTerm) {
         const term = searchTerm.toLowerCase();
-        filtered = filtered.filter(pub => 
-          pub.title.toLowerCase().includes(term) || 
+        filtered = filtered.filter(pub =>
+          pub.title.toLowerCase().includes(term) ||
           pub.abstract.toLowerCase().includes(term) ||
           pub.authors.some(author => author.name.toLowerCase().includes(term)) ||
           pub.journal.toLowerCase().includes(term) ||
           (pub.keywords && pub.keywords.some(keyword => keyword.toLowerCase().includes(term)))
         );
       }
-      
+
       // Apply year filter
       if (yearFilter !== 'all') {
         filtered = filtered.filter(pub => {
@@ -122,30 +86,28 @@ const Publications = ({ data, filters }) => {
           return pubYear === yearFilter;
         });
       }
-      
+
       // Apply journal filter
       if (journalFilter !== 'all') {
         filtered = filtered.filter(pub => pub.journal === journalFilter);
       }
-      
+
       setFilteredPublications(filtered);
       setCurrentPage(1); // Reset to first page when filters change
     };
-    
+
     applyFilters();
-  }, [searchTerm, yearFilter, journalFilter, hvpPublications, otherPublications, activeTab]);
-  
+  }, [searchTerm, yearFilter, journalFilter, publications]);
+
   // Get publication years for filter
   const getPublicationYears = () => {
-    const currentPublications = activeTab === 'hvp' ? hvpPublications : otherPublications;
-    const years = currentPublications.map(pub => new Date(pub.publicationDate).getFullYear());
+    const years = publications.map(pub => new Date(pub.publicationDate).getFullYear());
     return [...new Set(years)].sort((a, b) => b - a); // Sort descending
   };
-  
+
   // Get journals for filter
   const getJournals = () => {
-    const currentPublications = activeTab === 'hvp' ? hvpPublications : otherPublications;
-    const journals = currentPublications.map(pub => pub.journal);
+    const journals = publications.map(pub => pub.journal);
     return [...new Set(journals)].sort();
   };
   
@@ -193,9 +155,9 @@ const Publications = ({ data, filters }) => {
     return (
       <div className="publications-container">
         <div className="publications-header">
-          <h2>Virome Publications</h2>
+          <h2>HVP Publications</h2>
           <p className="publications-subtitle">
-            Scientific publications related to virome research
+            Scientific publications related to the Human Virome Project
           </p>
         </div>
         <div className="publications-loading">
@@ -204,15 +166,15 @@ const Publications = ({ data, filters }) => {
       </div>
     );
   }
-  
+
   // Render error state
   if (error) {
     return (
       <div className="publications-container">
         <div className="publications-header">
-          <h2>Virome Publications</h2>
+          <h2>HVP Publications</h2>
           <p className="publications-subtitle">
-            Scientific publications related to virome research
+            Scientific publications related to the Human Virome Project
           </p>
         </div>
         <div className="publications-empty">
@@ -222,41 +184,20 @@ const Publications = ({ data, filters }) => {
       </div>
     );
   }
-  
-  // Determine if the current tab has no publications
-  const currentPublications = activeTab === 'hvp' ? hvpPublications : otherPublications;
-  const emptyCurrentTab = currentPublications.length === 0;
-  
-  // Render empty state for current tab
-  if (emptyCurrentTab) {
-    const tabName = activeTab === 'hvp' ? 'HVP' : 'Other Virome';
+
+  // Render empty state if no publications
+  if (publications.length === 0) {
     return (
       <div className="publications-container">
         <div className="publications-header">
-          <h2>Virome Publications</h2>
+          <h2>HVP Publications</h2>
           <p className="publications-subtitle">
-            Scientific publications related to virome research
+            Scientific publications related to the Human Virome Project
           </p>
         </div>
-        
-        {/* Publication tabs */}
-        <div className="publication-tabs">
-          <button 
-            className={`tab-button ${activeTab === 'hvp' ? 'active' : ''}`}
-            onClick={() => handleTabChange('hvp')}
-          >
-            HVP Publications
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'other' ? 'active' : ''}`}
-            onClick={() => handleTabChange('other')}
-          >
-            Other Virome Publications
-          </button>
-        </div>
-        
+
         <div className="publications-empty">
-          <p>No {tabName} publications found. Please try again later or check your connection.</p>
+          <p>No publications found. Please try again later or check your connection.</p>
           <button onClick={() => window.location.reload()}>Refresh</button>
         </div>
       </div>
@@ -266,36 +207,20 @@ const Publications = ({ data, filters }) => {
   return (
     <div className="publications-container">
       <div className="publications-header">
-        <h2>Virome Publications</h2>
+        <h2>HVP Publications</h2>
         <p className="publications-subtitle">
-          Scientific publications related to virome research
+          Scientific publications related to the Human Virome Project
         </p>
         <div className="publications-actions">
           {/* Actions to be implemented: Export, etc. */}
         </div>
       </div>
-      
-      {/* Publication tabs */}
-      <div className="publication-tabs">
-        <button 
-          className={`tab-button ${activeTab === 'hvp' ? 'active' : ''}`}
-          onClick={() => handleTabChange('hvp')}
-        >
-          HVP Publications ({hvpPublications.length})
-        </button>
-        <button 
-          className={`tab-button ${activeTab === 'other' ? 'active' : ''}`}
-          onClick={() => handleTabChange('other')}
-        >
-          Other Virome Publications ({otherPublications.length})
-        </button>
-      </div>
-      
+
       {/* Publications Stats */}
       <div className="publication-stats">
         <div className="stat-item">
           <h3 className="stat-title">Total Publications</h3>
-          <p className="stat-value">{currentPublications.length}</p>
+          <p className="stat-value">{publications.length}</p>
         </div>
         <div className="stat-item">
           <h3 className="stat-title">Publication Years</h3>
@@ -352,7 +277,7 @@ const Publications = ({ data, filters }) => {
       
       {/* Results count */}
       <p className="publications-subtitle">
-        Showing {filteredPublications.length} of {currentPublications.length} publications
+        Showing {filteredPublications.length} of {publications.length} publications
       </p>
       
       {/* Publications Table */}
