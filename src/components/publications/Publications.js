@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { loadLocalPublications, fetchHvpPublications } from '../../utils/publicationService';
 import PublicationTimeline from './PublicationTimeline';
+import ExportButton from './ExportButton';
 import './Publications.css';
 
 /**
@@ -213,7 +214,10 @@ const Publications = ({ data, filters }) => {
           Scientific publications related to the Human Virome Project
         </p>
         <div className="publications-actions">
-          {/* Actions to be implemented: Export, etc. */}
+          <ExportButton
+            publications={publications}
+            filteredPublications={filteredPublications}
+          />
         </div>
       </div>
 
