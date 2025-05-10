@@ -1,0 +1,72 @@
+{
+  "publications": [
+    {
+      "id": "pub001",
+      "pmid": "39788099",
+      "title": "Clec12a controls colitis by tempering inflammation and restricting expansion of specific commensals",
+      "authors": [
+        { "name": "Chiaro TR", "affiliation": "University of Utah" },
+        { "name": "Greenewood M", "affiliation": "University of Utah" },
+        { "name": "Bauer KM", "affiliation": "University of Utah" },
+        { "name": "Ost KS", "affiliation": "University of Utah" },
+        { "name": "Stephen-Victor E", "affiliation": "University of Utah" },
+        { "name": "Murphy M", "affiliation": "University of Utah" },
+        { "name": "Weis AM", "affiliation": "University of Utah" },
+        { "name": "Nelson MC", "affiliation": "University of Utah" },
+        { "name": "Hill JH", "affiliation": "University of Utah" },
+        { "name": "Bell R", "affiliation": "University of Utah" },
+        { "name": "Voth W", "affiliation": "University of Utah" },
+        { "name": "Jackson T", "affiliation": "University of Utah" },
+        { "name": "Klag KA", "affiliation": "University of Utah" },
+        { "name": "O'Connell RM", "affiliation": "University of Utah" },
+        { "name": "Zac Stephens W", "affiliation": "University of Utah" },
+        { "name": "Round JL", "affiliation": "University of Utah" }
+      ],
+      "journal": "Cell host & microbe",
+      "journalAbbr": "Cell Host Microbe",
+      "publicationDate": "2025 Jan 8",
+      "abstract": "Despite the critical role of gut bacterial communities in intestinal inflammation, their interactions with host immunity remain incompletely understood. The host innate immune system plays a crucial role in initially recognizing and responding to bacterial cues, but the C-type lectin receptors (CLRs) that influence gut microbes are not well characterized. Here, we identified Clec12a as a CLR that controls colonic homeostasis through interactions with specific gut commensals. Using IL-10-deficient mice (Il10-/-), a model of inflammatory bowel disease, we showed that Clec12a restricts inflammation via commensals such as Eggerthella timonensis. These microbes activated Clec12a signaling, thereby tempering inflammatory macrophage responses. Our findings reveal that Clec12a serves as a critical fine-tuning mechanism enabling mammals to host a diversity of microorganisms in their gut while still maintaining a robust defense against pathogens, thus offering critical insights into inflammatory bowel diseases such as colitis.",
+      "doi": "10.1016/j.chom.2024.12.007",
+      "citationCount": 3,
+      "citationsPerYear": 1.5,
+      "grants": [
+        {
+          "grantId": "AT012990",
+          "grantTitle": "Antibody targeting of virome",
+          "principalInvestigator": "Zac Stephens"
+        }
+      ],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39788099/"
+    },
+    {
+      "id": "pub002",
+      "pmid": "39648698",
+      "title": "Viral Load Measurements for Kaposi Sarcoma Herpesvirus (KSHV/HHV8): Review and an Updated Assay",
+      "authors": [
+        { "name": "Cano P", "affiliation": "University of North Carolina" },
+        { "name": "Seltzer T", "affiliation": "University of North Carolina" },
+        { "name": "Seltzer J", "affiliation": "University of North Carolina" },
+        { "name": "Peng A", "affiliation": "University of North Carolina" },
+        { "name": "Landis J", "affiliation": "University of North Carolina" },
+        { "name": "Pluta L", "affiliation": "University of North Carolina" },
+        { "name": "Dittmer DP", "affiliation": "University of North Carolina" }
+      ],
+      "journal": "Journal of medical virology",
+      "journalAbbr": "J Med Virol",
+      "publicationDate": "2024 Dec",
+      "abstract": "Kaposi sarcoma herpesvirus (KSHV) is the etiological agent of Kaposi sarcoma, primary effusion lymphoma, and a subset of multicentric Castleman disease. KSHV viral load is a prognostic marker for these diseases, particularly in immunocompromised individuals. Real-time quantitative PCR (qPCR) assays are the principal diagnostic methodology to quantify KSHV load. We assessed published assays based on WHO International Standards and developed an updated assay with improved performance characteristics. This assay demonstrates high sensitivity, accuracy, and consistency across viral variants, with a detection limit of 2-3 KSHV genome copies and a linear detection range from 3 to 3×10^7 copies. It measures viral loads in various biological samples including tumors, cell lines, peripheral blood, plasma, serum, saliva, and seminal fluid. This assay enables reliable differentiation between asymptomatic KSHV infection states and KSHV-associated diseases across diverse clinical and laboratory settings.",
+      "doi": "10.1002/jmv.29519",
+      "citationCount": 1,
+      "citationsPerYear": 0.5,
+      "grants": [
+        {
+          "grantId": "DE034199",
+          "grantTitle": "Innovative tools for virome analysis",
+          "principalInvestigator": "Rustem Ismagilov"
+        }
+      ],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39648698/"
+    }
+  ],
+  "lastUpdated": "2024-05-09T19:30:00Z"
+}

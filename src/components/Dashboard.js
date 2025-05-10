@@ -8,6 +8,7 @@ import LiveProjectTimeline from './visualizations/LiveProjectTimeline';
 import NetworkRelationships from './visualizations/NetworkRelationships';
 import DiseaseViromeTable from './visualizations/DiseaseViromeTable';
 import ProgramInfo from './programInfo/ProgramInfo';
+import Publications from './publications/Publications';
 
 function Dashboard({ data, filters, updateFilters, activeView }) {
   // Render the appropriate visualization based on the active view
@@ -20,7 +21,7 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
       return <div className="loading-transition">Changing view...</div>;
     }
     
-    if (!data && !['program-info', 'disease-virome'].includes(activeView)) {
+    if (!data && !['program-info', 'disease-virome', 'publications'].includes(activeView)) {
       console.log('No data available for view:', activeView);
       return <div>No data available</div>;
     }
@@ -47,7 +48,7 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
       case 'program-info': {
         console.log('Rendering ProgramInfo component');
         console.log('Dashboard time:', new Date().toISOString());
-        
+
         try {
           const programInfoComponent = <ProgramInfo />;
           return programInfoComponent;
@@ -55,6 +56,10 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
           console.error('Error rendering ProgramInfo in Dashboard:', error);
           return <div>Error rendering ProgramInfo: {error.message}</div>;
         }
+      }
+      case 'publications': {
+        console.log('Rendering Publications component');
+        return <Publications data={data} filters={filters} />;
       }
       default:
         console.log('Default: Rendering Overview component');
@@ -65,15 +70,15 @@ function Dashboard({ data, filters, updateFilters, activeView }) {
   return (
     <div className="dashboard">
       {console.log('Dashboard rendering, activeView:', activeView)}
-      {!['program-info', 'disease-virome'].includes(activeView) && (
-        <FilterPanel 
-          data={data} 
-          filters={filters} 
-          updateFilters={updateFilters} 
+      {!['program-info', 'disease-virome', 'publications'].includes(activeView) && (
+        <FilterPanel
+          data={data}
+          filters={filters}
+          updateFilters={updateFilters}
         />
       )}
-      <div 
-        className={`dashboard-content ${['program-info', 'disease-virome'].includes(activeView) ? 'full-width' : ''}`}
+      <div
+        className={`dashboard-content ${['program-info', 'disease-virome', 'publications'].includes(activeView) ? 'full-width' : ''}`}
         style={{ width: '100%' }}
       >
         {renderContent()}

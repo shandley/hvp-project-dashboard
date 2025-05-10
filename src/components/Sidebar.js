@@ -9,6 +9,7 @@ function Sidebar({ activeView, changeView }) {
     { id: 'timeline', label: 'Project Timeline', icon: '📅', disabled: true },
     { id: 'networks', label: 'Relationships & Networks', icon: '🔄' },
     { id: 'disease-virome', label: 'Disease-Virome Associations', icon: '🧬' },
+    { id: 'publications', label: 'HVP Publications', icon: '📚' },
     { id: 'program-info', label: 'About HVP Program', icon: 'ℹ️' },
   ];
 
@@ -34,10 +35,10 @@ function Sidebar({ activeView, changeView }) {
                 
                 console.log('Sidebar: Clicked on', item.id, 'at', new Date().toISOString());
                 
-                if (item.id === 'program-info') {
-                  // For program-info, use a direct navigation approach
-                  console.log('Sidebar: Direct navigation to program-info');
-                  changeView('program-info');
+                if (['program-info', 'publications'].includes(item.id)) {
+                  // For program-info and publications, use a direct navigation approach
+                  console.log(`Sidebar: Direct navigation to ${item.id}`);
+                  changeView(item.id);
                 } else {
                   // For other views, use the two-step process
                   console.log('Sidebar: Using two-step process for', item.id);
