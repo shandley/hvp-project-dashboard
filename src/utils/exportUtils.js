@@ -91,8 +91,11 @@ export const exportPublicationsToCSV = (publications, filename = 'hvp-publicatio
   downloadFile(csv, filename);
 };
 
-export default {
+// Create a named object for export
+const exportUtils = {
   publicationsToCSV,
   downloadFile,
   exportPublicationsToCSV
 };
+
+export default exportUtils;
