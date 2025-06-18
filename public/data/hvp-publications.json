@@ -2,131 +2,33 @@
   "publications": [
     {
       "id": "pub001",
-      "pmid": 39648698,
-      "title": "Viral Load Measurements for Kaposi Sarcoma Herpesvirus (KSHV/HHV8): Review and an Updated Assay.",
+      "pmid": "39788099",
+      "title": "Clec12a controls colitis by tempering inflammation and restricting expansion of specific commensals",
       "authors": [
         {
-          "name": "Patricio Cano",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Tischan Seltzer",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Jedediah Seltzer",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Alice Peng",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Justin Landis",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Linda Pluta",
-          "affiliation": "University of North Carolina"
-        },
-        {
-          "name": "Dirk P Dittmer",
-          "affiliation": "University of North Carolina"
-        }
-      ],
-      "journal": "J Med Virol",
-      "journalAbbr": "",
-      "publicationDate": "2024",
-      "abstract": "",
-      "doi": "10.1002/jmv.70105",
-      "citationCount": 0,
-      "citationsPerYear": 0,
-      "grants": [
-        {
-          "grantId": "DE034199",
-          "grantTitle": "Innovative tools for virome analysis",
-          "principalInvestigator": "Rustem Ismagilov"
-        }
-      ],
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39648698/"
-    },
-    {
-      "id": "pub002",
-      "pmid": 39788099,
-      "title": "Clec12a controls colitis by tempering inflammation and restricting expansion of specific commensals.",
-      "authors": [
-        {
-          "name": "Tyson R Chiaro",
+          "name": "Chiaro TR",
           "affiliation": "University of Utah"
         },
         {
-          "name": "Morgan Greenewood",
+          "name": "Greenewood M",
           "affiliation": "University of Utah"
         },
         {
-          "name": "Kaylyn M Bauer",
+          "name": "Bauer KM",
           "affiliation": "University of Utah"
         },
         {
-          "name": "Kyla S Ost",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Emmanuel Stephen-Victor",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Michaela Murphy",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Allison M Weis",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Morgan C Nelson",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Jennifer H Hill",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Rickesha Bell",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Warren Voth",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Taylor Jackson",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Kendra A Klag",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "Ryan M O'Connell",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "W Zac Stephens",
-          "affiliation": "University of Utah"
-        },
-        {
-          "name": "June L Round",
+          "name": "Round JL",
           "affiliation": "University of Utah"
         }
       ],
-      "journal": "Cell Host Microbe",
-      "journalAbbr": "",
-      "publicationDate": "2025",
-      "abstract": "",
-      "doi": "10.1016/j.chom.2024.12.009",
-      "citationCount": 0,
-      "citationsPerYear": 0,
+      "journal": "Cell host & microbe",
+      "journalAbbr": "Cell Host Microbe",
+      "publicationDate": "2025 Jan 8",
+      "abstract": "Despite the critical role of gut bacterial communities in intestinal inflammation, their interactions with host immunity remain incompletely understood. This study identifies Clec12a as a CLR that controls colonic homeostasis through interactions with specific gut commensals.",
+      "doi": "10.1016/j.chom.2024.12.007",
+      "citationCount": 3,
+      "citationsPerYear": 1.5,
       "grants": [
         {
           "grantId": "AT012990",
@@ -135,7 +37,37 @@
         }
       ],
       "url": "https://pubmed.ncbi.nlm.nih.gov/39788099/"
+    },
+    {
+      "id": "pub002",
+      "pmid": "39648698",
+      "title": "Viral Load Measurements for Kaposi Sarcoma Herpesvirus (KSHV/HHV8): Review and an Updated Assay",
+      "authors": [
+        {
+          "name": "Cano P",
+          "affiliation": "University of North Carolina"
+        },
+        {
+          "name": "Dittmer DP",
+          "affiliation": "University of North Carolina"
+        }
+      ],
+      "journal": "Journal of medical virology",
+      "journalAbbr": "J Med Virol",
+      "publicationDate": "2024 Dec",
+      "abstract": "This paper presents an updated assay for measuring Kaposi sarcoma herpesvirus viral load, which is a prognostic marker for KSHV-associated diseases.",
+      "doi": "10.1002/jmv.29519",
+      "citationCount": 1,
+      "citationsPerYear": 0.5,
+      "grants": [
+        {
+          "grantId": "DE034199",
+          "grantTitle": "Innovative tools for virome analysis",
+          "principalInvestigator": "Rustem Ismagilov"
+        }
+      ],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39648698/"
     }
   ],
-  "lastUpdated": "2025-06-17T00:40:56.007Z"
+  "lastUpdated": "2025-06-18T00:41:02.586Z"
 }
